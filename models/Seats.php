@@ -34,7 +34,7 @@ class Seats extends \yii\db\ActiveRecord
         return [
             [['seat_code', 'seat_name'], 'required'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
-            [['seat_code', 'seat_name'], 'string', 'max' => 10],
+            [['seat_code', 'seat_name'], 'string', 'max' => 50],
         ];
     }
 
