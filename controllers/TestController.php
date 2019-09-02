@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\BusRoute;
-use app\models\BusRouteSearch;
+use app\models\Route;
+use app\models\RouteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BusRouteController implements the CRUD actions for BusRoute model.
+ * RouteController implements the CRUD actions for Route model.
  */
-class BusRouteController extends Controller
+class TestController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class BusRouteController extends Controller
     }
 
     /**
-     * Lists all BusRoute models.
+     * Lists all Route models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new BusRouteSearch();
+        $searchModel = new RouteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class BusRouteController extends Controller
     }
 
     /**
-     * Displays a single BusRoute model.
+     * Displays a single Route model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -57,86 +57,68 @@ class BusRouteController extends Controller
         ]);
     }
 
-    //bus view
-    public function actionBus_view($id)
-    {
-        return $this->render('bus_view', [
-            'model' => $this->findModel1($id),
-        ]);
-    }
-
     /**
-     * Creates a new BusRoute model.
+     * Creates a new Route model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
-        $model = new BusRoute();
+    // public function actionCreate()
+    // {
+    //     $model = new Route();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->bus_route_id]);
-        }
+    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //         return $this->redirect(['view', 'id' => $model->route_id]);
+    //     }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
+    //     return $this->render('create', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
     /**
-     * Updates an existing BusRoute model.
+     * Updates an existing Route model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
+    // public function actionUpdate($id)
+    // {
+    //     $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->bus_route_id]);
-        }
+    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //         return $this->redirect(['view', 'id' => $model->route_id]);
+    //     }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
+    //     return $this->render('update', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
     /**
-     * Deletes an existing BusRoute model.
+     * Deletes an existing Route model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
+    // public function actionDelete($id)
+    // {
+    //     $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
-    }
+    //     return $this->redirect(['index']);
+    // }
 
     /**
-     * Finds the BusRoute model based on its primary key value.
+     * Finds the Route model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return BusRoute the loaded model
+     * @return Route the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    // find for bus view
-    protected function findModel1($id)
-    {
-        if (($model = BusRoute::findOne(['route_id' => $id])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-    //
     protected function findModel($id)
     {
-        if (($model = BusRoute::findOne($id)) !== null) {
+        if (($model = Route::findOne($id)) !== null) {
             return $model;
         }
 

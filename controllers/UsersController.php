@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\BusRoute;
-use app\models\BusRouteSearch;
+use app\models\Users;
+use app\models\UsersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BusRouteController implements the CRUD actions for BusRoute model.
+ * UsersController implements the CRUD actions for Users model.
  */
-class BusRouteController extends Controller
+class UsersController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class BusRouteController extends Controller
     }
 
     /**
-     * Lists all BusRoute models.
+     * Lists all Users models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new BusRouteSearch();
+        $searchModel = new UsersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class BusRouteController extends Controller
     }
 
     /**
-     * Displays a single BusRoute model.
+     * Displays a single Users model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -57,25 +57,17 @@ class BusRouteController extends Controller
         ]);
     }
 
-    //bus view
-    public function actionBus_view($id)
-    {
-        return $this->render('bus_view', [
-            'model' => $this->findModel1($id),
-        ]);
-    }
-
     /**
-     * Creates a new BusRoute model.
+     * Creates a new Users model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new BusRoute();
+        $model = new Users();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->bus_route_id]);
+            return $this->redirect(['view', 'id' => $model->user_id]);
         }
 
         return $this->render('create', [
@@ -84,7 +76,7 @@ class BusRouteController extends Controller
     }
 
     /**
-     * Updates an existing BusRoute model.
+     * Updates an existing Users model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -95,7 +87,7 @@ class BusRouteController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->bus_route_id]);
+            return $this->redirect(['view', 'id' => $model->user_id]);
         }
 
         return $this->render('update', [
@@ -104,7 +96,7 @@ class BusRouteController extends Controller
     }
 
     /**
-     * Deletes an existing BusRoute model.
+     * Deletes an existing Users model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -118,25 +110,15 @@ class BusRouteController extends Controller
     }
 
     /**
-     * Finds the BusRoute model based on its primary key value.
+     * Finds the Users model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return BusRoute the loaded model
+     * @return Users the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    // find for bus view
-    protected function findModel1($id)
-    {
-        if (($model = BusRoute::findOne(['route_id' => $id])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-    //
     protected function findModel($id)
     {
-        if (($model = BusRoute::findOne($id)) !== null) {
+        if (($model = Users::findOne($id)) !== null) {
             return $model;
         }
 
