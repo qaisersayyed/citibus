@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PassRideSearch */
+/* @var $searchModel app\models\UsersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pass Rides';
+$this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pass-ride-index">
+<div class="users-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Pass Ride', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,12 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'pass_ride_id',
-            'pass_id',
-            'bus_route_id',
-            'ride_time',
-            //'created_at',
-            //'updated_at',
+            'user_id',
+            'username',
+            'password',
+            'created_at',
+            'updated_at',
             //'deleted_at',
 
             ['class' => 'yii\grid\ActionColumn'],
