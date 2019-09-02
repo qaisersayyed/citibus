@@ -57,6 +57,14 @@ class BusRouteController extends Controller
         ]);
     }
 
+    //bus view
+    public function actionBus_view($id)
+    {
+        return $this->render('bus_view', [
+            'model' => $this->findModel1($id),
+        ]);
+    }
+
     /**
      * Creates a new BusRoute model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -116,6 +124,16 @@ class BusRouteController extends Controller
      * @return BusRoute the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
+    // find for bus view
+    protected function findModel1($id)
+    {
+        if (($model = BusRoute::findOne(['route_id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    //
     protected function findModel($id)
     {
         if (($model = BusRoute::findOne($id)) !== null) {
