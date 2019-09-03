@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Users;
-use app\models\UsersSearch;
+use app\models\SearchUsers;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class UsersController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UsersSearch();
+        $searchModel = new SearchUsers();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -66,7 +66,9 @@ class UsersController extends Controller
     {
         $model = new Users();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            echo $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->user_id]);
         }
 

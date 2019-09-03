@@ -3,7 +3,8 @@
 namespace app\models;
 
 use Yii;
-
+use app\models\Users;
+use yii\web\IdentityInterface;
 /**
  * This is the model class for table "user".
  *
@@ -17,7 +18,7 @@ use Yii;
  * @property Customer[] $customers
  * @property Employee[] $employees
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -36,7 +37,7 @@ class Users extends \yii\db\ActiveRecord
             [['username', 'password'], 'required'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['username'], 'string', 'max' => 15],
-            [['password'], 'string', 'max' => 20],
+            //[['password'], 'string', 'max' => 20],
         ];
     }
 
@@ -69,5 +70,56 @@ class Users extends \yii\db\ActiveRecord
     public function getEmployees()
     {
         return $this->hasMany(Employee::className(), ['user_id' => 'user_id']);
+    }
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    /**
+     * Finds an identity by the given token.
+     *
+     * @param string $token the token to be looked for
+     * @return IdentityInterface|null the identity object that matches the given token.
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return null;
+    }
+
+    /**
+     * @return int|string current user ID
+     */
+    public function getId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * @return string current user auth key
+     */
+    public function getAuthKey()
+    {
+        return null;
+    }
+
+    /**
+     * @param string $authKey
+     * @return bool if auth key is valid for current user
+     */
+    public function validateAuthKey($authKey)
+    {
+        return null;
+    }
+
+    public function validatePassword($password)
+    {
+        return Yii::$app->getSecurity()->validatePassword($password, $this->password);
+    }
+
+    public static function findByUsername($username)
+    {
+        return Users::find()->where(['username' => $username])->one();
     }
 }

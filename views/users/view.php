@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->user_id;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+//\yii\web\YiiAsset::register($this);
 ?>
 <div class="users-view">
 

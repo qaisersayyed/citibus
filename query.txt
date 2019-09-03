@@ -1,3 +1,4 @@
 All Queries.
 
 ALTER TABLE `seats` CHANGE `seat_name` `seat_name` VARCHAR(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `user` CHANGE `password` `password` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
