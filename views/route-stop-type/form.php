@@ -14,22 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="home-index">
     <div style="width:50%; margin: 0 auto;" >
-
-    <?php $form = ActiveForm::begin([
-        'method' => 'post',
-        'action' => Url::to(['route-stop-type/form'])
-    ]); ?>
-       <?= Html::label('From:') ?>
-            <?= Html::textInput('from', "", ['class' => 'form-control']); ?>
-            <?= Html::label('To:') ?>
-            <?= Html::textInput('to',"", ['class' => 'form-control']); ?>
-            
-            <div class="form-group">
-                 <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-            </div>
-
-    <?php ActiveForm::end(); ?>
-        <!-- <form action="index.php?r=home/form" method="post">
+    
+    <!-- <form action="index.php?r=home/form" method="post">
             <div class="form-group mb-2">
                 <label >From</label>
                 <input type="text" class="form-control" name="from" >
@@ -44,16 +30,33 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         
         </form> -->
-    </div>
+    <?php $form = ActiveForm::begin([
+          'method' => 'get',
+      // 'action' => Url::to(['route-stop-type/form'])
+    ]); ?>
+       <?= Html::label('From:') ?>
+             <input type="text" class="form-control" name="from" >
+             <?= Html::label('To:') ?>
+             <input type="text" class="form-control" name="to" >
+            
+             <div class="form-group">
+                  <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
+             </div>
 
+    <?php ActiveForm::end(); ?>
+       
     
+    <div class="text-right">
+        <p><b>Search Result: </b>
+        <?php 
+            if($searchModel->route_id != ""){
+                echo $searchModel->route_id ;
+            }else{
+                echo "None";
+            }
+        ?>
 
-
-    
-    
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
- 
+     
     
 
 

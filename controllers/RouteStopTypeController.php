@@ -9,6 +9,8 @@ use app\models\Stops;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Route;
+// use app\models\RouteStopType;
 
 /**
  * RouteStopTypeController implements the CRUD actions for RouteStopType model.
@@ -44,7 +46,23 @@ class RouteStopTypeController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionForm()
+    {
+         $searchModel = new RouteStopTypeSearch();
+         if(Yii::$app->request->get('from')){
+            $searchModel->route_id = Yii::$app->request->get('from');
+        }
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        return $this->render('form', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$model = new Home();
+        //return $this->render('form');
+
+    }
     /**
      * Displays a single RouteStopType model.
      * @param integer $id
