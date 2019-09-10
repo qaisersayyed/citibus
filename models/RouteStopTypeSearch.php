@@ -17,8 +17,8 @@ class RouteStopTypeSearch extends RouteStopType
     public function rules()
     {
         return [
-            [['route_stop_type_id', 'route_id', 'stop_id', 'bus_type_id', 'fare'], 'integer'],
-            [['created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['route_stop_type_id', 'fare'], 'integer'],
+            [['created_at', 'stop_id', 'route_id', 'bus_type_id','updated_at', 'deleted_at'], 'safe'],
         ];
     }
 
@@ -55,7 +55,9 @@ class RouteStopTypeSearch extends RouteStopType
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        $query->joinWith('stop');
+        $query->joinWith('busType');
+        $query->joinWith('route');
         // grid filtering conditions
         $query->andFilterWhere([
             'route_stop_type_id' => $this->route_stop_type_id,
@@ -67,7 +69,10 @@ class RouteStopTypeSearch extends RouteStopType
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
         ]);
-
+        $query->andFilterWhere(['like', 'stop.stop_name', $this->stop_id]);
+        $query->andFilterWhere(['like', 'busType.type', $this->bus_type_id]);
+        $query->andFilterWhere(['like', 'route.from', $this->route_id]);
+        $query->andFilterWhere(['like', 'route.to', $this->route_id]);
         return $dataProvider;
     }
 }

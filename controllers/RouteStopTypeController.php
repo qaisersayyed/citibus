@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\RouteStopType;
 use app\models\RouteStopTypeSearch;
+use app\models\Stops;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

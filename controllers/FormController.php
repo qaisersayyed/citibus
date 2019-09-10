@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Route;
-use app\models\RouteSearch;
+use app\models\RouteStopType;
+use app\models\RouteStopTypeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * RouteController implements the CRUD actions for Route model.
  */
-class TestController extends Controller
+class FormController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -35,19 +35,30 @@ class TestController extends Controller
      */
     public function actionIndex()
     {
-        
-       // if(!Yii::$app->user->isGuest){
-        $searchModel = new RouteSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    //     $searchModel = new RouteStopTypeSearch();
+    //     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+    //     return $this->render('index', [
+    //         'searchModel' => $searchModel,
+    //         'dataProvider' => $dataProvider,
+    //     ]);
+         $model = new RouteStopType();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $searchModel = new RouteStopTypeSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+          return $this->render('result',[
+            'model' => $this->findModel($model->route_id),
+            
+          ]);
+        }
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
-       // }else{
-        //    throw new \yii\web\ForbiddenHttpException;
-        //}
-    }
+     }
+
+
 
     /**
      * Displays a single Route model.
