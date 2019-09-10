@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use app\models\Users;
 use yii\web\IdentityInterface;
+use yii\helpers\Security;
 /**
  * This is the model class for table "user".
  *
@@ -120,6 +121,6 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public static function findByUsername($username)
     {
-        return Users::find()->where(['username' => $username])->one();
+        return User::find()->where(['username' => $username])->one();
     }
 }
