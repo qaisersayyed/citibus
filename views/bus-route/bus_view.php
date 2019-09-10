@@ -20,8 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'bus_route_id',
-            'bus_id',
-            'route_id',
+            'bus.license_plate',
+            'route.from',
+            'route.to',
             'timing',
           //  'created_at',
          //   'updated_at',

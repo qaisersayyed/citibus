@@ -27,9 +27,33 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'route_stop_type_id',
-            'route_id',
-            'stop_id',
-            'bus_type_id',
+            //'route_id',
+            [
+                    'attribute' => 'route_id',
+                     'label' => 'from',
+                     'value' => 'route.from',
+                    
+                 ],
+                 [
+                    'attribute' => 'route_id',
+                     'label' => 'to',
+                     'value' => 'route.to',
+                    
+                 ],
+           // 'stop_id',
+            [
+                'attribute' => 'stop_id',
+                'label' => 'Stops',
+                'value' => 'stop.stop_name',
+                
+            ],
+            [
+                'attribute' => 'bus_type_id',
+                 'label' => 'bus type',
+                 'value' => 'busType.type',
+                
+             ],
+           // 'bus_type_id',
             'fare',
             //'created_at',
             //'updated_at',
