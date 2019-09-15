@@ -55,6 +55,8 @@ class BusRouteSearch extends BusRoute
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->joinWith('bus');
+        $query->joinWith('route');
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -66,7 +68,9 @@ class BusRouteSearch extends BusRoute
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
         ]);
-
+        $query->andFilterWhere(['like', 'bus.license_plate', $this->bus_id]);
+        $query->andFilterWhere(['like', 'route.form', $this->route_id]);
+        $query->andFilterWhere(['like', 'route.to', $this->route_id]);
         return $dataProvider;
     }
 }

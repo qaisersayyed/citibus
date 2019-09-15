@@ -61,7 +61,7 @@ class BusRouteController extends Controller
     public function actionBus_view($id)
     {
         return $this->render('bus_view', [
-            'model' => $this->findModel1($id),
+            'id' => $id,
         ]);
     }
 
@@ -125,14 +125,7 @@ class BusRouteController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     // find for bus view
-    protected function findModel1($id)
-    {
-        if (($model = BusRoute::findOne(['route_id' => $id])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
+    
     //
     protected function findModel($id)
     {

@@ -46,25 +46,54 @@ class RouteStopTypeController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    // public function actionBus()
+    // {
+        
+    //     return $this->render('bus');
+    // }
     public function actionForm()
     {
          $searchModel = new RouteStopTypeSearch();
-         $from = Yii::$app->request->get('from');
-         $to = Yii::$app->request->get('to');
+         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        //  if(){
-        //     $searchModel->stop_id = Yii::$app->request->get('to');
-        // }
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         if(Yii::$app->request->get('from')){
+            $from = Yii::$app->request->get('from');
+            $to = Yii::$app->request->get('to');
+            
+            $from_name = Stops::find()->where(['stop_name' => $from ])->one();
+            $to_name = Stops::find()->where(['stop_name' => $to ])->one();
+            $from_id = RouteStopTypeSearch::find()->where(['stop_id' => $from_name->stop_id ])->one();
+            $to_id = RouteStopTypeSearch::find()->where(['stop_id' => $to_name->stop_id ])->one();
 
-        return $this->render('form', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        //$model = new Home();
-        //return $this->render('form');
+            if ($from_id->route_id == $to_id->route_id){
+                $model = $this->findModel1($from_id->route_id);
+            }
+       
+            // return $this->render('bus-route/bus_view', [
+            //     'id' => $from_id->route_id,
+            // ]);
+            return $this->redirect(array('bus-route/bus_view',
+                'id' => $from_id->route_id,
+            ));
+           // redirect(array('site/author','id'=>$model->id, 'title'=>$model->title));
+            
+        }else{
+            return $this->render('form', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+    //  $route_id = Route::find()->where(['from' => $from , 'to' => $to ])->one();
+            
+    }
 
+    protected function findModel1($route_id)
+    {
+        if (($model = RouteStopType::findOne(['route_id' => $route_id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
     /**
      * Displays a single RouteStopType model.
@@ -138,6 +167,10 @@ class RouteStopTypeController extends Controller
      * @return RouteStopType the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
+
+
+    
+
     protected function findModel($id)
     {
         if (($model = RouteStopType::findOne($id)) !== null) {

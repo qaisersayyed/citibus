@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StopsSearch */
@@ -48,14 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <div class="text-right">
         <p><b>Search Result: </b>
-        <?php 
-            // if($searchModel->route_id != ""){
-            //     echo $searchModel->route_id ;
-            // }else{
-            //     echo "None";
-            // }
-            echo $searchModel->stop_id;
-        ?>
+       
+
+       
 
      
     
