@@ -35,7 +35,7 @@ class BusController extends Controller
      */
     public function actionIndex()
     {
-        if(!Yii::$app->user->isGuest){
+       
         $searchModel = new BusSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -43,9 +43,9 @@ class BusController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-        }else{
-            throw new \yii\web\ForbiddenHttpException;
-        }
+       
+            
+        
     }
 
     /**
