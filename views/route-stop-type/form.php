@@ -49,11 +49,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="text-right">
         <p><b>Search Result: </b>
         <?php 
-            if($searchModel->route_id != ""){
-                echo $searchModel->route_id ;
-            }else{
-                echo "None";
-            }
+            // if($searchModel->route_id != ""){
+            //     echo $searchModel->route_id ;
+            // }else{
+            //     echo "None";
+            // }
+            echo $searchModel->stop_id;
         ?>
 
      

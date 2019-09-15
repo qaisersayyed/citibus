@@ -49,9 +49,12 @@ class RouteStopTypeController extends Controller
     public function actionForm()
     {
          $searchModel = new RouteStopTypeSearch();
-         if(Yii::$app->request->get('from')){
-            $searchModel->route_id = Yii::$app->request->get('from');
-        }
+         $from = Yii::$app->request->get('from');
+         $to = Yii::$app->request->get('to');
+
+        //  if(){
+        //     $searchModel->stop_id = Yii::$app->request->get('to');
+        // }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('form', [
