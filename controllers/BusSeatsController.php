@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\BusSeats;
 use app\models\BusSeatsSearch;
+use app\models\BusSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -43,7 +44,17 @@ class BusSeatsController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
+    public function actionSeat_selection(){
+        $searchModel = new BusSeatsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = BusSearch::find()->where(['bus_id'=>1])->one();
+       
+        return $this->render('seat_selection', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'model' => $model
+        ]);
+    }
     /**
      * Displays a single BusSeats model.
      * @param integer $id

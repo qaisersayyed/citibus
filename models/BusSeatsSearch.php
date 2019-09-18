@@ -5,7 +5,8 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\BusSeats;
-
+use app\models\Bus;
+use app\models\Seats;
 /**
  * BusSeatsSearch represents the model behind the search form of `app\models\BusSeats`.
  */
@@ -55,7 +56,8 @@ class BusSeatsSearch extends BusSeats
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        $query->joinWith('bus');
+        $query->joinWith('seat');
         // grid filtering conditions
         $query->andFilterWhere([
             'bus_seat_id' => $this->bus_seat_id,
@@ -65,7 +67,8 @@ class BusSeatsSearch extends BusSeats
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
         ]);
-
+        $query->andFilterWhere(['like','bus.license_plate',$this->bus_id]);
+        $query->andFilterWhere(['like','seats.seat_code',$this->seat_id]);
         return $dataProvider;
     }
 }
