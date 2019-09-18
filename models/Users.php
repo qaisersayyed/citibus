@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use app\models\Users;
+use app\models\User;
 use yii\web\IdentityInterface;
 use yii\helpers\Security;
 /**
@@ -35,9 +35,9 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],
+            [['email_id', 'password'], 'required'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
-            [['username'], 'string', 'max' => 15],
+            [['email_id'], 'string', 'max' => 50],
             //[['password'], 'string', 'max' => 20],
         ];
     }
@@ -49,7 +49,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'user_id' => 'User ID',
-            'username' => 'Username',
+            'email_id' => 'E-mail',
             'password' => 'Password',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -119,8 +119,8 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
 
-    public static function findByUsername($username)
+    public static function findByEmail($email_id)
     {
-        return User::find()->where(['username' => $username])->one();
+        return Users::find()->where(['email_id' => $email_id])->one();
     }
 }

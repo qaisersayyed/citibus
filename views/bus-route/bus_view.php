@@ -3,11 +3,19 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\BusRoute;
+use app\models\Route;
 $this->title = 'All Buses';
 /* @var $this yii\web\View */
 /* @var $model app\models\BusRoute */
 echo $id;
-$data = BusRoute::find()->where(['route_id' => $id ])->all();
+echo $direction;
+
+
+//$data = BusRoute::find()->where(['route_id' => $id ])->all();
+$route = Route::find()->where(['route_id' => $id , 'direction' => $direction])->one();
+
+$data = BusRoute::find()->where(['route_id' => $route->route_id ])->all();
+
 //echo $data;
 echo "<h1>Available Buses</h1>";
     foreach($data as $col){

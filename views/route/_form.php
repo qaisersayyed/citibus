@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'to')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'direction')->textInput() ?>
+
     <?= $form->field($model, 'created_at')->textInput() ?>
 
     <?= $form->field($model, 'updated_at')->textInput() ?>

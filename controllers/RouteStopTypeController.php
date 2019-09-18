@@ -62,6 +62,13 @@ class RouteStopTypeController extends Controller
             
             $from_name = Stops::find()->where(['stop_name' => $from ])->one();
             $to_name = Stops::find()->where(['stop_name' => $to ])->one();
+
+            if ($from_name->stop_order < $to_name->stop_order){
+                $direction = 'U';
+            }else{
+                $direction = 'D';
+            }
+
             $from_id = RouteStopTypeSearch::find()->where(['stop_id' => $from_name->stop_id ])->one();
             $to_id = RouteStopTypeSearch::find()->where(['stop_id' => $to_name->stop_id ])->one();
 
@@ -69,12 +76,13 @@ class RouteStopTypeController extends Controller
                 $model = $this->findModel1($from_id->route_id);
             }
        
-            // return $this->render('bus-route/bus_view', [
-            //     'id' => $from_id->route_id,
-            // ]);
+
             return $this->redirect(array('bus-route/bus_view',
                 'id' => $from_id->route_id,
+                'direction' => $direction,
             ));
+         
+
            // redirect(array('site/author','id'=>$model->id, 'title'=>$model->title));
             
         }else{

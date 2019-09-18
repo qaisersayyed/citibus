@@ -46,6 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => 'to',
             'value' => 'route.to',
         ],
+        [
+
+            'attribute' => 'route_id',
+            'label' => 'direction',
+            'value' => 'route.direction',
+        ],
        //     'route_id',
             'timing',
             'created_at',

@@ -18,7 +18,7 @@ class UsersSearch extends Users
     {
         return [
             [['user_id'], 'integer'],
-            [['username', 'password', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['email_id', 'password', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
         ];
     }
 
@@ -64,7 +64,7 @@ class UsersSearch extends Users
             'deleted_at' => $this->deleted_at,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
+        $query->andFilterWhere(['like', 'email_id', $this->email_id])
             ->andFilterWhere(['like', 'password', $this->password]);
 
         return $dataProvider;
