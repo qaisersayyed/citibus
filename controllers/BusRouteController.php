@@ -58,10 +58,11 @@ class BusRouteController extends Controller
     }
 
     //bus view
-    public function actionBus_view($id)
+    public function actionBus_view($id,$direction)
     {
         return $this->render('bus_view', [
             'id' => $id,
+            'direction' => $direction,
         ]);
     }
 

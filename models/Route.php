@@ -34,7 +34,7 @@ class Route extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['from', 'to'], 'required'],
+            [['from', 'to' , 'direction'], 'required'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['from', 'to'], 'string', 'max' => 25],
         ];
@@ -46,6 +46,7 @@ class Route extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'direction' => 'Direction',
             'route_id' => 'Route ID',
             'from' => 'From',
             'to' => 'To',

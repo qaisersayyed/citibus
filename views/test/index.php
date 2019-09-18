@@ -1,48 +1,38 @@
+
 <?php
+//Seats booked for this sample
+$left = 3;
+$right = 2;
+$back = 6;
+$tot = 57;
+$seats = array("A");
+$tot_col = $left + $right ;
 
-use yii\helpers\Html;
-use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\RouteSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+//The aisles.  Note E is walkway and single seat in back
+$ais = array("a","b","c","E","d","e");
 
-$this->title = 'Routes';
-//$this->params['breadcrumbs'][] = $this->title;
+//Walkway or aisle seats
+$aisle = array("E1","E2","E3","E4","E5","E6","E7","E8","E9","E10");
+
+echo "<table>";
+foreach($ais as $i){
+	echo "<tr>";
+	for($r=1;$r<=11;$r++){
+		$seat = $i.$r;
+		if(in_array($seat,$seats)){
+			$image = "<button >w $r $i </button>";
+		}elseif(!in_array($seat,$aisle)){
+			$image = "<button id=$r$i>m $r $i </button>";
+		}elseif(!in_array($seat,$aisle)){
+			$image = "<button>r $r $i </button>";
+		}else{
+			$image = "&nbsp;";
+		}
+		echo "<td>$image</td>";
+	}
+	echo "</tr>";
+}
+echo "</table>";
 ?>
-<div class="route-index">
 
- 
-
-   
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-          //  ['class' => 'yii\grid\SerialColumn'],
-
-            //'route_id',
-            'from',
-            'to',
-            [
-                          'header' => 'Button',
-                          'content' => function($model) {
-                              return Html::a('Select route', ['bus-route/bus_view','id'=>$model->route_id], ['class' => 'btn btn-success btn-xs']);
-                          }           
-              ],
-            //'created_at',
-            //'updated_at',
-            //'deleted_at',                                 
-            
-          //  ['class' => 'yii\grid\ActionColumn'],
-        ],
-       
-     
-        
-    ]); ?>
-
-
-</div>
