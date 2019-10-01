@@ -54,6 +54,8 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
+
+        $menuItems[] = ['label' => 'Profile', 'url' => ['customer/profile']];
     }
 
     echo Nav::widget([

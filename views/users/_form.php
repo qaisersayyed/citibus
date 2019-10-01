@@ -16,11 +16,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'created_at')->hiddenInput()->label(false); ?>
 
-    <?= $form->field($model, 'deleted_at')->textInput() ?>
+    <?= $form->field($model, 'updated_at')->hiddenInput()->label(false); ?>
+
+    <?= $form->field($model, 'deleted_at')->hiddenInput()->label(false); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

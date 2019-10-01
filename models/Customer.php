@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+
 use Yii;
+use yii\helpers\Security;
 
 /**
  * This is the model class for table "customer".
@@ -13,6 +15,7 @@ use Yii;
  * @property int $phone_no
  * @property string $email_id
  * @property string $password
+
  * @property int $e_wallet
  * @property string $created_at
  * @property string $updated_at
@@ -20,7 +23,6 @@ use Yii;
  *
  * @property User $user
  * @property Pass[] $passes
- * @property Tickets[] $tickets
  */
 class Customer extends \yii\db\ActiveRecord
 {
@@ -32,18 +34,21 @@ class Customer extends \yii\db\ActiveRecord
         return 'customer';
     }
 
+    public $password_repeat;
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['user_id', 'name', 'phone_no', 'email_id', 'password', 'e_wallet'], 'required'],
-            [['user_id', 'phone_no', 'e_wallet'], 'integer'],
+            [['name', 'email_id', 'password','password_repeat' ], 'required'],
+            [['customer_id','user_id', 'phone_no', 'e_wallet'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
             [['email_id'], 'string', 'max' => 50],
-            [['password'], 'string', 'max' => 20],
+            [['password'], 'string', 'max' => 100],
+            [['password_repeat'],'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'user_id']],
         ];
     }
@@ -51,6 +56,8 @@ class Customer extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+
     public function attributeLabels()
     {
         return [
@@ -60,12 +67,14 @@ class Customer extends \yii\db\ActiveRecord
             'phone_no' => 'Phone No',
             'email_id' => 'Email ID',
             'password' => 'Password',
+            'password_repeat' => 'Confirm Password',
             'e_wallet' => 'E Wallet',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'deleted_at' => 'Deleted At',
         ];
     }
+
 
     /**
      * @return \yii\db\ActiveQuery
