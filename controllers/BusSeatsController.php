@@ -44,17 +44,25 @@ class BusSeatsController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-    public function actionSeat_selection(){
-        $searchModel = new BusSeatsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    public function actionSeatselect(){
         $model = BusSearch::find()->where(['bus_id'=>1])->one();
-       
-        return $this->render('seat_selection', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'model' => $model
-        ]);
+        // if(Yii::$app->request->get('seat')){
+            $seat = Yii::$app->request->get('seat');
+            echo $seat;
+            return $this->render('seatselect', [          
+                'seat' => $seat,
+                'model' => $model,
+            ]);
+        // }
+        // else{
+            // return $this->render('seatselect', [          
+            //     'model' => $model
+            // ]);
+        // }
     }
+    
+    
+
     /**
      * Displays a single BusSeats model.
      * @param integer $id
