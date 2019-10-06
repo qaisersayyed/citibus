@@ -29,16 +29,21 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return 'users';
     }
 
+    public $password_repeat;
+    
+    
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['email_id', 'password'], 'required'],
+            [['email_id', 'password', 'password_repeat'], 'required'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['email_id'], 'string', 'max' => 50],
-            //[['password'], 'string', 'max' => 20],
+            [['password'], 'string', 'max' => 20],
+            [['password_repeat'],'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
         ];
     }
 
@@ -51,11 +56,23 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'user_id' => 'User ID',
             'email_id' => 'E-mail',
             'password' => 'Password',
+            'password_repeat' => 'Confirm Password',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'deleted_at' => 'Deleted At',
         ];
     }
+
+    // public function Users(){
+
+    //     $users = new Users;
+    //     $users->email_id = $this->email_id;
+    //     $users->password = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
+        
+    //     return $users->save();
+
+
+    // }
 
     /**
      * @return \yii\db\ActiveQuery

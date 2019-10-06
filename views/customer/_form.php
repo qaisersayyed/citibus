@@ -8,11 +8,9 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="customer-form">
-
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'user_id')->hiddenInput()->label(false); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -22,13 +20,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'e_wallet')->textInput() ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'created_at')->hiddenInput()->label(false); ?>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'updated_at')->hiddenInput()->label(false); ?>
 
-    <?= $form->field($model, 'deleted_at')->textInput() ?>
+    <?= $form->field($model, 'deleted_at')->hiddenInput()->label(false); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Sign Up', ['class' => 'btn btn-success']) ?>

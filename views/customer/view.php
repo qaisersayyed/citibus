@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+//echo $model->customer_id;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Customer */
 
@@ -40,6 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
             'deleted_at',
         ],
-    ]) ?>
+    ]) ?> 
+
+    
 
 </div>
