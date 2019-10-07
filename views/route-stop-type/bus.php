@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'stop.stop_name',
             'busType.type',
             //'bus_type_id',
+            
             'fare',
             'created_at',
             'updated_at',
