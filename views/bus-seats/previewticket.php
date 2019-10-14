@@ -1,1 +1,4 @@
-<?php echo $seat; ?>
+<?php //echo $seat;
+echo $fare ;
+
+?>

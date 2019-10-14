@@ -6,14 +6,13 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
-use app\models\RouteSearch;
-use app\models\BusRouteSearch;
-use app\models\RouteStopTypeSearch;
 
-$route_id = RouteSearch::find()->where(['route_id'=>1])->one();
-$bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>1])->one();
-$route_stop_type_id = RouteStopTypeSearch::find()->where(['route_stop_type_id'=>1])->one();
 
+
+//  echo json_encode($rows);
+
+
+$fare = $route_stop_type_id->fare;
 $left = $model->pattern[0];
 $right = $model->pattern[1];
 $back = $model->pattern[2];
@@ -48,100 +47,107 @@ for($z=0;$z<$a;$z++){
 }
 // echo json_encode($aisle);
 ?>
-<div  style="margin: auto; text-align:center;border: 1px solid black;width: 700px;">
-	<div style="display:inline-block;position:absolute;margin-top:10px;">
-		<? echo Html::img('@web/uploads/png', ['width'=>'30px', 'class' => 'pull-left img-responsive']);?>
-	</div>
-	<div style="display:inline-block;margin-left:80px;">
-	<?
-	echo "<table style='border-left:1px solid black'>";
+<div >
+	<div  style="margin: auto; text-align:center;border: 1px solid black;width: 700px;">
+		<div style="display:inline-block;position:absolute;margin-top:10px;">
+			<? echo Html::img('@web/uploads/png', ['width'=>'30px', 'class' => 'pull-left img-responsive']);?>
+		</div>
+		<div   style="display:inline-block;margin-left:80px;">
+		<?
+		echo "<table style='border-left:1px solid black'>";
 
-	foreach($final_array as $i){
-		echo "<tr>";
-		for($r=1;$r<=$a+1;$r++){
-			$seat = $i.$r;
-			if(in_array($seat,$seats)){
-				$image = "<button >w $r $i </button>";
-			}elseif(!in_array($seat,$aisle)){
-				$image = "<button value='$seat' onclick= 'myClick(id)' style='margin-right:10px;margin-top:10px;height: 40px;' class='btn btn-success' id=$i$r >$seat </button>";
-			}elseif(!in_array($seat,$aisle)){
-				$image = "<button>r $r $i </button>";
-			}else{
-				$image = "&nbsp;";
+		foreach($final_array as $i){
+			echo "<tr>";
+			for($r=1;$r<=$a+1;$r++){
+				$seat = $i.$r;
+				if(in_array($seat,$seats)){
+					$image = "<button >w $r $i </button>";
+				}elseif(!in_array($seat,$aisle)){
+					$image = "<button value='$seat' onclick= 'myClick(id)' style='margin-right:10px;margin-top:10px;height: 40px;' class='btn btn-success' id=$i$r >$seat </button>";
+				}elseif(!in_array($seat,$aisle)){
+					$image = "<button>r $r $i </button>";
+				}else{
+					$image = "&nbsp;";
+				}
+				echo "<td>$image</td>";
 			}
-			echo "<td>$image</td>";
+			echo "</tr>";
 		}
-		echo "</tr>";
-	}
-	echo "</table>";
+		echo "</table>";
 
-	?>
+		?>
+		</div>
+	</div>
+
+	<div style="width:300px;margin-top:10px">
+		<ul class="list-group list-group-flush">
+		<li class="list-group-item">From: <?php echo $route_id->from ?></li>
+		<li class="list-group-item">To:	<?php echo $route_id->to ?> </li>
+		<li class="list-group-item">Timing: <?php echo $bus_route_id->timing ?> </li>
+		</ul>
 	</div>
 </div>
-
-<div style="width:300px;margin-top:10px">
-	<ul class="list-group list-group-flush">
-	<li class="list-group-item">From: <?php echo $route_id->from ?></li>
-	<li class="list-group-item">To:	<?php echo $route_id->to ?> </li>
-	<li class="list-group-item">Timing: <?php echo $bus_route_id->timing ?> </li>
-	<li class="list-group-item">Fare: <?php echo $route_stop_type_id->fare ?></li>
-	
-	</ul>
-</div>
-<script>
+<script type="text/javascript">
 var seats = []
 function myClick(id){
 	console.log(id);
 	
 	var id = document.getElementById(id);
-	seats.push(id.id);
-	console.log(seats) ;
-	if (id.className == 'btn btn-success'){
-		id.className='btn btn-danger' ;
-	}else{
+	if(seats.indexOf(id.id) !== -1){
+		var index = seats.indexOf(id.id);
+		seats.splice(index, 1);
+		console.log(seats) ;
 		id.className = 'btn btn-success'
+		
 	}
-	
-	 var input = document.getElementById('seat');
-	 input.value = seats;
+	else{
+		seats.push(id.id);
+		console.log(seats) ;
+		id.className='btn btn-danger' ;
+	 }
+	var length = seats.length;
+	var seats_fare = <?php echo $fare ?> * length;
+	console.log(seats_fare)	;
+	fare.value  = seats_fare;
+
+	seat.value = seats
+	console.log(seats)
 
 }
 
+function my_code(){
+	var booked_seats = <?php echo json_encode($rows) ?>;
+	console.log(booked_seats);
+	for (i = 0; i < booked_seats.length; i++) { 
+		var ele = booked_seats[i];
+		var s_id = document.getElementById( ele["seat_name"]) ;
+		s_id.className='btn btn-black';
+		s_id.disabled = true
+		console.log(s_id);
+	}
+
+}
+
+window.onload=my_code();
+
+
+
 </script>
 
+
+
+
 <?php $form = ActiveForm::begin([
-          'method' => 'get',
-      		// 'action' => Url::to(['bus-seats/getSeat'])
-    ]); ?>
-       
-             <input id= "seat" type="hidden" name="seat" value=""  >          
-            
-             <div class="form-group" type="button" data-toggle="modal" data-target="#exampleModal">
-                  <?= Html::submitButton('Next', ['class' => 'btn btn-success']) ?>
-             </div>
+	'method' => 'get',
+												// 'action' => Url::to(['bus-seats/getSeat'])
+	]); ?>
+										
+		<input id= "seat" type="hidden" name="seat" value=""  >
+	<input id= "fare" type="hidden" name="fare" value=""  >          
+												
+	<div class="form-group" type="button">
+		<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success']) ?>
+	</div>
+															
 
 <?php ActiveForm::end(); ?>
-
-<!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <?php echo $seat?>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
