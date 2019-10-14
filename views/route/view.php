@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'route_id',
             'from',
             'to',
-            'direction',
+            //'direction',
             'created_at',
             'updated_at',
             'deleted_at',

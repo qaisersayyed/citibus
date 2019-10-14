@@ -4,17 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\BusRoute;
 use app\models\Route;
+use yii\bootstrap\Button;
+use yii\helpers\Url;
 $this->title = 'All Buses';
 /* @var $this yii\web\View */
 /* @var $model app\models\BusRoute */
-echo $id;
-echo $direction;
+echo "route id",$routeid ,"<br>";
+echo "rst id",$routeStopType;
+//echo $direction;
 
 
 //$data = BusRoute::find()->where(['route_id' => $id ])->all();
-$route = Route::find()->where(['route_id' => $id , 'direction' => $direction])->one();
+//$route = Route::find()->where(['route_id' => $id ])->one();
 
-$data = BusRoute::find()->where(['route_id' => $route->route_id ])->all();
+$data = BusRoute::find()->where(['route_id' => $routeid ])->all();
 
 //echo $data;
 echo "<h1>Available Buses</h1>";
@@ -59,7 +62,9 @@ echo "<h1>Available Buses</h1>";
                         <tr>
                         
                                     <td>
-                                        <?= Html::Button('select', ['class' => 'btn btn-success']) ?>
+                                 
+                                <?= Html::a('submit', ['bus-route/view', 'id' => 6], ['class' => 'btn btn-primary']); ?>
+                                
                                     </td>
                         </tr>
                 </tbody>

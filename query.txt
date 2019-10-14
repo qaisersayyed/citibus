@@ -7,3 +7,7 @@ RENAME TABLE user TO users;
 // 17 sep 2019
 ALTER TABLE `stops` ADD `stop_order` INT NOT NULL AFTER `stop_name`;
 ALTER TABLE `route` ADD `direction` VARCHAR(4) NOT NULL AFTER `to`;
+
+//18 sep 2019
+ALTER TABLE `route` DROP `direction`;
+ALTER TABLE `route_stop_type` ADD `direction` VARCHAR(4) NOT NULL AFTER `fare`;

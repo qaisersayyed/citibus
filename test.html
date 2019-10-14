@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li class="initial-tab flex1 autoCompleteInputCode safariFix__field">
+        <div class="">
+          <label for="BE_bus_from_station" class="inp-focus">
+            <input
+              autocomplete="off"
+              spellcheck="false"
+              name="bus_leaving"
+              type="text"
+              id="BE_bus_from_station"
+              onclick="this.setSelectionRange(0, this.value.length)"
+              placeholder=" "
+              class="required_field cityPadRight ac_input origin_ac"
+            />
+            <span class="label ">Depart From</span>
+            <span class="border"></span>
+          </label>
+          <!---->
+        </div>
+      </li>
+      <li class="safariFix__swapIcon w10">
+        <a
+          href="javascript:void(0);"
+          data-swap="true"
+          tabindex="-1"
+          class="beSwapCity"
+        >
+          <i
+            tabindex="-1"
+            title="Swap Origin City and Destination City"
+            class="sprite-booking-engine ico-be-leftRightArow"
+            >&nbsp;
+          </i>
+        </a>
+      </li>
+      <li
+        class="flex1 autoCompleteInputCode destAutoSugestField safariFix__field"
+      >
+        <div class="">
+          <label for="BE_bus_to_station" class="inp-focus">
+            <input
+              autocomplete="off"
+              spellcheck="false"
+              name="bus_dest"
+              type="text"
+              id="BE_bus_to_station"
+              onclick="this.setSelectionRange(0, this.value.length)"
+              placeholder=" "
+              class="required_field cityPadLeft ac_input dest_ac"
+            />
+            <span class="label ">Going To</span>
+            <span class="border"> </span>
+          </label>
+          <!---->
+        </div>
+      </li>
+    </ul>
+  </body>
+</html>

@@ -135,6 +135,37 @@ class BusSeatsController extends Controller
         ]);
     }
 
+    public function actionPayment()
+
+    {   
+        return $this->render('payment', [
+            'name' => 'qaiser',
+            'amount' => 100
+            
+        ]);
+    }
+    public function actionPaymentaction()
+    
+    {  
+        //echo "payy"; 
+        // return $this->redirect('PaytmKit/pgRedirect');
+        return $this->render('PaytmKit/pgRedirect'            //  'name' => 'qaiser',
+            //  'amount' => 100
+            
+         );
+    }
+
+    // public function actionPaymentresponse()
+    
+    // {  
+    //     echo "payy"; 
+    //     // return $this->redirect('PaytmKit/pgRedirect');
+    //     // return $this->render('PaytmKit/pgResponse'            //  'name' => 'qaiser',
+    //     //     //  'amount' => 100
+            
+    //      //);
+    // }
+
     /**
      * Creates a new BusSeats model.
      * If creation is successful, the browser will be redirected to the 'view' page.

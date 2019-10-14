@@ -18,7 +18,7 @@ class RouteStopTypeSearch extends RouteStopType
     {
         return [
             [['route_stop_type_id', 'fare'], 'integer'],
-            [['created_at', 'stop_id', 'route_id', 'bus_type_id','updated_at', 'deleted_at'], 'safe'],
+            [['created_at','direction', 'stop_id', 'route_id', 'bus_type_id','updated_at', 'deleted_at'], 'safe'],
         ];
     }
 
@@ -60,6 +60,7 @@ class RouteStopTypeSearch extends RouteStopType
         $query->joinWith('route');
         // grid filtering conditions
         $query->andFilterWhere([
+            'direction' =>$this->direction,
             'route_stop_type_id' => $this->route_stop_type_id,
             'route_id' => $this->route_id,
             'stop_id' => $this->stop_id,

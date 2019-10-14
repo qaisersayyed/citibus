@@ -60,8 +60,10 @@ class RouteStopTypeController extends Controller
             $from = Yii::$app->request->get('from');
             $to = Yii::$app->request->get('to');
             
-            $from_name = Stops::find()->where(['stop_name' => $from ])->one();
-            $to_name = Stops::find()->where(['stop_name' => $to ])->one();
+           // $query->andWhere(['like', 'title', $search]);
+
+            $from_name = Stops::find()->andwhere(['like','stop_name' , $from ])->one();
+            $to_name = Stops::find()->andwhere(['like' ,'stop_name' , $to ])->one();
 
             if ($from_name->stop_order < $to_name->stop_order){
                 $direction = 'U';
@@ -69,21 +71,17 @@ class RouteStopTypeController extends Controller
                 $direction = 'D';
             }
 
-            $from_id = RouteStopTypeSearch::find()->where(['stop_id' => $from_name->stop_id ])->one();
-            $to_id = RouteStopTypeSearch::find()->where(['stop_id' => $to_name->stop_id ])->one();
+            $from_id = RouteStopTypeSearch::find()->where(['stop_id' => $from_name->stop_id , 'direction' =>$direction ])->one();
+            $to_id = RouteStopTypeSearch::find()->where(['stop_id' => $to_name->stop_id , 'direction' => $direction ])->one();
 
             if ($from_id->route_id == $to_id->route_id){
-                $model = $this->findModel1($from_id->route_id);
-            }
-       
-
-            return $this->redirect(array('bus-route/bus_view',
-                'id' => $from_id->route_id,
+                return $this->redirect(array('bus-route/bus_view',
+                'routeid' => $from_id->route_id,
                 'direction' => $direction,
+                'routeStopType' => $to_id->route_stop_type_id
             ));
-         
-
-           // redirect(array('site/author','id'=>$model->id, 'title'=>$model->title));
+                //$model = $this->findModel1($from_id->route_id);
+            }
             
         }else{
             return $this->render('form', [

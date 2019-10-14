@@ -18,7 +18,7 @@ class RouteSearch extends Route
     {
         return [
             [['route_id'], 'integer'],
-            [['from', 'to','direction', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['from', 'to', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
         ];
     }
 
@@ -62,11 +62,11 @@ class RouteSearch extends Route
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
-            'direction' => $this->direction,
+          //  'direction' => $this->direction,
         ]);
 
         $query->andFilterWhere(['like', 'from', $this->from])
-        ->andFilterWhere(['like' , 'direction' ,$this->direction])
+       // ->andFilterWhere(['like' , 'direction' ,$this->direction])
             ->andFilterWhere(['like', 'to', $this->to]);
 
         return $dataProvider;
