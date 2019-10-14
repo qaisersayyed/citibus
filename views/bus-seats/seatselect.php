@@ -116,6 +116,18 @@ function myClick(id){
 
 }
 
+function my_code(){
+    var booked_seats = <?php echo json_encode($rows) ?>;
+    console.log(booked_seats);
+    for (i = 0; i < booked_seats.length; i++) { 
+        var ele = booked_seats[i];
+        var s_id = document.getElementById( ele["seat_name"]) ;
+        s_id.className='btn btn-black';
+        s_id.disabled = true
+        console.log(s_id);
+    }
+}
+window.onload=my_code();
 
 
 </script>
