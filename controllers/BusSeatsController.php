@@ -103,17 +103,13 @@ class BusSeatsController extends Controller
             // ]);
           }
          else{
-            $query = new \yii\db\Query;
-            $query->select('seat_name')->from('tickets')->where('bus_route_id' == '$bus_route_id');
-            $rows = $query->all();
-            $command = $query->createCommand();
-            $rows = $command->queryAll();
+           
            return $this->render('seatselect', [          
                 'model' => $model,
                 'route_id' =>$route_id,
                 'bus_route_id' => $bus_route_id,
                 'route_stop_type_id' => $route_stop_type_id,
-                'rows' =>$rows,
+                
                 // 'booked_seats' => $booked_seats
                 // 'seat' =>$seat
              ]);

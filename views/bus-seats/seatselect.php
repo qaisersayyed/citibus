@@ -87,52 +87,6 @@ for($z=0;$z<$a;$z++){
 		</ul>
 	</div>
 </div>
-<script type="text/javascript">
-var seats = []
-function myClick(id){
-	console.log(id);
-	
-	var id = document.getElementById(id);
-	if(seats.indexOf(id.id) !== -1){
-		var index = seats.indexOf(id.id);
-		seats.splice(index, 1);
-		console.log(seats) ;
-		id.className = 'btn btn-success'
-		
-	}
-	else{
-		seats.push(id.id);
-		console.log(seats) ;
-		id.className='btn btn-danger' ;
-	 }
-	var length = seats.length;
-	var seats_fare = <?php echo $fare ?> * length;
-	console.log(seats_fare)	;
-	fare.value  = seats_fare;
-
-	seat.value = seats
-	console.log(seats)
-
-}
-
-function my_code(){
-	var booked_seats = <?php echo json_encode($rows) ?>;
-	console.log(booked_seats);
-	for (i = 0; i < booked_seats.length; i++) { 
-		var ele = booked_seats[i];
-		var s_id = document.getElementById( ele["seat_name"]) ;
-		s_id.className='btn btn-black';
-		s_id.disabled = true
-		console.log(s_id);
-	}
-
-}
-
-window.onload=my_code();
-
-
-
-</script>
 
 
 
