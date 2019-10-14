@@ -88,6 +88,37 @@ for($z=0;$z<$a;$z++){
 	</div>
 </div>
 
+<script type="text/javascript">
+var seats = []
+function myClick(id){
+	console.log(id);
+	
+	var id = document.getElementById(id);
+	if(seats.indexOf(id.id) !== -1){
+		var index = seats.indexOf(id.id);
+		seats.splice(index, 1);
+		console.log(seats) ;
+		id.className = 'btn btn-success'
+		
+	}
+	else{
+		seats.push(id.id);
+		console.log(seats) ;
+		id.className='btn btn-danger' ;
+	 }
+	var length = seats.length;
+	var seats_fare = <?php echo $fare ?> * length;
+	console.log(seats_fare)	;
+	fare.value  = seats_fare;
+
+	seat.value = seats
+	console.log(seats)
+
+}
+
+
+
+</script>
 
 
 
