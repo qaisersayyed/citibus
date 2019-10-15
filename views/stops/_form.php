@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stop_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'stop_order')->textInput() ?>
+   
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 

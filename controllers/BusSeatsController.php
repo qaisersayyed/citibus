@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\BusSeats;
+use app\models\Customer;
 use app\models\BusSeatsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,11 +61,20 @@ class BusSeatsController extends Controller
     public function actionPayment()
 
     {   
+        if (Yii::$app->user->id == null){
+            return $this->redirect(['site/login']);
+        }else{ 
+
+
+        $user_id = Yii::$app->user->id;
+        $data = Customer::find()->where(['user_id' => $user_id ])->one();
         return $this->render('payment', [
-            'name' => 'qaiser',
-            'amount' => 100
             
-        ]);
+            'name' => $data->name,
+            'amount' => 100,
+            'routeid' => 21,
+            
+        ]);}
     }
     public function actionPaymentaction()
     
@@ -77,16 +87,14 @@ class BusSeatsController extends Controller
          );
     }
 
-    // public function actionPaymentresponse()
+    public function actionPaymentresponse()
     
-    // {  
-    //     echo "payy"; 
-    //     // return $this->redirect('PaytmKit/pgRedirect');
-    //     // return $this->render('PaytmKit/pgResponse'            //  'name' => 'qaiser',
-    //     //     //  'amount' => 100
-            
-    //      //);
-    // }
+    {  
+       // echo "payy"; 
+        // return $this->redirect('PaytmKit/pgRedirect');
+        return $this->render('PaytmKit/pgResponse' 
+         );
+    }
 
     /**
      * Creates a new BusSeats model.

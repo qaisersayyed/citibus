@@ -11,3 +11,7 @@ ALTER TABLE `route` ADD `direction` VARCHAR(4) NOT NULL AFTER `to`;
 //18 sep 2019
 ALTER TABLE `route` DROP `direction`;
 ALTER TABLE `route_stop_type` ADD `direction` VARCHAR(4) NOT NULL AFTER `fare`;
+
+//10 oct 2019
+ALTER TABLE `route_stop_type` CHANGE `direction` `stop_order` INT NOT NULL;
+ALTER TABLE `stops` DROP `stop_order`;

@@ -37,8 +37,8 @@ class RouteStopType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['route_id', 'stop_id', 'bus_type_id', 'fare', 'direction'], 'required'],
-            [['route_id', 'stop_id', 'bus_type_id', 'fare'], 'integer'],
+            [['route_id', 'stop_id', 'bus_type_id', 'fare'], 'required'],
+            [['route_id', 'stop_id', 'bus_type_id', 'fare','stop_order'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['bus_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusType::className(), 'targetAttribute' => ['bus_type_id' => 'bus_type_id']],
             [['route_id'], 'exist', 'skipOnError' => true, 'targetClass' => Route::className(), 'targetAttribute' => ['route_id' => 'route_id']],
@@ -52,7 +52,6 @@ class RouteStopType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'direction' => 'Direction',
             'route_stop_type_id' => 'Route Stop Type ID',
             'route_id' => 'Route ID',
             'stop_id' => 'Stop ID',
