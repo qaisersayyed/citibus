@@ -31,7 +31,7 @@ class Stops extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['stop_name','stop_order'], 'required'],
+            [['stop_name'], 'required'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['stop_name'], 'string', 'max' => 30],
         ];
@@ -43,7 +43,6 @@ class Stops extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'stop_order' => 'Stop order',
             'stop_id' => 'Stop ID',
             'stop_name' => 'Stop Name',
             'created_at' => 'Created At',

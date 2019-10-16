@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'stop_id',
             'stop_name',
-            'stop_order',
+            
             'created_at',
             'updated_at',
             'deleted_at',
