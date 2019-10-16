@@ -46,7 +46,7 @@ class Customer extends \yii\db\ActiveRecord
             [['customer_id','user_id', 'phone_no', 'e_wallet'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['name'], 'string', 'max' => 40],
-            [['email_id'], 'string', 'max' => 50],
+            [['email_id','email'],'unique'],
             [['password'], 'string', 'max' => 100],
             [['password_repeat'],'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'user_id']],

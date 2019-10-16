@@ -77,25 +77,42 @@ class CustomerController extends Controller
         $model = new Customer();
       
         if ($model->load(Yii::$app->request->post())) {
-            echo $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
-            $user = new Users();
-            // $user->name = $model->name;
-            $user->email_id = $model->email_id;
-            $user->password = $model->password;
-            
-            $user->save(false);
-            $customer = new Customer();
-            $customer->user_id = $user->user_id;
-            $customer->name = $model->name;
-            $customer->phone_no = $model->phone_no;
-            $customer->email_id = $model->email_id;
-            $customer->password = $model->password;
-            $customer->e_wallet = $model->e_wallet;
-            
-            $customer->save(false);
-            $data = Customer::find()->where(['email_id' => $customer->email_id ])->one();
 
-            return $this->redirect(['view', 'id' => $data->customer_id]);
+            $model_email = Customer::find()->where(['email_id'=> $model->email_id])->one();
+
+            If (isset($model_email)) {
+                Yii::$app->session->setFlash('error', "This Email Already Exists.");
+                return $this->render('create', [
+                    'model' => $model,
+                    ]);
+            }
+
+            else{
+                
+                $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+                $user = new Users();
+                // $user->name = $model->name;
+                $user->email_id = $model->email_id;
+                $user->password = $model->password;
+                
+                $user->save(false);
+                $customer = new Customer();
+                $customer->user_id = $user->user_id;
+                $customer->name = $model->name;
+                $customer->phone_no = $model->phone_no;
+                $customer->email_id = $model->email_id;
+                $customer->password = $model->password;
+                $customer->e_wallet = $model->e_wallet;
+                
+                $customer->save(false);
+                Yii::$app->session->setFlash('success', "You Have Successfully Signed Up");
+                $data = Customer::find()->where(['email_id' => $customer->email_id ])->one();
+                
+                return $this->redirect(['view', 'id' => $data->customer_id]);
+            }
+            
+
+            
         }
 
         

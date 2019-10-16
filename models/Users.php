@@ -41,7 +41,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['email_id', 'password', 'password_repeat'], 'required'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
-            [['email_id'], 'string', 'max' => 50],
+            [['email_id','email'],'unique'],
             [['password'], 'string', 'max' => 20],
             [['password_repeat'],'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
         ];
