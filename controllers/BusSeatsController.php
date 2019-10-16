@@ -96,12 +96,12 @@ class BusSeatsController extends Controller
               }
           
 
-            // return $this->render('previewticket', [          
-            //     'seat' => $seat,
-            //     'fare' => $fare,
-            //     'model' => $model,
+            return $this->render('bus-seat/payment', [          
+                // 'seat' => $seat,
+                'fare' => $fare,
+                // 'model' => $model,
                 
-            // ]);
+            ]);
           }
          else{
             $query = new \yii\db\Query;
@@ -136,7 +136,7 @@ class BusSeatsController extends Controller
         ]);
     }
 
-    public function actionPayment()
+    public function actionPayment($amount)
 
     {   
         if (Yii::$app->user->id == null){
@@ -149,7 +149,7 @@ class BusSeatsController extends Controller
         return $this->render('payment', [
             
             'name' => $data->name,
-            'amount' => 100,
+            'amount' => $amount,
             'routeid' => 21,
             
         ]);}
