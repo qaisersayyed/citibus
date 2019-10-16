@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\BusSeats;
+use app\models\Customer;
 use app\models\BusSeatsSearch;
 use app\models\CustomerSearch;
 use app\models\RouteSearch;
@@ -138,33 +139,42 @@ class BusSeatsController extends Controller
     public function actionPayment()
 
     {   
+        if (Yii::$app->user->id == null){
+            return $this->redirect(['site/login']);
+        }else{ 
+
+
+        $user_id = Yii::$app->user->id;
+        $data = Customer::find()->where(['user_id' => $user_id ])->one();
         return $this->render('payment', [
-            'name' => 'qaiser',
-            'amount' => 100
             
-        ]);
+            'name' => $data->name,
+            'amount' => 100,
+            'routeid' => 21,
+            
+        ]);}
     }
     public function actionPaymentaction()
     
     {  
+//         $od = Yii::$app->request->post('ORDER_ID');
+// echo $od;
         //echo "payy"; 
         // return $this->redirect('PaytmKit/pgRedirect');
-        return $this->render('PaytmKit/pgRedirect'            //  'name' => 'qaiser',
-            //  'amount' => 100
+         return $this->render('PaytmKit/pgRedirect'            //  'name' => 'qaiser',
+        //     //  'amount' => 100
             
-         );
+          );
     }
 
-    // public function actionPaymentresponse()
+    public function actionPaymentresponse()
     
-    // {  
-    //     echo "payy"; 
-    //     // return $this->redirect('PaytmKit/pgRedirect');
-    //     // return $this->render('PaytmKit/pgResponse'            //  'name' => 'qaiser',
-    //     //     //  'amount' => 100
-            
-    //      //);
-    // }
+    {  
+       // echo "payy"; 
+        // return $this->redirect('PaytmKit/pgRedirect');
+        return $this->render('PaytmKit/pgResponse' 
+         );
+    }
 
     /**
      * Creates a new BusSeats model.

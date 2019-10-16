@@ -18,7 +18,7 @@ class StopsSearch extends Stops
     {
         return [
             [['stop_id'], 'integer'],
-            [['stop_name','stop_order', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['stop_name','created_at', 'updated_at', 'deleted_at'], 'safe'],
         ];
     }
 
@@ -58,7 +58,7 @@ class StopsSearch extends Stops
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'stop_order' => $this->stop_order,
+            
             'stop_id' => $this->stop_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

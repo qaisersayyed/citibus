@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fare') ?>
 
-    <?= $form->field($model, 'direction') ?>
+    <?= $form->field($model, 'stop_order') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 

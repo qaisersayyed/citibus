@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fare')->textInput() ?>
 
-    <?= $form->field($model, 'direction')->textInput() ?>
+    <?= $form->field($model, 'stop_order')->textInput() ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 

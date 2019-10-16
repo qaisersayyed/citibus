@@ -31,14 +31,14 @@ if($isValidChecksum == "TRUE") {
 
 	if (isset($_POST) && count($_POST)>0 )
 	{ 
-		// foreach($_POST as $paramName => $paramValue) {
-		// 		echo "<br/>" . $paramName . " = " . $paramValue;
-		// }
+		foreach($_POST as $paramName => $paramValue) {
+				echo "<br/>" . $paramName . " = " . $paramValue;
+		}
 		$orderno = $_POST["ORDERID"];
 		 $txnid = $_POST["TXNID"];
 		 $amount = $_POST["TXNAMOUNT"];
 		 $msg  = $_POST["RESPMSG"];
-		?>
+ 		?>
 		<html>
 		<head>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -68,6 +68,8 @@ if($isValidChecksum == "TRUE") {
 										<td><?php echo $msg
 										?></td>
 									</tr>
+									
+									
 				
 			</table>
 		</div>

@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Route;
+use yii\bootstrap\Alert;
 // use app\models\RouteStopType;
 
 /**
@@ -62,26 +63,25 @@ class RouteStopTypeController extends Controller
             
            // $query->andWhere(['like', 'title', $search]);
 
-            $from_name = Stops::find()->andwhere(['like','stop_name' , $from ])->one();
-            $to_name = Stops::find()->andwhere(['like' ,'stop_name' , $to ])->one();
-
-            if ($from_name->stop_order < $to_name->stop_order){
-                $direction = 'U';
-            }else{
-                $direction = 'D';
-            }
-
-            $from_id = RouteStopTypeSearch::find()->where(['stop_id' => $from_name->stop_id , 'direction' =>$direction ])->one();
-            $to_id = RouteStopTypeSearch::find()->where(['stop_id' => $to_name->stop_id , 'direction' => $direction ])->one();
-
-            if ($from_id->route_id == $to_id->route_id){
+           
+            // echo $from_->stop_id,"<br>";
+            // echo $to_->stop_id,"<br>";
                 return $this->redirect(array('bus-route/bus_view',
-                'routeid' => $from_id->route_id,
-                'direction' => $direction,
-                'routeStopType' => $to_id->route_stop_type_id
+                'from' => $from,
+                'to' => $to,
             ));
                 //$model = $this->findModel1($from_id->route_id);
-            }
+            
+                // Alert::begin([
+                //     'options' => [
+                //         'class' => 'alert-warning',
+                //     ],
+                // ]);
+                
+                // echo 'No buses on selected route';
+                
+                // Alert::end();
+            
             
         }else{
             return $this->render('form', [
@@ -89,7 +89,7 @@ class RouteStopTypeController extends Controller
                 'dataProvider' => $dataProvider,
             ]);
         }
-    //  $route_id = Route::find()->where(['from' => $from , 'to' => $to ])->one();
+    // $route_id = Route::find()->where(['from' => $from , 'to' => $to ])->one();
             
     }
 

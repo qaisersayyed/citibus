@@ -8,6 +8,9 @@ use app\models\RouteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\RouteStopType;
+use app\models\RouteStopTypeSearch;
+use app\models\Stops;
 
 /**
  * RouteController implements the CRUD actions for Route model.
@@ -36,13 +39,12 @@ class TestController extends Controller
     public function actionIndex()
     {
         
-       // if(!Yii::$app->user->isGuest){
-        $searchModel = new RouteSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $from_name = Stops::find()->andwhere(['like','stop_name' , 'pilar' ])->one();
+        $to_name = Stops::find()->andwhere(['like' ,'stop_name' , 'verna' ])->one();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'from_name' => $from_name,
+            'to_name' => $to_name,
         ]);
        // }else{
         //    throw new \yii\web\ForbiddenHttpException;
