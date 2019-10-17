@@ -96,8 +96,11 @@ class BusSeatsController extends Controller
               }
           
 
-            return $this->render('bus-seat/payment', [          
-                // 'seat' => $seat,
+            return $this->render('bus-seat/payment', [  
+                'route_id' =>$route_id,
+                'bus_route_id' => $bus_route_id,
+                'route_stop_type_id' => $route_stop_type_id,        
+                'seat' => $seat,
                 'fare' => $fare,
                 // 'model' => $model,
                 
