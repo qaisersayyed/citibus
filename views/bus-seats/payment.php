@@ -33,7 +33,13 @@ function handelclick(){
 </head>
 Welcome <?php echo $name; ?><br>
 Amount is: <?php echo $amount; ?>
-route id: <?php echo $routeid; ?>
+route id: <?php echo $route_id,"<br>";
+
+echo "rst id ", $rst_id,"<br>";
+
+echo "bus_route",$bus_route_id;
+
+?>
 
 
 
@@ -74,7 +80,22 @@ route id: <?php echo $routeid; ?>
 		<div class="form-group">
 			
 			<input class="form-control" style="display:none" type="text" name="routeid"
-					value=<?php echo "212" ?> >
+					value=<?php echo $route_id ?> >
+		</div>	
+		<div class="form-group">
+			
+			<input class="form-control" style="display:none" type="text" name="rstid"
+					value=<?php echo $rst_id ?> >
+		</div>	
+		<div class="form-group">
+			
+			<input class="form-control" style="display:none" type="text" name="seat"
+					value=<?php echo $seats ?> >
+		</div>	
+		<div class="form-group">
+			
+			<input class="form-control" style="display:none" type="text" name="busroute"
+					value=<?php echo $bus_route_id ?> >
 		</div>	
 		
 		<div class="form-group">
@@ -100,6 +121,7 @@ route id: <?php echo $routeid; ?>
       <div class="modal-body">
         <h4>Customer name :</h4><p><?php echo $name; ?></p>
 		<h4>Total amount :</h4><p><?php echo $amount; ?></p>
+		<h4>Seat :</h4><p><?php echo $seats; ?></p>
 		
       </div>
       <div class="modal-footer">

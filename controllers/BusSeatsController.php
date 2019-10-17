@@ -53,7 +53,7 @@ class BusSeatsController extends Controller
         $model = BusSearch::find()->where(['bus_id'=>1])->one();
         $customer_id = CustomerSearch::find()->where(['customer_id'=>1])->one();
         $route_id = RouteSearch::find()->where(['route_id'=>1])->one();
-        $bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>1])->one();
+        $bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>6])->one();
         $route_stop_type_id = RouteStopTypeSearch::find()->where(['route_stop_type_id'=>1])->one();
 
          if(Yii::$app->request->get('seat') ){
@@ -136,7 +136,7 @@ class BusSeatsController extends Controller
         ]);
     }
 
-    public function actionPayment($amount)
+    public function actionPayment($amount,$routeid)
 
     {   
         if (Yii::$app->user->id == null){
@@ -150,7 +150,10 @@ class BusSeatsController extends Controller
             
             'name' => $data->name,
             'amount' => $amount,
-            'routeid' => 21,
+            'route_id' => 1,
+            'bus_route_id' => 6,
+            'rst_id'=> 1,
+            'seats' => 'a1',
             
         ]);}
     }
@@ -158,13 +161,17 @@ class BusSeatsController extends Controller
     
     {  
 //         $od = Yii::$app->request->post('ORDER_ID');
-// echo $od;
-        //echo "payy"; 
-        // return $this->redirect('PaytmKit/pgRedirect');
-         return $this->render('PaytmKit/pgRedirect'            //  'name' => 'qaiser',
+        echo "name ", Yii::$app->request->post('ORDER_ID'),"<br>";
+        echo "amt",Yii::$app->request->post('TXN_AMOUNT'),"<br>";
+        echo "order",Yii::$app->request->post('ORDER_ID'),"<br>";
+        echo "routeid",Yii::$app->request->post('routeid'),"<br>";
+        echo "seat",Yii::$app->request->post('seat'),"<br>";
+        echo "bs",Yii::$app->request->post('busroute'),"<br>";
+       
+         //return $this->render('PaytmKit/pgRedirect'            //  'name' => 'qaiser',
         //     //  'amount' => 100
             
-          );
+        //  );
     }
 
     public function actionPaymentresponse()

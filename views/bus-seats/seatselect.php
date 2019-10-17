@@ -143,7 +143,7 @@ window.onload=my_code();
 	<input id= "fare" type="hidden" name="fare" value=""  >          
 												
 	<div class="form-group" type="button">
-		<?= Html::a('submit', ['bus-seats/payment', 'amount' => $fare,'routeid' => $route_id,'bus_route_id'=>$bus_route_id,'route_stop_type_id'=>$route_stop_type_id ], ['class' => 'btn btn-primary']); ?>
+		<?= Html::a('submit', ['bus-seats/payment', 'amount' => $fare,'routeid' => $route_id->route_id,'bus_route_id'=>$bus_route_id,'route_stop_type_id'=>$route_stop_type_id ], ['class' => 'btn btn-primary']); ?>
 		<?//= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success']) ?>
 	</div>
 															
