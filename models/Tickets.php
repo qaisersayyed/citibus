@@ -37,7 +37,7 @@ class Tickets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'bus_route_id', 'route_stop_type_id', 'seat_code', 'seat_name'], 'required'],
+            [['customer_id', 'bus_route_id', 'route_stop_type_id', 'seat_code', 'fare'], 'required'],
             [['customer_id', 'bus_route_id', 'route_stop_type_id'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['seat_code'], 'string', 'max' => 10],
@@ -59,7 +59,7 @@ class Tickets extends \yii\db\ActiveRecord
             'bus_route_id' => 'Bus Route ID',
             'route_stop_type_id' => 'Route Stop Type ID',
             'seat_code' => 'Seat Code',
-            'seat_name' => 'Seat Name',
+            'fare' => 'Fare',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'deleted_at' => 'Deleted At',

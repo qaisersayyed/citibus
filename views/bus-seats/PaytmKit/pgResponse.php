@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
@@ -21,59 +22,49 @@ $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecks
 if($isValidChecksum == "TRUE") {
 	echo '<script>console.log("checksum matched")</script>';
 	if ($_POST["STATUS"] == "TXN_SUCCESS") {
-		echo "<b>Transaction status is success TAKE A SCREENSHOT OF THE DETAILS</b>" . "<br/>";
+		echo "<center><b>Transaction status is success</b><br><h1>Please wait</h1></center>";
+		
 		//Process your transaction here as success transaction.
 		//Verify amount & order id received from Payment gateway with your application's order id and amount.
 	}
 	else {
-		echo "<b>Transaction status is failure TAKE A SCREENSHOT OF THE DETAILS</b>" . "<br/>";
+		echo "<b>Transaction status is failure</b>" . "<br/>";
 	}
 
 	if (isset($_POST) && count($_POST)>0 )
 	{ 
-		foreach($_POST as $paramName => $paramValue) {
-				echo "<br/>" . $paramName . " = " . $paramValue;
-		}
+		// foreach($_POST as $paramName => $paramValue) {
+		// 		echo "<br/>" . $paramName . " = " . $paramValue;
+		// }
+		echo "<br>";
 		$orderno = $_POST["ORDERID"];
-		 $txnid = $_POST["TXNID"];
-		 $amount = $_POST["TXNAMOUNT"];
-		 $msg  = $_POST["RESPMSG"];
+		$date = $_POST["TXNDATE"];
+		$txn_id = $_POST["TXNID"];
+		$amount = $_POST["TXNAMOUNT"];
+		$stat  = $_POST["STATUS"];
  		?>
 		<html>
 		<head>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-		</head>
-		<body>
-		<div class="container">
-					<table class="table">
-				<tr>
-										<th>Payment Details</th>
-										
-									</tr>
-									<tr>
-										<td>oredr no</td>
-										<td><?php echo $orderno ?></td>
-									</tr>
-									<tr>
-										<td>transaction no</td>
-										<td><?php echo $txnid ?></td>
-									</tr>
-									<tr>
-										<td>amount</td>
-										<td><?php echo $amount ?></td>
-									</tr>
-									<tr>
-										<td>message</td>
-										<td><?php echo $msg
-										?></td>
-									</tr>
-									
-									
-				
-			</table>
-		</div>
 		
+		</head>
+		<body onload="onload()">
+
+		</div>
+		<form action="http://localhost/citibus/web/bus-seats/paymentresponse" method="get">
+            <input style="display:none" type="text" name="order_no" value=<?php echo $orderno ?> 
+			/>
+            <input style="display:none" type="number" step="any" name="amount" value=<?php echo $amount ?>
+			/>
+			<input style="display:none" type="datetime-local" name="date" value=<?php echo $date ?>
+			/>
+			<input style="display:none" type="text" name="status" value=<?php echo $stat?>
+			/>
+			<input style="display:none" type="text" name="txnid" value=<?php echo $txn_id ?>
+			/>
+
+			<input style="display:none" type="submit" name="submit" id="sub"/>
+        </form>
+		</div>
 		</body>
 		</html> 
 		
@@ -90,3 +81,9 @@ else {
 }
 
 ?>
+<script>
+function onload() { 
+document.getElementById("sub").click();
+console.log("onload");
+}
+</script>

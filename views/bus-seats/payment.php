@@ -39,6 +39,8 @@ echo "rst id ", $rst_id,"<br>";
 
 echo "bus_route",$bus_route_id;
 
+echo "sets",$seats;
+
 ?>
 
 

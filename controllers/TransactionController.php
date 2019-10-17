@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Tickets;
-use app\models\TicketsSearch;
+use app\models\Transaction;
+use app\models\TransactionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TicketsController implements the CRUD actions for Tickets model.
+ * TransactionController implements the CRUD actions for Transaction model.
  */
-class TicketsController extends Controller
+class TransactionController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class TicketsController extends Controller
     }
 
     /**
-     * Lists all Tickets models.
+     * Lists all Transaction models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TicketsSearch();
+        $searchModel = new TransactionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class TicketsController extends Controller
     }
 
     /**
-     * Displays a single Tickets model.
+     * Displays a single Transaction model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -57,22 +57,17 @@ class TicketsController extends Controller
         ]);
     }
 
-    public function actionViewtickets()
-    {
-        return $this->render('viewtickets');
-    }
-
     /**
-     * Creates a new Tickets model.
+     * Creates a new Transaction model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Tickets();
+        $model = new Transaction();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ticket_id]);
+            return $this->redirect(['view', 'id' => $model->transaction_id]);
         }
 
         return $this->render('create', [
@@ -81,7 +76,7 @@ class TicketsController extends Controller
     }
 
     /**
-     * Updates an existing Tickets model.
+     * Updates an existing Transaction model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -92,7 +87,7 @@ class TicketsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ticket_id]);
+            return $this->redirect(['view', 'id' => $model->transaction_id]);
         }
 
         return $this->render('update', [
@@ -101,7 +96,7 @@ class TicketsController extends Controller
     }
 
     /**
-     * Deletes an existing Tickets model.
+     * Deletes an existing Transaction model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -115,15 +110,15 @@ class TicketsController extends Controller
     }
 
     /**
-     * Finds the Tickets model based on its primary key value.
+     * Finds the Transaction model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Tickets the loaded model
+     * @return Transaction the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tickets::findOne($id)) !== null) {
+        if (($model = Transaction::findOne($id)) !== null) {
             return $model;
         }
 

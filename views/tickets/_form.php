@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'seat_code')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'seat_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'fare')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 
