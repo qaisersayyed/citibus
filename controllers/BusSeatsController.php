@@ -53,7 +53,7 @@ class BusSeatsController extends Controller
         $model = BusSearch::find()->where(['bus_id'=>1])->one();
         $customer_id = CustomerSearch::find()->where(['customer_id'=>1])->one();
         $route_id = RouteSearch::find()->where(['route_id'=>1])->one();
-        $bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>1])->one();
+        $bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>6])->one();
         $route_stop_type_id = RouteStopTypeSearch::find()->where(['route_stop_type_id'=>1])->one();
 
          if(Yii::$app->request->get('seat') ){
@@ -136,12 +136,12 @@ class BusSeatsController extends Controller
         ]);
     }
 
-    public function actionPayment($amount,$routeid)
+    public function actionPayment($fare,$route_id,$bus_route_id,$route_stop_type_id,$seat)
 
     {   
         if (Yii::$app->user->id == null){
             return $this->redirect(['site/login']);
-        }else{ 
+        }else{                                                                                                                                                  
 
 
         $user_id = Yii::$app->user->id;
@@ -149,11 +149,11 @@ class BusSeatsController extends Controller
         return $this->render('payment', [
             
             'name' => $data->name,
-            'amount' => $amount,
-            'route_id' => 1,
-            'bus_route_id' => 6,
-            'rst_id'=> 1,
-            'seats' => 'a1',
+            'amount' => $fare,
+            'route_id' => $route_id,
+            'bus_route_id' => $bus_route_id,
+            'rst_id'=> $route_stop_type_id,
+            'seats' => $seat,
             
         ]);}
     }
