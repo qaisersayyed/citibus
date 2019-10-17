@@ -110,10 +110,12 @@ function myClick(id){
 	var seats_fare = <?php echo $fare ?> * length;
 	console.log(seats_fare)	;
 	fare.value  = seats_fare;
-
+	
+	//  document.cookie = "final_seats=234"
 	seat.value = seats
 	console.log(seats)
-
+	<?php //$seats = $_COOKIE['final_seats']; 
+	?> 
 }
 
 function my_code(){
@@ -133,6 +135,8 @@ window.onload=my_code();
 </script>
 
 
+<?php $s="<script> seats</script>";
+echo $s;?>
 
 <?php $form = ActiveForm::begin([
 	'method' => 'get',
@@ -143,7 +147,7 @@ window.onload=my_code();
 	<input id= "fare" type="hidden" name="fare" value=""  >          
 												
 	<div class="form-group" type="button">
-		<?= Html::a('submit', ['bus-seats/payment', 'amount' => $fare,'routeid' => $route_id->route_id,'bus_route_id'=>$bus_route_id,'route_stop_type_id'=>$route_stop_type_id ], ['class' => 'btn btn-primary']); ?>
+		<?= Html::a('submit', ['bus-seats/payment', 'amount' => $fare,'routeid' => $route_id->route_id,'bus_route_id'=>$bus_route_id->bus_route_id,'route_stop_type_id'=>$route_stop_type_id->route_stop_type_id,'seat'=>$s ], ['class' => 'btn btn-primary']); ?>
 		<?//= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success']) ?>
 	</div>
 															

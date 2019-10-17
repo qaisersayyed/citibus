@@ -53,7 +53,7 @@ class BusSeatsController extends Controller
         $model = BusSearch::find()->where(['bus_id'=>1])->one();
         $customer_id = CustomerSearch::find()->where(['customer_id'=>1])->one();
         $route_id = RouteSearch::find()->where(['route_id'=>1])->one();
-        $bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>6])->one();
+        $bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>1])->one();
         $route_stop_type_id = RouteStopTypeSearch::find()->where(['route_stop_type_id'=>1])->one();
 
          if(Yii::$app->request->get('seat') ){
