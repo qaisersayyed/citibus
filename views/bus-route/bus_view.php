@@ -77,6 +77,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
          $from = $col->route->from;
          $to = $col->route->to;
         $time= $col->timing;
+        
         ?>
         <div>
             <table class="table table-striped table-bordered">
@@ -110,7 +111,8 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                         
                                     <td>
                                  
-                                <?= Html::a('submit', ['bus-route/view', 'id' => 6], ['class' => 'btn btn-primary']); ?>
+                                <?= Html::a('submit', ['bus-seats/seatselect', 'rst_id' => $trst->route_stop_type_id,'bus_route_id' =>$col->bus_route_id],
+                                 ['class' => 'btn btn-primary']); ?>
                                 
                                     </td>
                         </tr>
