@@ -48,9 +48,11 @@ if (count($array) == 2){
       //  echo "U","<br>";
      
         $foundroute = $frst->route_id;
+        $found_rst = $trst;
       
     }else{
        // echo "D","<br>";
+       $found_rst = $frst;
         
     }
     $array = array();
@@ -111,7 +113,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                         
                                     <td>
                                  
-                                <?= Html::a('submit', ['bus-seats/seatselect', 'rst_id' => $trst->route_stop_type_id,'bus_route_id' =>$col->bus_route_id],
+                                <?= Html::a('submit', ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
                                  ['class' => 'btn btn-primary']); ?>
                                 
                                     </td>

@@ -13,6 +13,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
+    
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

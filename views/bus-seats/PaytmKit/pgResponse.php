@@ -24,14 +24,7 @@ if($isValidChecksum == "TRUE") {
 	if ($_POST["STATUS"] == "TXN_SUCCESS") {
 		echo "<center><b>Transaction status is success</b><br><h1>Please wait</h1></center>";
 		
-		//Process your transaction here as success transaction.
-		//Verify amount & order id received from Payment gateway with your application's order id and amount.
-	}
-	else {
-		echo "<b>Transaction status is failure</b>" . "<br/>";
-	}
-
-	if (isset($_POST) && count($_POST)>0 )
+		if (isset($_POST) && count($_POST)>0 )
 	{ 
 		// foreach($_POST as $paramName => $paramValue) {
 		// 		echo "<br/>" . $paramName . " = " . $paramValue;
@@ -66,7 +59,14 @@ if($isValidChecksum == "TRUE") {
         </form>
 		</div>
 		</body>
+		<script>
+function onload() { 
+document.getElementById("sub").click();
+console.log("onload");
+}
+</script>
 		</html> 
+		
 		
 		
 		<?php
@@ -74,6 +74,14 @@ if($isValidChecksum == "TRUE") {
 	}
 	
 
+		//Process your transaction here as success transaction.
+		//Verify amount & order id received from Payment gateway with your application's order id and amount.
+	}
+	else {
+		echo "<b>Transaction status is failure</b>" . "<br/>";
+	}
+
+	
 }
 else {
 	echo "<b> Checksum mismatched.</b>";
@@ -81,9 +89,3 @@ else {
 }
 
 ?>
-<script>
-function onload() { 
-document.getElementById("sub").click();
-console.log("onload");
-}
-</script>
