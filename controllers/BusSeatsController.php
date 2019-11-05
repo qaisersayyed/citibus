@@ -160,6 +160,7 @@ class BusSeatsController extends Controller
                 $myArray = str_split($seat);
                 array_splice($myArray, $k+2, 1);
                 
+
           }
 
          foreach($s as $seats){
@@ -199,20 +200,20 @@ class BusSeatsController extends Controller
         //     }
         $transactions = Transaction::find()->where(['order_id' => $orderid, 'amount' => $amount ])->all();
 
-        // foreach($transactions as $data){
-        //     echo $data->transaction_id,"<br>";
-        //     // Yii::$app->db->createCommand("UPDATE transaction SET column1 = value1, column2 = value2,WHERE condition; )"
-        //     //  )->execute();
-        //     //inserting in ticket
-        //     Yii::$app->db->createCommand("INSERT INTO tickets (ticket_id,customer_id,bus_route_id,route_stop_type_id,seat_code,fare)
-        //      VALUES (NULL,'$data->customer_id','$data->bus_route_id','$data->route_stop_type_id','$data->seat_code','$amount')"
-        //      )->execute();
+        foreach($transactions as $data){
+            echo $data->transaction_id,"<br>";
+            // Yii::$app->db->createCommand("UPDATE transaction SET column1 = value1, column2 = value2,WHERE condition; )"
+            //  )->execute();
+            //inserting in ticket
+            Yii::$app->db->createCommand("INSERT INTO tickets (ticket_id,customer_id,bus_route_id,route_stop_type_id,seat_code,fare)
+             VALUES (NULL,'$data->customer_id','$data->bus_route_id','$data->route_stop_type_id','$data->seat_code','$amount')"
+             )->execute();
 
-        //      $tickets = Tickets::find()->where(['customer_id' => $data->customer_id,'seat_code' => $data->seat_code,'fare' => $amount ])->one();
-        //      echo "ticketd" ,$tickets->ticket_id;
-        //      Yii::$app->db->createCommand("UPDATE transaction SET ticket_id = '$tickets->ticket_id', txn_id = '$txnid' ,date = '$date', status = 1  WHERE order_id = '$data->order_id'; )"
-        //      )->execute();
-        // }
+             $tickets = Tickets::find()->where(['customer_id' => $data->customer_id,'seat_code' => $data->seat_code,'fare' => $amount ])->one();
+             echo "ticketd" ,$tickets->ticket_id;
+             Yii::$app->db->createCommand("UPDATE transaction SET ticket_id = '$tickets->ticket_id', txn_id = '$txnid' ,date = '$date', status = 1  WHERE order_id = '$data->order_id'; )"
+             )->execute();
+        }
         return $this->redirect(['tickets/viewtickets']);
         // return $this->render('tickets/viewtickets' 
         //   );
