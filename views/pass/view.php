@@ -7,8 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Pass */
 
 $this->title = $model->pass_id;
-$this->params['breadcrumbs'][] = ['label' => 'Passes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="pass-view">

@@ -116,7 +116,7 @@ class Breadcrumbs extends Widget
      * @var string the template used to render each inactive item in the breadcrumbs. The token `{link}`
      * will be replaced with the actual HTML link for each inactive item.
      */
-    public $itemTemplate = "<li>{link}</li>\n";
+    public $itemTemplate = "<li>{link}/</li>\n";
     /**
      * @var string the template used to render each active item in the breadcrumbs. The token `{link}`
      * will be replaced with the actual HTML link for each active item.

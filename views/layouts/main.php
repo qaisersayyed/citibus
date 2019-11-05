@@ -44,7 +44,7 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => 'bus', 'url' => ['/bus/index']],
                 ['label' => 'route-stop-type', 'url' => ['/route-stop-type/index']],
-                ['label' => 'form', 'url' => ['/route-stop-type/form']],
+                ['label' => 'Search', 'url' => ['/route-stop-type/form']],
             ];
             if (Yii::$app->user->isGuest) {
 
@@ -74,9 +74,7 @@ AppAsset::register($this);
         </div>
 
         <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
+            
             <?= Alert::widget() ?>
             <?= $content ?>
         </div>
