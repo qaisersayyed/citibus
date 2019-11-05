@@ -12,7 +12,7 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
-    // public $layout="main-g";
+     //public $layout="main-g";
     /**
      * {@inheritdoc}
      */

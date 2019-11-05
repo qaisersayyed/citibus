@@ -17,7 +17,7 @@ $left = $model->pattern[0];
 $right = $model->pattern[1];
 $back = $model->pattern[2];
 $no_of_seats = $model->no_of_seats;
-
+//echo $fare;
 $left_seats = $no_of_seats - $back;
 $column = $left + $right;
 $a = $left_seats /$column;
@@ -114,6 +114,7 @@ function myClick(id){
 	//  document.cookie = "final_seats=234"
 	seat.value = seats
 	console.log(seats)
+	console.log(fare)
 	<?php //$seats = $_COOKIE['final_seats']; 
 	?> 
 }
@@ -123,7 +124,7 @@ function my_code(){
     console.log(booked_seats);
     for (i = 0; i < booked_seats.length; i++) { 
         var ele = booked_seats[i];
-        var s_id = document.getElementById( ele["seat_name"]) ;
+        var s_id = document.getElementById( ele["seat_code"]) ;
         s_id.className='btn btn-black';
         s_id.disabled = true
         console.log(s_id);
