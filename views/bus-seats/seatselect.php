@@ -49,7 +49,7 @@ for($z=0;$z<$a;$z++){
 ?>
 <div >
 	<div  style="margin: auto; text-align:center ;border: 5px solid black;width: 750px;padding-left:10px;padding-top:10px;">
-	<? echo Html::img('@web/uploads/png', ['width'=>'30px', 'class' => 'pull-left img-responsive']);?>
+	<? echo Html::img('@web/uploads/png', ['width'=>'30px']);?>
 		<div   style="display:inline-block;margin-left:50px;margin-top:-5px;">
 		<?
 		echo "<table style='border-left:2px solid black; margin-top:0px; position:relative;'>";
@@ -77,11 +77,11 @@ for($z=0;$z<$a;$z++){
 		</div>
 	</div>
 
-	<div style="width:300px;margin-top:10px">
-		<ul class="list-group list-group-flush">
-		<li class="list-group-item">From: <?php echo $route_id->from ?></li>
-		<li class="list-group-item">To:	<?php echo $route_id->to ?> </li>
-		<li class="list-group-item">Timing: <?php echo $bus_route_id->timing ?> </li>
+	<div style="width:0px;display:inline;align-content:center;">
+		<ul style="display:flex; align-items:center; justify-content:center; list-style:none; margin-top:20px; text-align:center;">
+			<li class="list-group-item">From: <?php echo $route_id->from ?></li>
+			<li class="list-group-item">To:	<?php echo $route_id->to ?> </li>
+			<li class="list-group-item">Timing: <?php echo $bus_route_id->timing ?> </li>
 		</ul>
 	</div>
 </div>
