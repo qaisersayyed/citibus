@@ -52,6 +52,7 @@ class BusSeatsController extends Controller
         ]);
     }
     public function actionSeatselect(){
+        
         $model = BusSearch::find()->where(['bus_id'=>1])->one();
         $customer_id = CustomerSearch::find()->where(['customer_id'=>1])->one();
         $route_id = RouteSearch::find()->where(['route_id'=>1])->one();
