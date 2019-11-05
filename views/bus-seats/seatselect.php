@@ -17,7 +17,7 @@ $left = $model->pattern[0];
 $right = $model->pattern[1];
 $back = $model->pattern[2];
 $no_of_seats = $model->no_of_seats;
-
+//echo $fare;
 $left_seats = $no_of_seats - $back;
 $column = $left + $right;
 $a = $left_seats /$column;
@@ -114,6 +114,7 @@ function myClick(id){
 	//  document.cookie = "final_seats=234"
 	seat.value = seats
 	console.log(seats)
+	console.log(fare)
 	<?php //$seats = $_COOKIE['final_seats']; 
 	?> 
 }
