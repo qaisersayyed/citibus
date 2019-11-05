@@ -77,7 +77,7 @@ class BusSeatsController extends Controller
             $rows = $query->all();
             $command = $query->createCommand();
             $rows = $command->queryAll();
-            echo json_encode($rows);
+            // echo json_encode($rows);
             // echo $route_stop_type_id->fare;
            return $this->render('seatselect', [          
                 'model' => $model,

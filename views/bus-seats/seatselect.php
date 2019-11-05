@@ -124,7 +124,7 @@ function my_code(){
     console.log(booked_seats);
     for (i = 0; i < booked_seats.length; i++) { 
         var ele = booked_seats[i];
-        var s_id = document.getElementById( ele["seat_name"]) ;
+        var s_id = document.getElementById( ele["seat_code"]) ;
         s_id.className='btn btn-black';
         s_id.disabled = true
         console.log(s_id);
