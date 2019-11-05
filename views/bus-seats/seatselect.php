@@ -48,13 +48,11 @@ for($z=0;$z<$a;$z++){
 // echo json_encode($aisle);
 ?>
 <div >
-	<div  style="margin: auto; text-align:center;border: 1px solid black;width: 700px;">
-		<div style="display:inline-block;position:absolute;margin-top:10px;">
-			<? echo Html::img('@web/uploads/png', ['width'=>'30px', 'class' => 'pull-left img-responsive']);?>
-		</div>
-		<div   style="display:inline-block;margin-left:80px;">
+	<div  style="margin: auto; text-align:center ;border: 5px solid black;width: 750px;padding-left:10px;padding-top:10px;">
+	<? echo Html::img('@web/uploads/png', ['width'=>'30px', 'class' => 'pull-left img-responsive']);?>
+		<div   style="display:inline-block;margin-left:50px;margin-top:-5px;">
 		<?
-		echo "<table style='border-left:1px solid black'>";
+		echo "<table style='border-left:2px solid black; margin-top:0px; position:relative;'>";
 
 		foreach($final_array as $i){
 			echo "<tr>";
@@ -63,7 +61,7 @@ for($z=0;$z<$a;$z++){
 				if(in_array($seat,$seats)){
 					$image = "<button >w $r $i </button>";
 				}elseif(!in_array($seat,$aisle)){
-					$image = "<button value='$seat' onclick= 'myClick(id)' style='margin-right:10px;margin-top:10px;height: 40px;' class='btn btn-success' id=$i$r >$seat </button>";
+					$image = "<button value='$seat' onclick= 'myClick(id)' style='margin:5px;height: 40px;' class='btn btn-success' id=$i$r >$seat </button>";
 				}elseif(!in_array($seat,$aisle)){
 					$image = "<button>r $r $i </button>";
 				}else{
