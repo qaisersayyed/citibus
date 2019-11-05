@@ -153,10 +153,10 @@ echo $s;?>
 		<input id= "seat" type="hidden" name="seat" value=""  >
 	<input id= "fare" type="hidden" name="fare" value=""  >          
 												
-	
+	<div class="float-right">
 		<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success']) ?>
 
-															
+		</div>													
 
 <?php ActiveForm::end(); ?>
 </div>
