@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\BusSeats;
 use app\models\Customer;
+use app\models\Tickets;
 use app\models\TicketsSearch;
 use app\models\BusSeatsSearch;
 use app\models\CustomerSearch;
@@ -71,14 +72,16 @@ class BusSeatsController extends Controller
          ));
           }
          else{
-             echo $bus_route_id;
-             $rows = TicketsSearch::find()->where(['bus_route_id' => $bus_route_id])->one();
-            // $query = new \yii\db\Query;
-            // $query->select('seat_code')->from('tickets')->where('bus_route_id' == $bus_route_id);
-            // $rows = $query->all();
-            // $command = $query->createCommand();
-            // $rows = $command->queryAll();
-               echo json_encode($rows);
+            //  echo $bus_route_id;
+            //  $rows = TicketsSearch::find()->where(['bus_route_id' => $bus_route_id])->one();
+            
+    
+            $query = new \yii\db\Query;
+            $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->all();
+            $rows = $query->all();
+            $command = $query->createCommand();
+            $rows = $command->queryAll();
+                //  echo json_encode($rows);
                 // echo $rows->seat_code;
             // echo $route_stop_type_id->fare;
            return $this->render('seatselect', [          
