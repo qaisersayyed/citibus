@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -37,99 +38,42 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    if(!Yii::$app->user->isGuest){
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav navbar-right'],
-            'items' => [
-                /* ['label' => 'Home', 'url' => ['/site/index']], */
-                
-                ['label' => 'Student', 'url' => ['/program-student/index']],
-                ['label' => 'Alumni', 'url' => ['/student-organization/index']],
-                ['label' => 'Organization', 'url' => ['/organization/index']],
-                [
-                    'label' => 'Settings',
-                    // 'items' => [
-                    //     ['label' => 'Program', 'url' => ['/program/index']],
-                    //     ['label' => 'Academic Year', 'url' => ['/academic-year/index']],
-                    //     ['label' => 'Department', 'url' => ['/department/index']],
-                    //     ['label' => 'Assign Papers', 'url' => ['/paper-faculty/index']],
-                    //     ['label' => 'Revision', 'url' => ['/revision/index']],
-                    //     ['label' => 'Agency', 'url' => ['/agency/index']],
     
-                    // ],
-                ],
-                [
-                    'label' => 'Activities',
-                    // 'items' => [
-                    //     ['label' => 'Seminar', 'url' => ['/seminar/index']],
-                    //     ['label' => 'Subject Expert', 'url' => ['/subject-expert/index']],
-                    //     ['label' => 'Workshop', 'url' => ['/workshop/index']],
-                    //     ['label' => 'Examiner', 'url' => ['/examiner/index']],
-                    //     ['label' => 'Event', 'url' => ['/event/index']],
-                    //     ['label' => 'BOS', 'url' => ['/bos/index']],
-                    //     ['label' => 'Auditing Member', 'url' => ['/auditing-member/index']],
-                    //     ['label' => 'Student Activity', 'url' => ['/student-activity/index']],
-                    //     ['label' => 'Project', 'url' => ['/project/index']],
-    
-                    // ],
-                ],
-                [
-                    'label' => 'Course',
-                    // 'items' => [
-                        
-                    //     ['label' => 'Type', 'url' => ['/type/index']],
-                    //     ['label' => 'Course', 'url' => ['/paper-type/index']],
-    
-                    // ],
-                ],
-                [
-                    'label' => 'Faculty',
-                    // 'items' => [
-                    //     ['label' => 'faculty', 'url' => ['/faculty/index']],
-                    //     ['label' => 'Appointments', 'url' => ['/appointment/index']],
-                    // ],
-                ],
-                
-                Yii::$app->user->isGuest ? (
-                    ['label' => 'Login', 'url' => ['/site/login']]
-                ) : (
-                    '<li>'
-                    . Html::beginForm(['/site/logout'], 'post')
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->email_id . ')',
-                        ['class' => 'btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
-                )
-            ],
-        ]);
-    }else{
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav navbar-right'],
-            'items' => [
-              
-                
-                Yii::$app->user->isGuest ? (
-                    ['label' => 'Login', 'url' => ['/site/login']]
-                ) : (
-                    '<li>'
-                    . Html::beginForm(['/site/logout'], 'post')
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->email_id . ')',
-                        ['class' => 'btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
-                )
-            ],
-        ]);
-    }
-    
-    NavBar::end();
-    ?>
+     ?>
+               
+    <div id="mySidenav" class="sidenav" style="top: 50px;background-color: #4CAF50">
+        <a href="<?= Url::to('/Citibus/web/bus/index')?>" id="bus_index">Bus</a>
+        <a href="<?= Url::to('/Citibus/web/route-stop-type/index')?>" id="route-stop-type_index">Route Stop</a>
+        <a href="<?= Url::to('/Citibus/web/route-stop-type/form')?>" id="route-stop-type_form">Form</a>
+        <!-- <a href="#" id="contact">Contact</a> -->
+    </div>
+<?php 
+    if (Yii::$app->user->isGuest) { 
+        ?>
+        <div id="mySidenav" class="sidenav" style="top: 50px;background-color: #4CAF50">
+        <a href="<?= Url::to('/Citibus/web/site/login')?>" id="site_login">Login</a>
+        <a href="<?= Url::to('/Citibus/web/customer/create')?>" id="customer_create">Sign Up</a>
+        <!-- <a href="<?//= Url::to('/Citibus/web/route-stop-type/form')?>" id="route-stop-type_form">Form</a>
+        <a href="#" id="contact">Contact</a> -->
+    </div> 
+    <?php      
+        } else{
+            ?>
+            <div id="mySidenav" class="sidenav">
+        <!-- <a href="<?= Url::to('/Citibus/web/customer/profile')?>" id="customer_profile">Profile</a> -->
+       
+    </div>
+            
+      <?php  }
 
+?>
+<?php
+                
+    NavBar::end();
+    
+    ?>
     <div class="container">
+    
         <?= Breadcrumbs::widget([
             //'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -138,13 +82,6 @@ AppAsset::register($this);
     </div>
 </div>
 
-<!-- <footer class="footer"> -->
-    <!-- <div class="container">
-        <p class="pull-left">&copy; FO$$ <?//= date('Y') ?></p>
-
-        <p class="pull-right"><?//= Yii::powered() ?></p>
-    </div> -->
-<!-- </footer> -->
 
 <?php $this->endBody() ?>
 
@@ -152,4 +89,71 @@ AppAsset::register($this);
 </html>
 <?php $this->endPage() ?>
 
+<style>
+#mySidenav a {
+  position: absolute; /* Position them relative to the browser window */
+  left: -50px; /* Position them outside of the screen */
+  transition: 0.3s; /* Add transition on hover */
+  padding: 15px; /* 15px padding */
+  width: 100px; /* Set a specific width */
+  text-decoration: none; /* Remove underline */
+  font-size: 20px; /* Increase font size */
+  color: white; /* White text color */
+  border-radius: 0 10px 10px 0; /* Rounded corners on the top right and bottom right side */
+}
+
+#mySidenav a:hover {
+  left: 0; /* On mouse-over, make the elements appear as they should */
+}
+
+/* The about link: 20px from the top with a green background */
+#bus_index {
+  top: 60px;
+  background-color: #4CAF50;
+}
+
+#route-stop-type_index {
+  top: 120px;
+  background-color: #4CAF50;
+  /* background-color: #2196F3; Blue */
+}
+
+#route-stop-type_form {
+  top: 209px;
+  background-color: #4CAF50;
+  /* background-color: #f44336; Red */
+}
+
+#site_login {
+  top: 270px;
+  background-color: #4CAF50;
+  /* background-color: #555 Light Black */
+}
+#customer_create {
+  top: 330px;
+  background-color: #4CAF50;
+  /* background-color:#555; */
+}
+#customer_profile {
+  top: 80px;
+  /* background-color: #2196F3; Blue */
+}
+
+</style>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+// $('.btn-expand-collapse').click(function(e) {
+// 				$('.navbar-primary').toggleClass('collapsed');
+// });
+</script>
 
