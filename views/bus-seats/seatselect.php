@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 
 
 
-//  echo json_encode($rows);
+//    echo json_encode($rows->seat_code);
 
 
 $fare = $route_stop_type_id->fare;
