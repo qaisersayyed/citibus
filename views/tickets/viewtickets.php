@@ -7,4 +7,5 @@
 <body>
 
 <center><h1>Ticket booked</h1></center>
+
 </body>
