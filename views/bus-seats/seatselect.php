@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 
 
 
-//  echo json_encode($rows);
+  echo json_encode($rows->seat_code);
 
 
 $fare = $route_stop_type_id->fare;
@@ -118,7 +118,7 @@ function myClick(id){
 }
 
 function my_code(){
-    var booked_seats = <?php echo json_encode($rows) ?>;
+    var booked_seats = <?php echo json_encode($rows->seat_code) ?>;
     console.log(booked_seats);
     for (i = 0; i < booked_seats.length; i++) { 
         var ele = booked_seats[i];
