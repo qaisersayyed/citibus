@@ -47,7 +47,15 @@ for($z=0;$z<$a;$z++){
 }
 // echo json_encode($aisle);
 ?>
+<div class="container">
+<center><h2>Select your seat</h2></center>
+<div style="margin: auto; text-align:center;">
+<button type="button" style="display:inline-block;margin-right:10px" class="btn btn-success"></button><h5 style="display:inline-block;margin-right:20px"> Available seats</h5>
+<button type="button" style="display:inline-block;margin-right:10px" class="btn btn-danger"></button><h5 style="display:inline-block;margin-right:20px">Selected seats</h5>
+<button type="button" style="display:inline-block;margin-right:10px" class="btn btn-secondary"></button><h5 style="display:inline-block;margin-right:20px">Not available</h5>
+</div>
 <div >
+
 	<div  style="margin: auto; text-align:center ;border: 5px solid black;width: 750px;padding-left:10px;padding-top:10px;">
 	<? echo Html::img('@web/uploads/png', ['width'=>'30px']);?>
 		<div   style="display:inline-block;margin-left:50px;margin-top:-5px;">
@@ -123,7 +131,7 @@ function my_code(){
     for (i = 0; i < booked_seats.length; i++) { 
         var ele = booked_seats[i];
         var s_id = document.getElementById( ele["seat_code"]) ;
-        s_id.className='btn btn-black';
+        s_id.className='btn btn-secondary';
         s_id.disabled = true
         console.log(s_id);
     }
@@ -145,10 +153,10 @@ echo $s;?>
 		<input id= "seat" type="hidden" name="seat" value=""  >
 	<input id= "fare" type="hidden" name="fare" value=""  >          
 												
-	<div class="form-group" type="button">
-
+	<div class="float-right">
 		<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success']) ?>
-	</div>
-															
+
+		</div>													
 
 <?php ActiveForm::end(); ?>
+</div>
