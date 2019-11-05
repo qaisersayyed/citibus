@@ -111,7 +111,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                         
                                     <td>
                                  
-                                <?= Html::a('submit', ['bus-seats/seatselect', 'rst_id' => $trst->route_stop_type_id,'bus_route_id' =>$col->bus_route_id],
+                                <?= Html::a('submit', ['bus-seats/seatselect', 'rst_id' => $frst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
                                  ['class' => 'btn btn-primary']); ?>
                                 
                                     </td>

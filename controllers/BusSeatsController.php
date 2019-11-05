@@ -51,51 +51,16 @@ class BusSeatsController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-    public function actionSeatselect(){
-        $model = BusSearch::find()->where(['bus_id'=>1])->one();
-        $customer_id = CustomerSearch::find()->where(['customer_id'=>1])->one();
-        $route_id = RouteSearch::find()->where(['route_id'=>1])->one();
-        $bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>6])->one();
-        $route_stop_type_id = RouteStopTypeSearch::find()->where(['route_stop_type_id'=>1])->one();
+    public function actionSeatselect($rst_id,$bus_id,$route_id,$bus_route_id){
+        $model = BusSearch::find()->where(['bus_id'=>$bus_id])->one();
+        // $customer_id = CustomerSearch::find()->where(['customer_id'=>1])->one();
+        $route_id = RouteSearch::find()->where(['route_id'=>$route_id])->one();
+        $bus_route_id = BusRouteSearch::find()->where(['bus_route_id'=>$bus_route_id])->one();
+        $route_stop_type_id = RouteStopTypeSearch::find()->where(['route_stop_type_id'=>$rst_id])->one();
 
          if(Yii::$app->request->get('seat') ){
             $seat = Yii::$app->request->get('seat');
             $fare = Yii::$app->request->get('fare');
-            
-            // $s = array();
-            // $length =strlen($seat);
-            // echo json_encode($seat);
-            
-            //     function mod($i,$length){
-            //     $m = $i % $length;
-            //     if ($m > $length)
-            //         mod($m,$length);
-            //         return $m;
-            //      }
-            //     for ($a = 0; $a <= $length;$a=$a+3) {
-            //         $k=mod($a,60); 
-            //         // echo $k;
-            //         array_push($s,$seat[$k].$seat[$k+1]);
-                    
-            //         $myArray = str_split($seat);
-            //         array_splice($myArray, $k+2, 1);
-                    
-            //   }
-            
-               
-            //    $customer = $customer_id->customer_id;
-            //    $bus_route = $bus_route_id->bus_route_id;
-            //     $route_stop_type = $route_stop_type_id->route_stop_type_id;
-            
-            //  foreach($s as $seats){
-            //     Yii::$app->db->createCommand("INSERT INTO tickets (ticket_id,customer_id,bus_route_id,route_stop_type_id,seat_code,seat_name)
-            //      VALUES (NULL,'$bus_route','$route_stop_type','$seats','$seats')"
-                
-                
-            // )->execute();
-            // echo  json_encode($seats);
-
-           //   }
     
          return $this->redirect(array('bus-seats/payment',
                  'route_id' =>$route_id->route_id,
