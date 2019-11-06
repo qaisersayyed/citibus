@@ -53,15 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                             ['prompt'=>'From ']
                                         ) ?>
             </div>
-<<<<<<< HEAD
-
-            
-                                        
-                                            
-            <center>  
-                <i class="fa fa-exchange" style="font-size:36px"></i>
-            </center>
-=======
            
                 <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
                 <div class="row">
@@ -87,7 +78,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div><br>
                 
             
->>>>>>> c44d594232e3d1647e61e48a847a253c51892f42
           
             <div class="form-group" id="to">
                 <?= $form->field($model, 'stop_name', ['inputOptions'=>[
