@@ -18,6 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <style>
 #form{  
@@ -42,6 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     
                 ) ?>
             </div>
+
+            
+                                        
+                                            
             <center>  
                 <i class="fa fa-exchange" style="font-size:36px"></i>
             </center>
@@ -58,6 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="form-group" id="button">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
             </div>
+
+            
+     <script>
+    $('.select2').select2();
+</script>
+</div>
+            
 
         <?php ActiveForm::end(); ?>
     <div>
