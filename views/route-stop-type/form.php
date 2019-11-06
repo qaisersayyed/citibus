@@ -42,28 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
 
             <div class="form-group" id="from">
-<<<<<<< HEAD
-                <?= $form->field($model, 'stop_name')->widget(Select2::classname(), [
-                        'data' => ArrayHelper::map(Stops::find()->all(),'stop_name','stop_name'),
-                        'options' => ['placeholder' => 'Select a state ...'],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],]
-                    // ]);  ,['inputOptions'=>[
-                    //                     'name'=>'from','class'=>'form-control']])->label("From")
-                    //                     //->textArea(['rows'=>'12','class'=>'form-control'])
-                    //                     ->dropDownList(
-                    // ArrayHelper::map(Stops::find()->all(),'stop_name','stop_name')
-                    
-                    // echo $form->field($model, 'state_1')->widget(Select2::classname(), [
-                    //     'data' => $data,
-                    //     'options' => ['placeholder' => 'Select a state ...'],
-                    //     'pluginOptions' => [
-                    //         'allowClear' => true
-                    //     ],
-                    // ]);
-                ) ?>
-=======
                 <?= $form->field($model, 'stop_name', ['inputOptions'=>[
                                         'name'=>'from','class'=>'form-control']])->label("From")
                                         //->textArea(['rows'=>'12','class'=>'form-control'])
@@ -71,7 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                             ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
                                             ['prompt'=>'From ']
                                         ) ?>
->>>>>>> c44d594232e3d1647e61e48a847a253c51892f42
             </div>
            
                 <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
@@ -104,15 +81,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'name'=>'to','class'=>'form-control']])->label("To")
                                             //->textArea(['rows'=>'12','class'=>'form-control'])
                                             ->dropDownList(
-<<<<<<< HEAD
-                    ArrayHelper::map(Stops::find()->all(),'stop_name','stop_name')
-                        
-                    ) ?>   
-=======
                                                 ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
                                                 ['prompt'=>'To ']
                                             ) ?>   
->>>>>>> c44d594232e3d1647e61e48a847a253c51892f42
             </div>
             <div class="form-group" id="button">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>

@@ -52,7 +52,7 @@ class BusSeatsController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-    public function actionSeatselect($rst_id,$bus_id,$route_id,$bus_route_id){
+    public function actionSeatselect($rst_id,$bus_id,$route_id,$bus_route_id,$date){
         $model = BusSearch::find()->where(['bus_id'=>$bus_id])->one();
         $route_id = RouteSearch::find()->where(['route_id'=>$route_id])->one();
         $bus_route_id_m = BusRouteSearch::find()->where(['bus_route_id'=>$bus_route_id])->one();
@@ -73,19 +73,19 @@ class BusSeatsController extends Controller
          else{          
     
             $query = new \yii\db\Query;
-            $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->all();
-            $rows = $query->all();
-            $command = $query->createCommand();
-            $rows = $command->queryAll();
-            
-           return $this->render('seatselect', [          
-                'model' => $model,
-                'route_id' =>$route_id,
-                'bus_route_id' => $bus_route_id_m,
-                'route_stop_type_id' => $route_stop_type_id,
-                'rows' =>$rows,
+            // $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->andWhere(['created_at' => $date])->all();
+            // $rows = $query->all();
+            // $command = $query->createCommand();
+            // $rows = $command->queryAll();
+            echo $date;
+        //    return $this->render('seatselect', [          
+        //         'model' => $model,
+        //         'route_id' =>$route_id,
+        //         'bus_route_id' => $bus_route_id_m,
+        //         'route_stop_type_id' => $route_stop_type_id,
+        //         'rows' =>$rows,
                
-             ]);
+        //      ]);
      }  
     }
     
