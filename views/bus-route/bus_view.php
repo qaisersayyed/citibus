@@ -9,6 +9,8 @@ use app\models\RouteStopTypeSearch;
 use yii\bootstrap\Button;
 use yii\helpers\Url;
 use app\models\Stops;
+use app\models\Tickets;
+use app\models\Bus;
 
 $this->title = 'All Buses';
 /* @var $this yii\web\View */
@@ -76,7 +78,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
 ?>
 <html>
            <head>
-           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">           <style>
+                   <style>
            #bus_block:hover {
                transform: scale(1.01);
            }
@@ -88,53 +90,67 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
            
 </div>
 
-        <table class="table table-striped table-bordered">
-            <tbody>
+      
             <?php
     foreach ($data as $col) {
         $busno =  $col->bus->license_plate;
         $from = $col->route->from;
         $to = $col->route->to;
-        $time= $col->timing; ?>
+        $time= $col->timing;
+        $seats_count = Tickets::find()->where(['bus_route_id' => $col->bus_route_id ])->count();
+        $bus_seat_count = Bus::find()->where(['bus_id' => $col->bus_id ])->one();
+        $seats_left = $bus_seat_count->no_of_seats - $seats_count ?>
         
         
               
                     <div id="bus_block" class="panel-group">
-                        <div class="panel panel-info">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
-        
-                                <h3>Bus Number: <b><?php echo $busno ?></b></h3>
-                                <div>
-                                <h3>Date  <b><?php echo $date ?></b></h3>
-                            </div>
-            
-                        </div>
-                            <div class="panel-body">
                                 <div class="row">
-                                        <div class="col-sm">
-                                            <h4 >From</h4>
-                                            <h3 style="text-transform: capitalize;"><?php echo $from ?></h3>
-                                        
+                                    <div class="col-md-8">
+                                        <h4>Bus Number: <b><?php echo $busno ?></b></h4>
+                                        <div>
+                                            <h4>Date  <b><?php echo $date ?></b></h4>
                                         </div>
-                                        <div class="col-sm">
-                                            <h4>To</h4>
-                                            <h3 style="text-transform: capitalize;"><?php echo $to ?></h3>
+                                    </div>
+                                    
+                                    <div class="col-md-2" style="padding-left:160px">
+                                       <img src="http://localhost/citibus/web/seat.png" alt="seat-left" height="40px" width="40px">
+
+                                    </div>
+                                    <div class="col-md-2">
+                                            <h4><?php echo $seats_left; ?> Left</h4>
+                                    </div>
+                                       
+                              </div>
+                            </div>
+
+                                <div class="panel-body">
+                                    <div class="row" style="padding-left:20px">
+                                        <div class="col-sm-4">
+                                            <p>From</p>
+                                            <h4>Margao</h4>
                                         </div>
-                                        <div class="col-sm">
-                                           <h4>Timing</h4>
-                                            <h3><?php echo $time ?></h3>
+                                        <div class="col-sm-4">
+                                            <p>To</p>
+                                            <h4>Panjim</h4>
                                         </div>
-                                </div>
-                                <div class="row " style="">
-                                <div class="col-md" style="text-align: right;">
-                                <?= Html::a(
+                                        <div class="col-sm-2">
+                                            <p>Timing</p>
+                                            <h4>10:00</h4>
+                                        </div>
+                                        <div style="padding-top:10px" class="col-sm-2">
+                                        <?= Html::a(
             'Select seats',
             ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
             ['class' => 'btn btn-primary']
         ); ?>
-        </div>
+                                        </div>
+                                    </div>
+                        
+                            
                                 </div>
-                            </div>
+                                
                         </div>         
                     </div>
                     <br>
@@ -142,9 +158,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
     <?php
     }
     ?>
-    </tbody>
-                </table>
-
+   
         </div>
 
         </body>
