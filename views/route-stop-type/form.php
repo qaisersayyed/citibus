@@ -53,6 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <center>  
                 <i class="fa fa-exchange" style="font-size:36px"></i>
             </center>
+           
+                <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
+             
+                
           
             <div class="form-group" id="to">
                 <?= $form->field($model, 'stop_name',['inputOptions'=>[
