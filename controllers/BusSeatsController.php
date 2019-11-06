@@ -73,19 +73,20 @@ class BusSeatsController extends Controller
          else{          
     
             $query = new \yii\db\Query;
-            // $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->andWhere(['created_at' => $date])->all();
-            // $rows = $query->all();
-            // $command = $query->createCommand();
-            // $rows = $command->queryAll();
-            echo $date;
-        //    return $this->render('seatselect', [          
-        //         'model' => $model,
-        //         'route_id' =>$route_id,
-        //         'bus_route_id' => $bus_route_id_m,
-        //         'route_stop_type_id' => $route_stop_type_id,
-        //         'rows' =>$rows,
+            $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->andWhere(['date(created_at)' => $date])->all();
+            $rows = $query->all();
+            $command = $query->createCommand();
+            $rows = $command->queryAll();
+            // echo $date;
+            // echo json_encode($rows);
+           return $this->render('seatselect', [          
+                'model' => $model,
+                'route_id' =>$route_id,
+                'bus_route_id' => $bus_route_id_m,
+                'route_stop_type_id' => $route_stop_type_id,
+                'rows' =>$rows,
                
-        //      ]);
+             ]);
      }  
     }
     
@@ -212,7 +213,17 @@ class BusSeatsController extends Controller
              Yii::$app->db->createCommand("UPDATE transaction SET ticket_id = '$tickets->ticket_id', txn_id = '$txnid' ,date = '$date', status = 1  WHERE order_id = '$data->order_id'; )"
              )->execute();
         }
-        return $this->redirect(['tickets/viewtickets']);
+        return $this->redirect('tickets/viewtickets'
+        // ,[
+        //     'order_id' => $orderid,
+        //     'amount' => $amount,
+        //     'date' => $date,
+        //     'txn_id' => $txnid,
+        //     'status' => $status
+
+        // ]
+        
+        );
         // return $this->render('tickets/viewtickets' 
         //   );
     }

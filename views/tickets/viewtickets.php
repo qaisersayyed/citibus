@@ -7,5 +7,12 @@
 <body>
 
 <center><h1>Ticket booked</h1></center>
+<div class="container" >
+    
+    <div style="height:400px">
+            
+    </div>
 
+
+</div>
 </body>

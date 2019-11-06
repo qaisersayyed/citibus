@@ -59,7 +59,16 @@ class TicketsController extends Controller
 
     public function actionViewtickets()
     {
-        return $this->render('viewtickets');
+        return $this->render('viewtickets'
+        // ,[
+        //     'order_id' => $order_id,
+        //     'amount' => $amount,
+        //     'date' => $date,
+        //     'txn_id' => $txn_id,
+        //     'status' => $status
+
+        // ]
+    );
     }
 
     /**

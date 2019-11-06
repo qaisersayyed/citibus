@@ -1612,8 +1612,8 @@
     },
     {
         "name": "kartik-v/yii2-widget-select2",
-        "version": "v2.1.6",
-        "version_normalized": "2.1.6.0",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/kartik-v/yii2-widget-select2.git",
@@ -1636,7 +1636,7 @@
                 "dev-master": "2.1.x-dev"
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-4": {
                 "kartik\\select2\\": "src"

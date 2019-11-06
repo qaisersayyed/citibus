@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
-use yii\widgets\Select2;
+use kartik\select2\Select2;
 use app\models\Stops;
 use yii\helpers\ArrayHelper;
 
@@ -42,14 +42,17 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
 
             <div class="form-group" id="from">
-                <?= $form->field($model, 'stop_name', ['inputOptions'=>[
-                                        'name'=>'from','class'=>'form-control']])->label("From")
-                                        //->textArea(['rows'=>'12','class'=>'form-control'])
-                                        ->dropDownList(
-                                            ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
-                                            ['prompt'=>'From ']
-                                        ) ?>
-            </div>
+                <?= $form->field($model, 'stop_name')->widget(Select2::classname(), [
+                    'data' => ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
+                        'options' => ['prompt'=>'From'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                        'bsVersion' => '4.x',
+                        
+                    ])->label('From')?>
+          </div>
+          
            
                 <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
                 <div class="row">
@@ -76,15 +79,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 
             
           
-            <div class="form-group" id="to">
-                <?= $form->field($model, 'stop_name', ['inputOptions'=>[
-                                            'name'=>'to','class'=>'form-control']])->label("To")
-                                            //->textArea(['rows'=>'12','class'=>'form-control'])
-                                            ->dropDownList(
-                                                ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
-                                                ['prompt'=>'To ']
-                                            ) ?>   
+            <div class="form-group" id="to" >
+            <?= $form->field($model, 'stop_name')->widget(Select2::classname(), [
+                     'data' => ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
+                         'options' => ['prompt'=>'To'],
+                         'pluginOptions' => [
+                             'allowClear' => true
+                         ],
+                          'bsVersion' => '4.x',
+                        
+                     ])->label('To')?>
+
+                
             </div>
+
+            
             <div class="form-group" id="button">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
             </div>
