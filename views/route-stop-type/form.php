@@ -8,8 +8,6 @@ use yii\widgets\DetailView;
 use app\models\Stops;
 use yii\helpers\ArrayHelper;
 
-use kartik\date\DatePicker;
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StopsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,11 +16,7 @@ use kartik\date\DatePicker;
 $model = new Stops();
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-              
 <head>
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -37,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </style>
 <div class="container">
-
     <div id="form">
         <?php $form = ActiveForm::begin([
             'method' => 'get',
@@ -55,27 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
            
                 <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5>When?</h5>
-                            <?php echo DatePicker::widget([
-                                'name' => 'date',
-                                'value' => date('d-M-Y', strtotime('')),
-                                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-
-                                'options' => ['placeholder' => 'Select journey date'],
-                                'pickerIcon' => '<i class="fas fa-calendar-alt text-primary"></i>',
-                                'pluginOptions' => [
-                                    'todayHighlight' => true,
-                                    'todayBtn' => true,
-                                    'format' => 'yyyy-mm-dd',
-                                    'autoclose' => true,
-                                    'required'=>true
-                                ]
-                            ]); ?>
-                    </div>
-                
-                </div><br>
+             
                 
             
           
@@ -101,5 +74,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php ActiveForm::end(); ?>
     <div>
-    
 </div>  
