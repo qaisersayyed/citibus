@@ -36,7 +36,7 @@ class Bus extends \yii\db\ActiveRecord
     {
         return [
             [['license_plate', 'no_of_seats', 'pattern'], 'required'],
-            [['no_of_seats'], 'integer'],
+            [['no_of_seats','status'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['license_plate'], 'string', 'max' => 15],
             [['pattern'], 'string', 'max' => 10],
@@ -50,6 +50,7 @@ class Bus extends \yii\db\ActiveRecord
     {
         return [
             'bus_id' => 'Bus ID',
+            'status' => 'Status',
             'license_plate' => 'License Plate',
             'no_of_seats' => 'No Of Seats',
             'pattern' => 'Pattern',

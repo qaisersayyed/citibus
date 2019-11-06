@@ -30,6 +30,7 @@ class ComposerStaticInit89e2c07d4b3862845b0a11d795fe086d
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
+            'yii\\bootstrap\\' => 14,
             'yii\\bootstrap4\\' => 15,
             'yii\\' => 4,
         ),
@@ -143,6 +144,10 @@ class ComposerStaticInit89e2c07d4b3862845b0a11d795fe086d
         'yii\\composer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-composer',
+        ),
+        'yii\\bootstrap\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap/src',
         ),
         'yii\\bootstrap4\\' => 
         array (

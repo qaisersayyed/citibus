@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'license_plate',
             'no_of_seats',
             'pattern',
+            'status',
             'created_at',
             'updated_at',
             'deleted_at',

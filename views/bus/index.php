@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Bus', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'license_plate',
             'no_of_seats',
             'pattern',
+            'status',
             'created_at',
             //'updated_at',
             //'deleted_at',
