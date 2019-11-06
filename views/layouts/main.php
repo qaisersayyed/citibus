@@ -47,7 +47,6 @@ AppAsset::register($this);
                 ['label' => 'Search', 'url' => ['/route-stop-type/form']],
             ];
             if (Yii::$app->user->isGuest) {
-
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
                 $menuItems[] = ['label' => 'Sign Up', 'url' => ['/customer/create']];
             } else {

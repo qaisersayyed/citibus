@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Route;
 use yii\bootstrap\Alert;
+
 // use app\models\RouteStopType;
 
 /**
@@ -54,43 +55,26 @@ class RouteStopTypeController extends Controller
     // }
     public function actionForm()
     {
-         $searchModel = new RouteStopTypeSearch();
-         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new RouteStopTypeSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-         if(Yii::$app->request->get('from')){
+        if (Yii::$app->request->get('from')) {
             $from = Yii::$app->request->get('from');
             $to = Yii::$app->request->get('to');
+            $date = Yii::$app->request->get('date');
             
-           // $query->andWhere(['like', 'title', $search]);
-
-           
-            // echo $from_->stop_id,"<br>";
-            // echo $to_->stop_id,"<br>";
-                return $this->redirect(array('bus-route/bus_view',
+            return $this->redirect(array('bus-route/bus_view',
                 'from' => $from,
                 'to' => $to,
+                'date' => $date
             ));
-                //$model = $this->findModel1($from_id->route_id);
-            
-                // Alert::begin([
-                //     'options' => [
-                //         'class' => 'alert-warning',
-                //     ],
-                // ]);
-                
-                // echo 'No buses on selected route';
-                
-                // Alert::end();
-            
-            
-        }else{
+        } else {
             return $this->render('form', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
         }
-    // $route_id = Route::find()->where(['from' => $from , 'to' => $to ])->one();
-            
+        // $route_id = Route::find()->where(['from' => $from , 'to' => $to ])->one();
     }
 
     protected function findModel1($route_id)

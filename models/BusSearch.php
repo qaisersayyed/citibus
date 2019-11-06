@@ -17,7 +17,7 @@ class BusSearch extends Bus
     public function rules()
     {
         return [
-            [['bus_id', 'no_of_seats'], 'integer'],
+            [['bus_id', 'no_of_seats','status'], 'integer'],
             [['license_plate', 'pattern', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class BusSearch extends Bus
         // grid filtering conditions
         $query->andFilterWhere([
             'bus_id' => $this->bus_id,
+            'status' => $this->status,
             'no_of_seats' => $this->no_of_seats,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

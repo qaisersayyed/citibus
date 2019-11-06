@@ -19,3 +19,6 @@ ALTER TABLE `stops` DROP `stop_order`;
 //17 oct 2019
 ALTER TABLE `tickets` DROP `seat_name`;
 ALTER TABLE `tickets` ADD `fare` INT NOT NULL AFTER `seat_code`;
+
+//7 nov 2019
+ALTER TABLE `bus` ADD `status` INT(2) NOT NULL DEFAULT '1' AFTER `pattern`;

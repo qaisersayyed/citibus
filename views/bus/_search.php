@@ -23,11 +23,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'pattern') ?>
 
+    <?= $form->field($model, 'status') ?>
+
     <?= $form->field($model, 'created_at') ?>
 
-    <?php // echo $form->field($model, 'updated_at') ?>
+    <?php // echo $form->field($model, 'updated_at')?>
 
-    <?php // echo $form->field($model, 'deleted_at') ?>
+    <?php // echo $form->field($model, 'deleted_at')?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
