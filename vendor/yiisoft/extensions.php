@@ -39,15 +39,6 @@ return array (
       '@kartik/typeahead' => $vendorDir . '/kartik-v/yii2-widget-typeahead/src',
     ),
   ),
-  'yiisoft/yii2-bootstrap4' => 
-  array (
-    'name' => 'yiisoft/yii2-bootstrap4',
-    'version' => '2.0.8.0',
-    'alias' => 
-    array (
-      '@yii/bootstrap4' => $vendorDir . '/yiisoft/yii2-bootstrap4/src',
-    ),
-  ),
   'kartik-v/yii2-widget-touchspin' => 
   array (
     'name' => 'kartik-v/yii2-widget-touchspin',
@@ -91,15 +82,6 @@ return array (
     'alias' => 
     array (
       '@kartik/sidenav' => $vendorDir . '/kartik-v/yii2-widget-sidenav',
-    ),
-  ),
-  'kartik-v/yii2-widget-select2' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-select2',
-    'version' => '2.1.6.0',
-    'alias' => 
-    array (
-      '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2/src',
     ),
   ),
   'kartik-v/yii2-widget-rating' => 
@@ -235,6 +217,15 @@ return array (
     'alias' => 
     array (
       '@yii/bootstrap' => $vendorDir . '/yiisoft/yii2-bootstrap/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-select2' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-select2',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2/src',
     ),
   ),
 );

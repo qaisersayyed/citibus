@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'name' => 'date',
                                 'value' => date('d-M-Y', strtotime('')),
                                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                                'bsVersion' => '4.x',
+
                                 'options' => ['placeholder' => 'Select journey date'],
                                 'pickerIcon' => '<i class="fas fa-calendar-alt text-primary"></i>',
                                 'pluginOptions' => [
