@@ -16,6 +16,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,16 +24,55 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 
 <body>
     <?php $this->beginBody() ?>
 
     <div class="wrap" >
-        <div class="container-fluid" >
+        <div class="wrap" >
 
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">CitiBus</a>
 
-            <?php
+        <!-- Links -->
+        <ul class="navbar-nav" style="margin-left:auto; margin-right:0px; padding-right:30px;">
+            <li class="nav-item" style="padding-right:10px;">
+            <a class="nav-link" href='http://localhost/citibus/web/route-stop-type/form'><i class="material-icons">
+search
+</i></a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" style="padding-right:10px;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            <i class="material-icons md-48">
+directions_bus
+</i>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href='http://localhost/citibus/web/bus/index'>Buses</a>
+                <a class="dropdown-item" href='http://localhost/citibus/web/route-stop-type/index'>Route Stop</a>
+            </div>
+            </li>
+
+            <li class="nav-item dropdown" style="padding-right:10px;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            <i class="material-icons md-48">account_circle</i>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href='http://localhost/citibus/web/site/login'>Log In</a>
+                <a class="dropdown-item" href='http://localhost/citibus/web/customer/create'>Sign Up</a>
+            </div>
+            </li>
+        </ul>
+        </nav>
+            
+            
+            <!-- <?php
             NavBar::begin([
                 'brandLabel' => 'CitiBus',
                 'brandUrl' => Yii::$app->homeUrl,
@@ -69,7 +109,7 @@ AppAsset::register($this);
 
             ]);
             NavBar::end();
-            ?>
+            ?> -->
         </div>
 
         <div class="container">

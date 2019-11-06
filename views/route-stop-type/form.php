@@ -24,6 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <style>
 #form{  
@@ -49,6 +53,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                             ['prompt'=>'From ']
                                         ) ?>
             </div>
+<<<<<<< HEAD
+
+            
+                                        
+                                            
+            <center>  
+                <i class="fa fa-exchange" style="font-size:36px"></i>
+            </center>
+=======
            
                 <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
                 <div class="row">
@@ -74,6 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div><br>
                 
             
+>>>>>>> c44d594232e3d1647e61e48a847a253c51892f42
           
             <div class="form-group" id="to">
                 <?= $form->field($model, 'stop_name', ['inputOptions'=>[
@@ -87,6 +101,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="form-group" id="button">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
             </div>
+
+            
+     <script>
+    $('.select2').select2();
+</script>
+</div>
+            
 
         <?php ActiveForm::end(); ?>
     <div>
