@@ -54,7 +54,6 @@ class BusSeatsController extends Controller
     }
     public function actionSeatselect($rst_id,$bus_id,$route_id,$bus_route_id){
         $model = BusSearch::find()->where(['bus_id'=>$bus_id])->one();
-        // $customer_id = CustomerSearch::find()->where(['customer_id'=>1])->one();
         $route_id = RouteSearch::find()->where(['route_id'=>$route_id])->one();
         $bus_route_id_m = BusRouteSearch::find()->where(['bus_route_id'=>$bus_route_id])->one();
         $route_stop_type_id = RouteStopTypeSearch::find()->where(['route_stop_type_id'=>$rst_id])->one();
@@ -71,27 +70,21 @@ class BusSeatsController extends Controller
                 'fare' => $fare,
          ));
           }
-         else{
-            //  echo $bus_route_id;
-            //  $rows = TicketsSearch::find()->where(['bus_route_id' => $bus_route_id])->one();
-            
+         else{          
     
             $query = new \yii\db\Query;
             $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->all();
             $rows = $query->all();
             $command = $query->createCommand();
             $rows = $command->queryAll();
-                //  echo json_encode($rows);
-                // echo $rows->seat_code;
-            // echo $route_stop_type_id->fare;
+            
            return $this->render('seatselect', [          
                 'model' => $model,
                 'route_id' =>$route_id,
                 'bus_route_id' => $bus_route_id_m,
                 'route_stop_type_id' => $route_stop_type_id,
                 'rows' =>$rows,
-                // 'booked_seats' => $booked_seats
-                // 'seat' =>$seat
+               
              ]);
      }  
     }

@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
+use yii\widgets\Select2;
 use app\models\Stops;
 use yii\helpers\ArrayHelper;
 
@@ -34,12 +35,25 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
 
             <div class="form-group" id="from">
-                <?= $form->field($model, 'stop_name',['inputOptions'=>[
-                                        'name'=>'from','class'=>'form-control']])->label("From")
-                                        //->textArea(['rows'=>'12','class'=>'form-control'])
-                                        ->dropDownList(
-                    ArrayHelper::map(Stops::find()->all(),'stop_name','stop_name'),['prompt'=>'From ']
+                <?= $form->field($model, 'stop_name')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(Stops::find()->all(),'stop_name','stop_name'),
+                        'options' => ['placeholder' => 'Select a state ...'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],]
+                    // ]);  ,['inputOptions'=>[
+                    //                     'name'=>'from','class'=>'form-control']])->label("From")
+                    //                     //->textArea(['rows'=>'12','class'=>'form-control'])
+                    //                     ->dropDownList(
+                    // ArrayHelper::map(Stops::find()->all(),'stop_name','stop_name')
                     
+                    // echo $form->field($model, 'state_1')->widget(Select2::classname(), [
+                    //     'data' => $data,
+                    //     'options' => ['placeholder' => 'Select a state ...'],
+                    //     'pluginOptions' => [
+                    //         'allowClear' => true
+                    //     ],
+                    // ]);
                 ) ?>
             </div>
             <center>  
@@ -51,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'name'=>'to','class'=>'form-control']])->label("To")
                                             //->textArea(['rows'=>'12','class'=>'form-control'])
                                             ->dropDownList(
-                    ArrayHelper::map(Stops::find()->all(),'stop_name','stop_name'),['prompt'=>'To ']
+                    ArrayHelper::map(Stops::find()->all(),'stop_name','stop_name')
                         
                     ) ?>   
             </div>

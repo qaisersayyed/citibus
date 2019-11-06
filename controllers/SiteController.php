@@ -62,7 +62,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-         $this->layout = "main-g"; 
+        
         // if (!Yii::$app->user->isGuest) {
         //     return $this->redirect(['route-stop-type/form']);
         // }
