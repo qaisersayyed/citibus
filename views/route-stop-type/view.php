@@ -7,8 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\RouteStopType */
 
 $this->title = $model->route_stop_type_id;
-$this->params['breadcrumbs'][] = ['label' => 'Route Stop Types', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="route-stop-type-view">

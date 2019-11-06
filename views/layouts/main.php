@@ -7,7 +7,6 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -20,9 +19,13 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    
 </head>
 
 <body>
@@ -49,6 +52,7 @@ AppAsset::register($this);
             if (Yii::$app->user->isGuest) {
 
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+
                 $menuItems[] = ['label' => 'Sign Up', 'url' => ['/customer/create']];
             } else {
                 $menuItems[] = '<li>'
@@ -73,7 +77,7 @@ AppAsset::register($this);
             ?>
         </div>
 
-        <div class="container">
+        <div class="container" style="margin-top:20px">
             
             <?= Alert::widget() ?>
             <?= $content ?>
