@@ -7,8 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\BusType */
 
 $this->title = $model->bus_type_id;
-$this->params['breadcrumbs'][] = ['label' => 'Bus Types', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="bus-type-view">
