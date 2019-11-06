@@ -39,15 +39,6 @@ return array (
       '@kartik/typeahead' => $vendorDir . '/kartik-v/yii2-widget-typeahead/src',
     ),
   ),
-  'yiisoft/yii2-bootstrap4' => 
-  array (
-    'name' => 'yiisoft/yii2-bootstrap4',
-    'version' => '2.0.8.0',
-    'alias' => 
-    array (
-      '@yii/bootstrap4' => $vendorDir . '/yiisoft/yii2-bootstrap4/src',
-    ),
-  ),
   'kartik-v/yii2-widget-touchspin' => 
   array (
     'name' => 'kartik-v/yii2-widget-touchspin',

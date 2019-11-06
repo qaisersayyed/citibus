@@ -16,9 +16,9 @@ $this->title = 'All Buses';
 // echo "route id",$routeid ,"<br>";
 // echo "rst id",$routeStopType;
 
-echo $from,"->";
-echo $to;"->";
-echo $date;
+// echo $from,"->";
+// echo $to;"->";
+// echo $date;
 
 
 $from_name = Stops::find()->andwhere(['like','stop_name' , $from ])->one();
@@ -63,9 +63,9 @@ foreach ($routes as $route) {
     //echo "-------------<br>";
 }
 if ($foundroute == "") {
-    echo "<h1>No Buses Available for this Route</h1>",$foundroute;
+    echo " <div class='alert alert-dark' role='alert'><h1>No Buses Available for this Route</h1></div>";
 } else {
-    echo "<h1>Available Buses</h1>",$foundroute;
+    echo "<div class='alert alert-dark' role='alert'><h1>Available buses</h1></div>";
 }
 
 
@@ -75,13 +75,19 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
 //echo $data;
 ?>
 <html>
-            <head>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-            </head>
+           <head>
+           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">           <style>
+           #bus_block:hover {
+               transform: scale(1.01);
+           }
+           </style>
+           </head> 
+              
         <body>
-        <div>
+        <div class="container">
+           
+</div>
+
         <table class="table table-striped table-bordered">
             <tbody>
             <?php
@@ -93,31 +99,40 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
         
         
               
-                    <div class="panel-group">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading"><h3>Bus Number: <?php echo $busno ?></h3></div>
+                    <div id="bus_block" class="panel-group">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+        
+                                <h3>Bus Number: <b><?php echo $busno ?></b></h3>
+                                <div>
+                                <h3>Date  <b><?php echo $date ?></b></h3>
+                            </div>
+            
+                        </div>
                             <div class="panel-body">
                                 <div class="row">
                                         <div class="col-sm">
-                                            <h4>From</h4>
-                                            <h3><?php echo $from ?></h3>
+                                            <h4 >From</h4>
+                                            <h3 style="text-transform: capitalize;"><?php echo $from ?></h3>
                                         
                                         </div>
                                         <div class="col-sm">
                                             <h4>To</h4>
-                                            <h3><?php echo $to ?></h3>
+                                            <h3 style="text-transform: capitalize;"><?php echo $to ?></h3>
                                         </div>
                                         <div class="col-sm">
                                            <h4>Timing</h4>
                                             <h3><?php echo $time ?></h3>
                                         </div>
                                 </div>
-                                <div class="row" style="padding-left:900px">
+                                <div class="row " style="">
+                                <div class="col-md" style="text-align: right;">
                                 <?= Html::a(
             'submit',
             ['bus-seats/seatselect', 'date' => $date, 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
             ['class' => 'btn btn-primary']
         ); ?>
+        </div>
                                 </div>
                             </div>
                         </div>         
