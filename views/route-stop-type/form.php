@@ -10,6 +10,8 @@ use app\models\Stops;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
 
+use kartik\date\DatePicker;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StopsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,6 +20,8 @@ use kartik\date\DatePicker;
 $model = new Stops();
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+              
 <head>
 
 </head>
@@ -90,4 +94,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php ActiveForm::end(); ?>
     <div>
+    
 </div>  
