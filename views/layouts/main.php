@@ -42,11 +42,11 @@ AppAsset::register($this);
          <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span> 
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
+        <span class="sr-only" >Toggle navigation</span>
+        <span class="icon-bar" style="color:#F4B41A;"><i class="material-icons" style=" font-size:35px">
+menu
+</i></span>
       </button>
         <a class="navbar-left" href="#">
           <img alt="CitiBus" src="http://localhost/citibus/web/logos/logo-white.png" style="color:#F4B41A; height:62px; width:auto; padding-top:10px; padding-bottom:auto; padding-left:30px">
@@ -80,14 +80,9 @@ directions_bus
     
   </div><!-- /.container-fluid -->
 </nav>
-<div class="container">
-            
-            <?= Alert::widget() ?>
-            <?= $content ?>
-        </div>
 
-                </div><!-- /.container-fluid -->
-            </nav>
+
+    
             <div class="container">
 
                 <?= Alert::widget() ?>
