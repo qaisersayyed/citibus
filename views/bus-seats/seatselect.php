@@ -158,11 +158,14 @@ echo $s;?>
 	<input id= "fare" type="hidden" name="fare" value=""  >          
 				<br>								
 	<div class="row" style="text-align: center;">
-		<div class="col-md-6">
-		<?= Html::Button('Go Back', ['class' => 'btn btn-default']) ?>
+		<div class="col-md-8">
 
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-2">
+		<a type="button" href="javascript:history.back()" class="btn btn-default" >Go Back</a>
+
+		</div>
+		<div class="col-md-2">
 		<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success']) ?>
 
 		</div>

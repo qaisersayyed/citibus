@@ -31,6 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
 #f{
     background-color:red;
 }
+body {
+ background-image: url("http://localhost/citibus/web/img.jpg");
+ background-size: cover;
+ background-position: center; 
+ 
+}
 
 </style>
 <br>
