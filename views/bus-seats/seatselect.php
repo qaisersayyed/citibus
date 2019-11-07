@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 
 //    echo json_encode($rows->seat_code);
-echo $f,$t;
+//echo $f,$t;
 
 
 $fare = $route_stop_type_id->fare;
@@ -55,8 +55,8 @@ for ($z=0;$z<$a;$z++) {
 </div><br>
 <div >
 
-	<div  style="margin: auto; text-align:center ;border: 5px solid black;width: 750px;padding-left:10px;padding-top:10px;">
-	<?php echo Html::img('@web/uploads/png', ['width'=>'30px']);?>
+	<div  style="margin: auto; text-align:center ;border: 4px solid black;width: 750px;padding-left:10px;padding-top:10px;">
+	<div style="float:left"><?php echo Html::img('@web/uploads/png', ['width'=>'40px']);?></div>
 		<div   style="display:inline-block;margin-left:50px;margin-top:-5px;">
 		<?php
         echo "<table style='border-left:2px solid black; margin-top:0px; position:relative;'>";

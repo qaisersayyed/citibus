@@ -145,15 +145,15 @@ class BusSeatsController extends Controller
     public function actionPaymentaction()
     {
 //         $od = Yii::$app->request->post('ORDER_ID');
-        echo $name = Yii::$app->request->post('CUST_ID'),"<br>";
+        $name = Yii::$app->request->post('CUST_ID');
         $data = Customer::find()->where(['name' => $name ])->one();
 
-        echo $amount =Yii::$app->request->post('TXN_AMOUNT'),"<br>";
-        echo $order_id = Yii::$app->request->post('ORDER_ID'),"<br>";
-        echo $route_id = Yii::$app->request->post('routeid'),"<br>";
-        echo $seat =Yii::$app->request->post('seat'),"<br>";
-        echo $bus_route_id = Yii::$app->request->post('busroute'),"<br>";
-        echo $route_stop_type_id =Yii::$app->request->post('rstid'),"<br>";
+        $amount =Yii::$app->request->post('TXN_AMOUNT');
+        $order_id = Yii::$app->request->post('ORDER_ID');
+        $route_id = Yii::$app->request->post('routeid');
+        $seat =Yii::$app->request->post('seat');
+        $bus_route_id = Yii::$app->request->post('busroute');
+        $route_stop_type_id =Yii::$app->request->post('rstid');
 
         $s = array();
         $length =strlen($seat);
