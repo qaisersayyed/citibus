@@ -57,9 +57,9 @@ AppAsset::register($this);
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <!-- <a class="navbar-brand" href="#">
         <img alt="CitiBus" src="/citibus/web/logos/logo-white.png" style="color:#F4B41A">
-      </a>
+      </a> -->
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

@@ -142,7 +142,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                         <div style="padding-top:10px" class="col-sm-2">
                                         <?= Html::a(
             'Select seats',
-            ['bus-seats/seatselect', 'date'=> '$date' ,'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
+            ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
             ['class' => 'btn btn-primary']
         ); ?>
                                         </div>

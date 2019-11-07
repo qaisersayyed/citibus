@@ -28,7 +28,7 @@ $bus_no = "GE1245";
 
 ?>
 <html lang="en">
-<!-- <head>
+ <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@ $bus_no = "GE1245";
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<!--<body>
 <div class="cardWrap">
   <div class="card cardLeft">
     <h1>Startup <span>Cinema</span></h1>
@@ -72,32 +72,32 @@ $bus_no = "GE1245";
 </html> -->
 <div class="container"  >
 
-    <div  style="height:300px;width:800px;border-radius: 20px;">
-            <div class="card text-center" style="border-radius: 20px 20px 0px 0px; ">
-        <div class="card-header" style="background-color:#5F9EA0;height:50px;border-radius: 20px 20px 0px 0px;color:white">
+    <div class="responsive" style="height:300px;width:100%;border-radius: 20px;">
+            
+        <div class="card text-center" style="background-color:#5F9EA0;height:50px;border-radius: 20px 20px 0px 0px;color:white">
             <h3>CitiBus</h3>
         </div>
         <div class="card-body"  style="border:1px solid #5F9EA0;background: linear-gradient( #ecedef 26%,  #ecedef 100%);">
-             
-                <div style="float: left;margin-left:50px;display:inline-block;>">
-                    <h4 >Passenger Name: <br><b><?php echo $name?></h4><br>
+             <div class="row" >
+                <div class="col-sm-3" style="float: left;margin-left:50px;display:inline-block">
+                    <h4 >Passenger Name: <br><h3><b><?php echo $name?></h3></h4><br>
                     <h4>From:<br> Margao</h4><br>
                     <h4>To:<br> Panjim</h4>
                 </div>
-                <div style="display:inline-block;margin-right:170px">
+                <div class="col-sm-3" style="display:inline-block">
                     <h4 >Date: <br><b><?php echo $date?></h4></h4><br>
                     <h4>Time: <br> <b><?php echo $time?></h4><br>
                     <h4>Bus Number: <br><b><?php echo $bus_no?></h4>
                 </div>
-                <div style="display:inline-block;vertical-align:top">
+                <div class="col-sm-3" style="display:inline-block">
                     <h4 >Seat: <br><b><?php echo $seat?></h4><br>
                     <h4>Amount: <br> <b><?php echo $amount?></h4><br>
                    
                 </div>
-
-            
-            <div style="vertical-align:top;float: right;display:inline-block;margin-right:30px;border-left: .18em dashed #fff;">
-                <? echo Html::img('@web/uploads/qr.png', ['width'=>'150px']);?>
+                <div class="col-sm-3" style="display:inline-block;vertical-align:top;border-left: .18em dashed #fff;">
+                   <img src="http://localhost/citibus/web/uploads/qr.png" alt="" height="150" width="150">
+                    <?// echo Html::img('@web/uploads/qr.png', ['width'=>'150px']);?>
+                </div>
             </div>
         </div>
         <div class="card-footer text-muted" style="background-color:#5F9EA0;height:50px;border-radius: 0px 0px 20px 20px;color:white">
