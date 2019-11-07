@@ -25,6 +25,8 @@ use yii\widgets\ActiveForm;
         function myFunction() {
 
             document.getElementById("button").click();
+            $('#myModal').modal({backdrop: 'static', keyboard: false})
+
         }
     </script>
 
@@ -37,7 +39,7 @@ use yii\widgets\ActiveForm;
 
         <div class="container">
 
-            <button type="button" style="visibility: hidden;;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="button">
+            <button type="button" style="visibility: hidden;" data-backdrop="static" data-keyboard="false"  class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="button">
                 Login
             </button>
 
