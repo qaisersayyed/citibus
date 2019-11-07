@@ -38,9 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
 
             <div class="form-group" id="from">
-                <?= $form->field($model, 'stop_name')->widget(Select2::classname(), [
+                <?= $form->field($model, 'stop_name',['inputOptions' => ['name' => 'from']])->widget(Select2::classname(), [
                     'data' => ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
                         'options' => ['prompt'=>'From'],
+                        'name' => 'from',
                         'pluginOptions' => [
                             'allowClear' => true
                         ],
@@ -65,9 +66,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
 
             <div class="form-group" id="to" >
-                <?= $form->field($model, '[1]stop_name')->widget(Select2::classname(), [
+                <?= $form->field($model, '[1]stop_name',['inputOptions' => ['name' => 'to']])->widget(Select2::classname(), [
                      'data' => ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
                          'options' => ['prompt'=>'To'],
+                         'name' => 'to',
                          'pluginOptions' => [
                              'allowClear' => true
                          ],
