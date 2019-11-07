@@ -25,20 +25,27 @@ $this->params['breadcrumbs'][] = $this->title;
 </head>
 <style>
 #form{  
-    margin:auto:
-
+    background-color:#0030776e;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#f{
+    background-color:red;
 }
 
 </style>
+<br>
 <div class="container">
-    <div  id="form">
+<div class="card bg-success text-white" style="margin-top:100px;margin-left:150px;margin-right:150px">
+    <div class="card-body">
+	
+    <div  id="form" class="form" style="padding:50px">
         <?php $form = ActiveForm::begin([
             'method' => 'get',
         // 'action' => Url::to(['route-stop-type/form'])
         ]); ?>
 
             <div class="form-group" id="from">
-                <?= $form->field($model, 'stop_name',['inputOptions' => ['name' => 'from']])->widget(Select2::classname(), [
+                <?= $form->field($model, 'stop_name', ['inputOptions' => ['name' => 'from','id' => 'f']])->widget(Select2::classname(), [
                     'data' => ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
                         'options' => ['prompt'=>'From'],
                         'name' => 'from',
@@ -50,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ])->label('From')?>
             </div>
           
-            <div class="form-group" style="padding-right:900px"> 
+            <div class="form-group" style="width:260px"> 
                 <p>When?</p>
                                     <?php    echo DatePicker::widget([
                             'name' => 'date',
@@ -66,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
 
             <div class="form-group" id="to" >
-                <?= $form->field($model, '[1]stop_name',['inputOptions' => ['name' => 'to']])->widget(Select2::classname(), [
+                <?= $form->field($model, '[1]stop_name', ['inputOptions' => ['name' => 'to']])->widget(Select2::classname(), [
                      'data' => ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
                          'options' => ['prompt'=>'To'],
                          'name' => 'to',
@@ -82,17 +89,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             
             <div class="form-group" id="button">
-                <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
+                <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
             </div>
-
-            
-     <script>
-     $('.select2').select2();
-</script>
 </div>
             
 
         <?php ActiveForm::end(); ?>
     <div>
+</div>
+</div>
     
 </div>  

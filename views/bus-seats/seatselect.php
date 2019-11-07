@@ -47,12 +47,12 @@ for ($z=0;$z<$a;$z++) {
 // echo json_encode($aisle);
 ?>
 <div class="container">
-<center><h2>Select your seat</h2></center>
+<center><h2>Select your seat</h2></center><br>
 <div style="margin: auto; text-align:center;">
 <button type="button" style="display:inline-block;margin-right:10px" class="btn btn-success"></button><h5 style="display:inline-block;margin-right:20px"> Available seats</h5>
 <button type="button" style="display:inline-block;margin-right:10px" class="btn btn-danger"></button><h5 style="display:inline-block;margin-right:20px">Selected seats</h5>
 <button type="button" style="display:inline-block;margin-right:10px" class="btn btn-secondary"></button><h5 style="display:inline-block;margin-right:20px">Not available</h5>
-</div>
+</div><br>
 <div >
 
 	<div  style="margin: auto; text-align:center ;border: 5px solid black;width: 750px;padding-left:10px;padding-top:10px;">
@@ -84,7 +84,7 @@ for ($z=0;$z<$a;$z++) {
 		</div>
 	</div>
 <br>
-<div class="card bg-success text-white"">
+<div class="card bg-success text-white">
     <div class="card-body">
 	<div class="row" style="text-align: center;padding:30px">
 <div class="col-md-4"><p>From:<h3><?php echo $f ?></h3></p></div>

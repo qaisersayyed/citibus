@@ -204,19 +204,12 @@ class BusSeatsController extends Controller
         echo $date,"<br>";
         echo $txnid,"<br>";
         echo $status,"<br>";
-        // foreach($s as $seats){
-        // Yii::$app->db->createCommand("INSERT INTO transaction (transaction_id,bus_route_id,customer_id,route_stop_type_id,seat_code,order_id,amount)
-        //  VALUES (NULL,'$bus_route_id','$data->customer_id','$route_stop_type_id','$seats','$order_id','$amount')"
-        //  )->execute();
-            
-        //     }
+       
         $transactions = Transaction::find()->where(['order_id' => $orderid, 'amount' => $amount ])->all();
 
         foreach ($transactions as $data) {
             echo $data->transaction_id,"<br>";
-            // Yii::$app->db->createCommand("UPDATE transaction SET column1 = value1, column2 = value2,WHERE condition; )"
-            //  )->execute();
-            //inserting in ticket
+            
             Yii::$app->db->createCommand(
                 "INSERT INTO tickets (ticket_id,customer_id,bus_route_id,route_stop_type_id,seat_code,fare)
              VALUES (NULL,'$data->customer_id','$data->bus_route_id','$data->route_stop_type_id','$data->seat_code','$amount')"

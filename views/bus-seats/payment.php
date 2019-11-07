@@ -25,7 +25,7 @@ console.log("onload");
 function handelclick(){
 
 	console.log("clicked");
-	//document.getElementById("paysubmitbtn").click();
+	document.getElementById("paysubmitbtn").click();
 	
 }
 
