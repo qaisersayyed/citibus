@@ -7,9 +7,8 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 
-
-
 //    echo json_encode($rows->seat_code);
+echo $f,$t;
 
 
 $fare = $route_stop_type_id->fare;
@@ -27,23 +26,23 @@ $ais = array("a","b","c","E","d","e");
 $array = ["a","b","c","d","e","f","g","h"];
 $final_array = [];
 
-for($x=0;$x<$left;$x++){
-	$final_array[$x] =  $array[$x];
+for ($x=0;$x<$left;$x++) {
+    $final_array[$x] =  $array[$x];
 }
 
-array_push($final_array,"E");
+array_push($final_array, "E");
 // echo $x;
 
-for($k=$x+1;$k<($right+$left+1);$k++){
-	$final_array[$k] =  $array[$k-1];
+for ($k=$x+1;$k<($right+$left+1);$k++) {
+    $final_array[$k] =  $array[$k-1];
 }
 // var_dump($y);die;
 // echo json_encode($final_array);
 $aisle = array();
 
-for($z=0;$z<$a;$z++){
-	$val = "E".($z+1);
-	array_push($aisle,$val);
+for ($z=0;$z<$a;$z++) {
+    $val = "E".($z+1);
+    array_push($aisle, $val);
 }
 // echo json_encode($aisle);
 ?>
@@ -57,43 +56,44 @@ for($z=0;$z<$a;$z++){
 <div >
 
 	<div  style="margin: auto; text-align:center ;border: 5px solid black;width: 750px;padding-left:10px;padding-top:10px;">
-	<? echo Html::img('@web/uploads/png', ['width'=>'30px']);?>
+	<?php echo Html::img('@web/uploads/png', ['width'=>'30px']);?>
 		<div   style="display:inline-block;margin-left:50px;margin-top:-5px;">
-		<?
-		echo "<table style='border-left:2px solid black; margin-top:0px; position:relative;'>";
+		<?php
+        echo "<table style='border-left:2px solid black; margin-top:0px; position:relative;'>";
 
-		foreach($final_array as $i){
-			echo "<tr>";
-			for($r=1;$r<=$a+1;$r++){
-				$seat = $i.$r;
-				if(in_array($seat,$seats)){
-					$image = "<button >w $r $i </button>";
-				}elseif(!in_array($seat,$aisle)){
-					$image = "<button value='$seat' onclick= 'myClick(id)' style='margin:5px;height: 40px;' class='btn btn-success' id=$i$r >$seat </button>";
-				}elseif(!in_array($seat,$aisle)){
-					$image = "<button>r $r $i </button>";
-				}else{
-					$image = "&nbsp;";
-				}
-				echo "<td>$image</td>";
-			}
-			echo "</tr>";
-		}
-		echo "</table>";
+        foreach ($final_array as $i) {
+            echo "<tr>";
+            for ($r=1;$r<=$a+1;$r++) {
+                $seat = $i.$r;
+                if (in_array($seat, $seats)) {
+                    $image = "<button >w $r $i </button>";
+                } elseif (!in_array($seat, $aisle)) {
+                    $image = "<button value='$seat' onclick= 'myClick(id)' style='margin:5px;height: 40px;' class='btn btn-success' id=$i$r >$seat </button>";
+                } elseif (!in_array($seat, $aisle)) {
+                    $image = "<button>r $r $i </button>";
+                } else {
+                    $image = "&nbsp;";
+                }
+                echo "<td>$image</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
 
-		?>
+        ?>
 		</div>
 	</div>
+<br>
 
-	<div style="width:0px;display:inline;align-content:center;">
-		<ul style="display:flex; align-items:center; justify-content:center; list-style:none; margin-top:20px; text-align:center;">
-			<li class="list-group-item">From: <?php echo $route_id->from ?></li>
-			<li class="list-group-item">To:	<?php echo $route_id->to ?> </li>
-			<li class="list-group-item">Timing: <?php echo $bus_route_id->timing ?> </li>
-		</ul>
+	<div class="row" style="text-align: center;">
+<div class="col-md-4"><p>From:<h3><?php echo $f ?></h3></p></div>
+<div class="col-md-4"><p>To:<h3><?php echo $t ?></h3></p></div>
+<div class="col-md-4"><p>Timing:<h3><?php echo $bus_route_id->timing  ?></h3></p></div>
+
+		
 	</div>
 </div>
-
+<br>
 <script type="text/javascript">
 var seats = []
 function myClick(id){
@@ -121,8 +121,8 @@ function myClick(id){
 	seat.value = seats
 	console.log(seats)
 	console.log(fare)
-	<?php //$seats = $_COOKIE['final_seats']; 
-	?> 
+	<?php //$seats = $_COOKIE['final_seats'];
+    ?> 
 }
 
 function my_code(){
@@ -146,17 +146,24 @@ window.onload=my_code();
 echo $s;?>
 
 <?php $form = ActiveForm::begin([
-	'method' => 'get',
-												// 'action' => Url::to(['bus-seats/getSeat'])
-	]); ?>
+    'method' => 'get',
+                                                // 'action' => Url::to(['bus-seats/getSeat'])
+    ]); ?>
 										
 		<input id= "seat" type="hidden" name="seat" value=""  >
 	<input id= "fare" type="hidden" name="fare" value=""  >          
-												
-	<div class="float-right">
+				<br>								
+	<div class="row" style="text-align: center;">
+		<div class="col-md-6">
+		<?= Html::Button('Go Back', ['class' => 'btn btn-default']) ?>
+
+		</div>
+		<div class="col-md-6">
 		<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success']) ?>
 
-		</div>													
+		</div>
+
+	</div>													
 
 <?php ActiveForm::end(); ?>
 </div>

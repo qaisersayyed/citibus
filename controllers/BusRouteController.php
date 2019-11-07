@@ -61,8 +61,8 @@ class BusRouteController extends Controller
     public function actionBus_view($from, $to, $date)
     {
         return $this->render('bus_view', [
-            'from' => $from,
-            'to' => $to,
+            'f' => $from,
+            't' => $to,
             'date' => $date
         ]);
     }

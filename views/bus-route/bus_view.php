@@ -18,13 +18,13 @@ $this->title = 'All Buses';
 // echo "route id",$routeid ,"<br>";
 // echo "rst id",$routeStopType;
 
-// echo $from,"->";
-// echo $to;"->";
+ echo $f,"->";
+ echo $t;"->";
 // echo $date;
 
 
-$from_name = Stops::find()->andwhere(['like','stop_name' , $from ])->one();
-$to_name = Stops::find()->andwhere(['like' ,'stop_name' , $to ])->one();
+$from_name = Stops::find()->andwhere(['like','stop_name' , $f ])->one();
+$to_name = Stops::find()->andwhere(['like' ,'stop_name' , $t ])->one();
 
 $routes = Route::find()->all();
 $array = array();
@@ -82,6 +82,9 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
            #bus_block:hover {
                transform: scale(1.01);
            }
+           /* #progress{
+                width:<?php //echo 50?>%
+           } */
            </style>
            </head> 
               
@@ -123,30 +126,33 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                     </div>
                                        
                               </div>
+
                             </div>
 
                                 <div class="panel-body">
                                     <div class="row" style="padding-left:20px">
                                         <div class="col-sm-4">
                                             <p>From</p>
-                                            <h4>Margao</h4>
+                                            <h4 style="text-transform: capitalize;"><?php echo $from; ?> </h4>
                                         </div>
                                         <div class="col-sm-4">
                                             <p>To</p>
-                                            <h4>Panjim</h4>
+                                            <h4 style="text-transform: capitalize;"> <?php echo $to; ?> </h4>
                                         </div>
                                         <div class="col-sm-2">
                                             <p>Timing</p>
-                                            <h4>10:00</h4>
+                                            <h4><?php echo $time; ?> </h4>
                                         </div>
                                         <div style="padding-top:10px" class="col-sm-2">
                                         <?= Html::a(
             'Select seats',
-            ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
+            ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'date'=>$date,'f'=>$f,'t' => $t,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
             ['class' => 'btn btn-primary']
         ); ?>
                                         </div>
                                     </div>
+
+                                    
                         
                             
                                 </div>
