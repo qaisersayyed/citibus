@@ -9,8 +9,6 @@ use app\models\Stops;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
 
-use kartik\date\DatePicker;
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StopsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
