@@ -1,120 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<div id="bus_block" class="panel-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
 
-<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<style>
-  * {
-    box-sizing: border-box;
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  body {
-    color: #4a4a4a;
-    word-break: break-word;
-    font-family: Montserrat;
-    font-size: 14px;
-    font-weight: 400;
-  }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-</style>
-
-<body>
-  <div class="container">
-
-    <ul class="bus-items">
-
+      <h3>Bus Number: <b><?php echo $busno ?></b></h3>
       <div>
-        <ul>
-          <div>
-            <li id="10441639" class="row-sec clearfix">
-              <div class="clearfix bus-item">
-                <div class="clearfix bus-item-details">
-                  <div class="clearfix row-one">
-                    <div class="column-two p-right-10 w-30 fl">
-                      <div class="travels lh-24 f-bold d-color">Kadamba Transport Corporation Limited (KTCL) - 97385
-                      </div>
-                      <div class="bus-type f-12 m-top-16 l-color">Volvo A/C Seater Pushback (2+2)</div>
-                    </div>
-                    <div class="column-three p-right-10 w-10 fl">
-                      <div class="dp-time f-19 d-color f-bold">20:00</div>
-                      <div class="dp-loc m-top-16 l-color w-wrap f-12" title="Panjim">Panjim</div>
-                    </div>
-                    <div class="column-four p-right-10 w-10 fl">
-                      <div class="dur l-color lh-24">11h 00m</div>
-                    </div>
-                    <div class="column-five p-right-10 w-10 fl">
-                      <div class="bp-time f-19 d-color disp-Inline">07:00</div>
-                      <div class="bp-loc m-top-16 l-color w-wrap f-12" title="Vashi">Vashi</div>
-                    </div>
-                    <div class="column-six p-right-10 w-10 fl">
-                      <div class="rating-sec lh-24">
-                        <div class="lh-18 rating rat-orange"><i class="icon icon-ic-star d-block"></i><span
-                            class="">3.3</span></div>
-                      </div>
-                      <div class="no-ppl m-top-16 l-color"><i class="icon d-block icon-rating_ppl"></i>255</div>
-                    </div>
-                    <div class="column-seven p-right-10 w-15 fl">
-                      <div class="seat-fare ">
-                        <div class="fare d-block">INR <span class="f-19 f-bold">700</span></div>
-                      </div>
-                    </div>
-                    <div class="column-eight w-15 fl">
-                      <div class="seat-bar ">
-                        <div class="light-g-bar">
-                          <div class="orange-bar w-30"></div>
-                        </div>
-                      </div>
-                      <div class="seat-left m-top-16">28<span class="l-color"> Seats available</span></div>
-                      <div class="window-left m-top-8">13 <span class="l-color"> Window</span></div>
-                    </div>
-                  </div>
-                  <div class="clearfix row-two m-top-10 "></div>
-                </div>
-                <div class="clearfix m-top-16">
-                  <div class="button view-seats fr">View Seats</div>
-                  <div>
-                    <ul class="fr bottom-panel d-color   ">
-                      <li class="amenties b-p-list"><span class="txt-val ">Bus Photos</span></li>
-                      <li class="amenties b-p-list"><span class="txt-val ">Boarding &amp; Dropping Points</span></li>
-                      <li class="amenties b-p-list"><span class="txt-val ">Rating &amp; Reviews</span></li>
-                      <li class="amenties b-p-list"><span class="txt-val ">Cancellation Policy</span></li>
-                      <li class="amenties b-p-list"><span class="txt-val ">Rest Stop <span>(1)</span></span></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="panel-loader hide"></div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <script
-              type="application/ld+json">[{"@context":"http://schema.org/","@type":"TravelAction","agent":{"@type":"Organization","name":"redBus"},"fromLocation":{"@type":"City","name":"Goa (All Locations)"},"toLocation":{"@type":"City","name":"Mumbai (All Locations)"},"instrument":{"@type":"BusOrCoach","name":"Kadamba Transport Corporation Limited  (KTCL)"},"result":"Bus travel Goa (All Locations) ↔ Mumbai (All Locations)"}]</script>
-          </div>
-        </ul>
-
+        <h3>Date <b><?php echo $date ?></b></h3>
       </div>
-</body>
 
-</html>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm">
+          <h4>From</h4>
+          <h3 style="text-transform:capitalize;"><?php echo $from ?></h3>
+
+        </div>
+        <div class="col-sm">
+          <h4>To</h4>
+          <h3 style="text-transform: capitalize;"><?php echo $to ?></h3>
+        </div>
+        <div class="col-sm">
+          <h4>Timing</h4>
+          <h3><?php echo $time ?></h3>
+        </div>
+      </div>
+      <div class="row " style="">
+        <div class="col-md" style="text-align:right;">
+          <?= Html::a(
+'Select seats',
+['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
+['class' => 'btn btn-primary']
+); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

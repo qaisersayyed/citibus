@@ -8,6 +8,7 @@ use yii\widgets\DetailView;
 use kartik\select2\Select2;
 use app\models\Stops;
 use yii\helpers\ArrayHelper;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StopsSearch */
@@ -18,10 +19,6 @@ $model = new Stops();
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <style>
@@ -32,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </style>
 <div class="container">
-    <div id="form">
+    <div  id="form">
         <?php $form = ActiveForm::begin([
             'method' => 'get',
         // 'action' => Url::to(['route-stop-type/form'])
@@ -50,7 +47,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     ])->label('From')?>
             </div>
           
-           
+            <div class="form-group" style="padding-right:900px"> 
+                <p>When?</p>
+                                    <?php    echo DatePicker::widget([
+                            'name' => 'date',
+                            'value' => date('d-M-Y'),
+                            'options' => ['placeholder' => 'Select issue date ...'],
+                            'pluginOptions' => [
+                                'format' => 'dd-M-yyyy',
+                                'todayHighlight' => true
+                            ]
+                        ]);
+                                        ?>
+            </div>
                 <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
 
             <div class="form-group" id="to" >
