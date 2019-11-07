@@ -1,6 +1,7 @@
 <?php
 /* @var $this \yii\web\View */
 /* @var $content string */
+
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -16,111 +17,161 @@ AppAsset::register($this);
 
 
 <head>
+<<<<<<< HEAD
+    <style>
+        .navbar-default .navbar-nav>.open>a .caret,
+        .navbar-default .navbar-nav>.open>a:hover .caret,
+        .navbar-default .navbar-nav>.open>a:focus .caret {
+            background-color: #F4B41A;
+        }
+    </style>
+=======
+
+>>>>>>> 7b3e1f3e4a7f5fddf7ec5f382ec284771549761e
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+<<<<<<< HEAD
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+=======
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.4.min.js">\x3C/script>')</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+>>>>>>> 7b3e1f3e4a7f5fddf7ec5f382ec284771549761e
 </head>
 
 <body>
     <?php $this->beginBody() ?>
 
+<<<<<<< HEAD
+    <div class="wrap">
+        <div class="wrap">
+
+            <nav class="navbar navbar-custom" style="background-color: #143D59;">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- <a class="navbar-brand" href="#">
+        <img alt="CitiBus" src="/citibus/web/logos/logo-white.png" style="color:#F4B41A">
+      </a> -->
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href='http://localhost/citibus/web/route-stop-type/form'><i class="material-icons" style="color:#F4B41A">
+                                        search
+                                    </i></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-48" style="color:#F4B41A">
+                                        directions_bus
+                                    </i> <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href='http://localhost/citibus/web/bus/index'>Buses</a></li>
+                                    <li><a href='http://localhost/citibus/web/route-stop-type/index'>Route Stop</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-48" style="color:#F4B41A">account_circle</i> <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href='http://localhost/citibus/web/site/login'>Log In</a></li>
+                                    <li><a href='http://localhost/citibus/web/customer/create'>Sign Ups</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+=======
     <div class="wrap" >
         <div class="wrap" >
 
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-        <!-- Brand -->
-        <a class="navbar-brand" href="#">CitiBus</a>
+        <nav class="navbar navbar-custom navbar-fixed-top" style="background-color: #143D59; min-height: 70px;">
+         <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span> 
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-left" href="#">
+          <img alt="CitiBus" src="http://localhost/citibus/web/logos/logo-white.png" style="color:#F4B41A; height:62px; width:auto; padding-top:10px; padding-bottom:auto; padding-left:30px">
+        </a>
+    </div>
 
-        <!-- Links -->
-        <ul class="navbar-nav" style="margin-left:auto; margin-right:0px; padding-right:30px;">
-            <li class="nav-item" style="padding-right:10px;">
-            <a class="nav-link" href='http://localhost/citibus/web/route-stop-type/form'><i class="material-icons">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href='http://localhost/citibus/web/route-stop-type/form'><i class="material-icons" style="color:#F4B41A; font-size:30px">
 search
-</i></a>
-            </li>
-
-            <!-- Dropdown -->
-            <li class="nav-item dropdown" style="padding-right:10px;">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-            <i class="material-icons md-48">
+</i></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">
 directions_bus
-</i>
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href='http://localhost/citibus/web/bus/index'>Buses</a>
-                <a class="dropdown-item" href='http://localhost/citibus/web/route-stop-type/index'>Route Stop</a>
-            </div>
-            </li>
-
-            <li class="nav-item dropdown" style="padding-right:10px;">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-            <i class="material-icons md-48">account_circle</i>
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href='http://localhost/citibus/web/site/login'>Log In</a>
-                <a class="dropdown-item" href='http://localhost/citibus/web/customer/create'>Sign Up</a>
-            </div>
-            </li>
+</i> <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href='http://localhost/citibus/web/bus/index'>Buses</a></li>
+            <li><a href='http://localhost/citibus/web/route-stop-type/index'>Route Stop</a></li>
         </ul>
-        </nav>
-            
-            
-            <!-- <?php
-            NavBar::begin([
-                'brandLabel' => 'CitiBus',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => " navbar navbar-expand-sm bg-dark navbar-dark fixed-top",
-                ],
-            ]);
-            $menuItems = [
-                ['label' => 'bus', 'url' => ['/bus/index']],
-                ['label' => 'route-stop-type', 'url' => ['/route-stop-type/index']],
-                ['label' => 'Search', 'url' => ['/route-stop-type/form']],
-            ];
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-                $menuItems[] = ['label' => 'Sign Up', 'url' => ['/customer/create']];
-            } else {
-                $menuItems[] = '<li>'
-                    . Html::beginForm(['/site/logout'], 'post')
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->email_id . ')',
-                        ['class' => 'btn btn-link']
-                    )
-                    . Html::endForm()
-                    . '</li>';
-                $menuItems[] = ['label' => 'Profile', 'url' => ['customer/profile']];
-            }
-            echo Nav::widget([
-                'items' => $menuItems,
-                'options' => ['class' => 'navbar-nav ','style'=>'margin-left:auto' ],
-                
-            ]);
-            NavBar::end();
-            ?> -->
-        </div>
-
-        <div class="container">
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">account_circle</i> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href='http://localhost/citibus/web/site/login'>Log In</a></li>
+            <li><a href='http://localhost/citibus/web/customer/create'>Sign Ups</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
             
             <?= Alert::widget() ?>
             <?= $content ?>
         </div>
-    </div>
+>>>>>>> 7b3e1f3e4a7f5fddf7ec5f382ec284771549761e
 
-    <!-- <footer class="footer">
+                </div><!-- /.container-fluid -->
+            </nav>
+            <div class="container">
+
+                <?= Alert::widget() ?>
+                <?= $content ?>
+            </div>
+
+        </div>
+
+        <!-- <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer> -->
 
-    <?php $this->endBody() ?>
+        <?php $this->endBody() ?>
 </body>
 
 </html>
