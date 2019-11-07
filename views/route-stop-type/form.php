@@ -5,10 +5,9 @@ use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
+use kartik\select2\Select2;
 use app\models\Stops;
 use yii\helpers\ArrayHelper;
-use kartik\date\DatePicker;
-
 use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
@@ -39,27 +38,18 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
 
             <div class="form-group" id="from">
-                <?= $form->field($model, 'stop_name', ['inputOptions'=>[
-                                        'name'=>'from','class'=>'form-control']])->label("From")
-                                        //->textArea(['rows'=>'12','class'=>'form-control'])
-                                        ->dropDownList(
-                                            ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
-                                            ['prompt'=>'From ']
-                                        ) ?>
-            </div><br>
-           
-                <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
-          
-            <div class="form-group" id="to">
-                <?= $form->field($model, 'stop_name', ['inputOptions'=>[
-                                            'name'=>'to','class'=>'form-control']])->label("To")
-                                            //->textArea(['rows'=>'12','class'=>'form-control'])
-                                            ->dropDownList(
-                                                ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
-                                                ['prompt'=>'To ']
-                                            ) ?>   
+                <?= $form->field($model, 'stop_name',['inputOptions' => ['name' => 'from']])->widget(Select2::classname(), [
+                    'data' => ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
+                        'options' => ['prompt'=>'From'],
+                        'name' => 'from',
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                       
+                        
+                    ])->label('From')?>
             </div>
-
+          
             <div class="form-group" style="padding-right:900px"> 
                 <p>When?</p>
                                     <?php    echo DatePicker::widget([
@@ -73,15 +63,31 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]);
                                         ?>
             </div>
+                <!-- <i class="fa fa-exchange" style="font-size:36px"></i> -->
 
+            <div class="form-group" id="to" >
+                <?= $form->field($model, '[1]stop_name',['inputOptions' => ['name' => 'to']])->widget(Select2::classname(), [
+                     'data' => ArrayHelper::map(Stops::find()->all(), 'stop_name', 'stop_name'),
+                         'options' => ['prompt'=>'To'],
+                         'name' => 'to',
+                         'pluginOptions' => [
+                             'allowClear' => true
+                         ],
+                         
+                        
+                     ])->label('To')?>
 
+                
+            </div>
+
+            
             <div class="form-group" id="button">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
             </div>
 
             
      <script>
-    $('.select2').select2();
+     $('.select2').select2();
 </script>
 </div>
             

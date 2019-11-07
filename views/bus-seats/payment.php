@@ -4,14 +4,20 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap\Modal;
+use app\models\BusRouteSearch;
 
 ?>
 
 
 <head>
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-
+<style>
+#paysubmitbtn{
+	visibility:hidden;
+}
+</style>
 <script>
+
 function onload() { 
 document.getElementById("modelbutton").click();
 console.log("onload");
@@ -19,27 +25,25 @@ console.log("onload");
 function handelclick(){
 
 	console.log("clicked");
-//	document.getElementById("paysubmitbtn").click();
+	//document.getElementById("paysubmitbtn").click();
 	
 }
 
 
 </script>
 <style>
-/* body{
+body{
 	background-color:grey;
-} */
+}
 </style>
 </head>
-Welcome <?php echo $name; ?><br>
-Amount is: <?php echo $amount; ?>
-route id: <?php echo $route_id,"<br>";
+<?php
 
-echo "rst id ", $rst_id,"<br>";
+//echo "rst id ", $rst_id,"<br>";
 
-echo "bus_route",$bus_route_id;
+//echo "bus_route",$bus_route_id;
 
-echo "sets",$seats;
+//echo "sets",$seats; -->
 
 ?>
 
@@ -56,7 +60,7 @@ echo "sets",$seats;
 <div class="form-group">	
 			<input class="form-control" style="display:none" id="ORDER_ID" tabindex="1" maxlength="20" size="20"
 			name="ORDER_ID" autocomplete="off"
-			value="<?php echo  "ORDS" . rand(10000,99999999)?>">  
+			value="<?php echo  "ORDS" . rand(10000, 99999999)?>">  
 		<div>
 		<div class="form-group">		
 			<input class="form-control" style="display:none"  id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off" value="<?php echo $name; ?>"></td>
@@ -117,17 +121,62 @@ echo "sets",$seats;
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-primary">
         <h4 class="modal-title">Confirm Details</h4>
       </div>
       <div class="modal-body">
-        <h4>Customer name :</h4><p><?php echo $name; ?></p>
-		<h4>Total amount :</h4><p><?php echo $amount; ?></p>
-		<h4>Seat :</h4><p><?php echo $seats; ?></p>
+		<div class="row" style="text-align: center;">
+
+			<div class="col-md-2">
+			<h4>From</h4><h3 style="text-transform: capitalize;"><?php echo $f; ?></h3>
+			</div>
+			<div class="col-md-7">
+			<div style="text-align: center;margin-top:40px" >
+				<p>---------------------------------------</p>
+			</div>
+			</div>
+			<div class="col-md-3">
+			<h4>To</h4><h3 style="text-transform: capitalize;"><?php echo $t; ?></h3>
+			</div>
+		</div><br><br>
+		<div class="row" style="text-align: center;">
+			<div class="col-md-4">
+			<h5>Customer name </h5><h4><b style="text-transform: capitalize;"><?php echo $name; ?></b></h4>
+			</div>
+			<div class="col-md-4">
+			<h5>Bus No. </h5><h4><b><?php echo $bus_no; ?></b></h4>
+			</div>
+			<div class="col-md-4">
+			<h5>Seat No. </h5><h4><b><?php echo $seats; ?></b></h4>
+			</div>
+		</div><br>
+		<div class="row">
+			<div class="col-md-12" style="margin-right:50px">
+			
+			<div style="text-align:right">
+			<p>_____________</p>
+			<p>Total <h3><?php echo $amount; ?></h3> </p>
+			</div>
+				
+			</div>
+		</div>
 		
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-dark" onClick="handelclick()" data-dismiss="modal">Complete Payment</button>
+		  <div class="row">
+				<div class="col-md-3">
+				<a type="button" href="javascript:history.back()" class="btn btn-default" >Go Back</a>
+
+
+				</div>
+				<div class="col-md-5">
+
+				</div>
+				<div class="col-md-2" >
+				<button type="button" class="btn btn-primary" onClick="handelclick()" data-dismiss="modal">Complete Payment</button>
+
+				</div>
+		  </div>     
       </div>
     </div>
 
