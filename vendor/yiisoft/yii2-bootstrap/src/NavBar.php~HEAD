@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\bootstrap4;
+namespace yii\bootstrap;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -18,8 +18,8 @@ use yii\helpers\ArrayHelper;
  * or [[\yii\widgets\Menu]] to build up such content. For example,
  *
  * ```php
- * use yii\bootstrap4\NavBar;
- * use yii\bootstrap4\Nav;
+ * use yii\bootstrap\NavBar;
+ * use yii\bootstrap\Nav;
  *
  * NavBar::begin(['brandLabel' => 'NavBar Test']);
  * echo Nav::widget([
@@ -32,11 +32,10 @@ use yii\helpers\ArrayHelper;
  * NavBar::end();
  * ```
  *
- * @property-write array $containerOptions
- *
- * @see https://getbootstrap.com/docs/4.2/components/navbar/
+ * @see https://getbootstrap.com/docs/3.3/components/#navbar
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @author Alexander Kochetov <creocoder@gmail.com>
+ * @since 2.0
  */
 class NavBar extends Widget
 {
@@ -55,15 +54,15 @@ class NavBar extends Widget
      *
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
-    public $collapseOptions = [];
+    public $containerOptions = [];
     /**
      * @var string|bool the text of the brand or false if it's not used. Note that this is not HTML-encoded.
-     * @see https://getbootstrap.com/docs/4.2/components/navbar/
+     * @see https://getbootstrap.com/docs/3.3/components/#navbar
      */
     public $brandLabel = false;
     /**
      * @var string|bool src of the brand image or false if it's not used. Note that this param will override `$this->brandLabel` param.
-     * @see https://getbootstrap.com/docs/4.2/components/navbar/
+     * @see https://getbootstrap.com/docs/3.3/components/#navbar
      * @since 2.0.8
      */
     public $brandImage = false;
@@ -80,18 +79,14 @@ class NavBar extends Widget
      */
     public $brandOptions = [];
     /**
+     * @var string HTML content to be added in navbar-header div, for example, mobile search form.
+     * @since 2.0.8
+     */
+    public $headerContent;
+    /**
      * @var string text to show for screen readers for the button to toggle the navbar.
      */
     public $screenReaderToggleText = 'Toggle navigation';
-    /**
-     * @var string the toggle button content. Defaults to bootstrap 4 default `<span class="navbar-toggler-icon"></span>`
-     */
-    public $togglerContent = '<span class="navbar-toggler-icon"></span>';
-    /**
-     * @var array the HTML attributes of the navbar toggler button.
-     * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
-     */
-    public $togglerOptions = [];
     /**
      * @var bool whether the navbar content should be included in an inner div container which by default
      * adds left and right padding. Set this to false for a 100% width navbar.
@@ -102,10 +97,6 @@ class NavBar extends Widget
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
     public $innerContainerOptions = [];
-    /**
-     * {@inheritdoc}
-     */
-    public $clientOptions = false;
 
 
     /**
@@ -114,46 +105,39 @@ class NavBar extends Widget
     public function init()
     {
         parent::init();
-        if (!isset($this->options['class']) || empty($this->options['class'])) {
-            Html::addCssClass($this->options, ['widget' => 'navbar', 'navbar-expand-lg', 'navbar-light', 'bg-light']);
+        $this->clientOptions = false;
+        if (empty($this->options['class'])) {
+            Html::addCssClass($this->options, ['navbar', 'navbar-default']);
         } else {
             Html::addCssClass($this->options, ['widget' => 'navbar']);
         }
-        $navOptions = $this->options;
-        $navTag = ArrayHelper::remove($navOptions, 'tag', 'nav');
-        $brand = '';
-        if (!isset($this->innerContainerOptions['class'])) {
-            Html::addCssClass($this->innerContainerOptions, 'container');
+        $options = $this->options;
+        $tag = ArrayHelper::remove($options, 'tag', 'nav');
+        echo Html::beginTag($tag, $options);
+        if ($this->renderInnerContainer) {
+            if (!isset($this->innerContainerOptions['class'])) {
+                Html::addCssClass($this->innerContainerOptions, 'container');
+            }
+            echo Html::beginTag('div', $this->innerContainerOptions);
         }
-        if (!isset($this->collapseOptions['id'])) {
-            $this->collapseOptions['id'] = "{$this->options['id']}-collapse";
+        echo Html::beginTag('div', ['class' => 'navbar-header']);
+        if (!isset($this->containerOptions['id'])) {
+            $this->containerOptions['id'] = "{$this->options['id']}-collapse";
         }
+        echo $this->renderToggleButton();
         if ($this->brandImage !== false) {
             $this->brandLabel = Html::img($this->brandImage);
         }
         if ($this->brandLabel !== false) {
             Html::addCssClass($this->brandOptions, ['widget' => 'navbar-brand']);
-            if ($this->brandUrl === null) {
-                $brand = Html::tag('span', $this->brandLabel, $this->brandOptions);
-            } else {
-                $brand = Html::a(
-                    $this->brandLabel,
-                    $this->brandUrl === false ? Yii::$app->homeUrl : $this->brandUrl,
-                    $this->brandOptions
-                );
-            }
+            echo Html::a($this->brandLabel, $this->brandUrl === false ? Yii::$app->homeUrl : $this->brandUrl, $this->brandOptions);
         }
-        Html::addCssClass($this->collapseOptions, ['collapse' => 'collapse', 'widget' => 'navbar-collapse']);
-        $collapseOptions = $this->collapseOptions;
-        $collapseTag = ArrayHelper::remove($collapseOptions, 'tag', 'div');
-
-        echo Html::beginTag($navTag, $navOptions) . "\n";
-        if ($this->renderInnerContainer) {
-            echo Html::beginTag('div', $this->innerContainerOptions)."\n";
-        }
-        echo $brand . "\n";
-        echo $this->renderToggleButton() . "\n";
-        echo Html::beginTag($collapseTag, $collapseOptions) . "\n";
+        echo $this->headerContent;
+        echo Html::endTag('div');
+        Html::addCssClass($this->containerOptions, ['collapse' => 'collapse', 'widget' => 'navbar-collapse']);
+        $options = $this->containerOptions;
+        $tag = ArrayHelper::remove($options, 'tag', 'div');
+        echo Html::beginTag($tag, $options);
     }
 
     /**
@@ -161,10 +145,10 @@ class NavBar extends Widget
      */
     public function run()
     {
-        $tag = ArrayHelper::remove($this->collapseOptions, 'tag', 'div');
-        echo Html::endTag($tag) . "\n";
+        $tag = ArrayHelper::remove($this->containerOptions, 'tag', 'div');
+        echo Html::endTag($tag);
         if ($this->renderInnerContainer) {
-            echo Html::endTag('div') . "\n";
+            echo Html::endTag('div');
         }
         $tag = ArrayHelper::remove($this->options, 'tag', 'nav');
         echo Html::endTag($tag);
@@ -177,30 +161,13 @@ class NavBar extends Widget
      */
     protected function renderToggleButton()
     {
-        $options = $this->togglerOptions;
-        Html::addCssClass($options, ['widget' => 'navbar-toggler']);
-        return Html::button(
-            $this->togglerContent,
-            ArrayHelper::merge($options, [
-                'type' => 'button',
-                'data' => [
-                    'toggle' => 'collapse',
-                    'target' => '#' . $this->collapseOptions['id'],
-                ],
-                'aria-controls' => $this->collapseOptions['id'],
-                'aria-expanded' => 'false',
-                'aria-label' => $this->screenReaderToggleText,
-            ])
-        );
-    }
+        $bar = Html::tag('span', '', ['class' => 'icon-bar']);
+        $screenReader = "<span class=\"sr-only\">{$this->screenReaderToggleText}</span>";
 
-    /**
-     * Container options setter for backwards compatibility
-     * @param array $collapseOptions
-     * @deprecated
-     */
-    public function setContainerOptions($collapseOptions)
-    {
-        $this->collapseOptions = $collapseOptions;
+        return Html::button("{$screenReader}\n{$bar}\n{$bar}\n{$bar}", [
+            'class' => 'navbar-toggle',
+            'data-toggle' => 'collapse',
+            'data-target' => "#{$this->containerOptions['id']}",
+        ]);
     }
 }

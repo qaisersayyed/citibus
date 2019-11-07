@@ -5,9 +5,8 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\bootstrap4;
+namespace yii\bootstrap;
 
-use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 
@@ -20,79 +19,56 @@ use yii\helpers\ArrayHelper;
  * // default with label
  * echo Progress::widget([
  *     'percent' => 60,
- *     'label' => 'test'
- * ]);
- * // or
- * echo Progress::widget([
- *     'bars' => [
- *         ['percent' => 60, 'label' => 'test']
- *     ]
+ *     'label' => 'test',
  * ]);
  *
  * // styled
  * echo Progress::widget([
  *     'percent' => 65,
- *     'barOptions' => ['class' => 'bg-danger']
- * ]);
- * // or
- * echo Progress::widget([
- *     'bars' => [
- *         ['percent' => 65, 'options' => ['class' => 'bg-danger']]
- *     ]
+ *     'barOptions' => ['class' => 'progress-bar-danger']
  * ]);
  *
  * // striped
  * echo Progress::widget([
  *     'percent' => 70,
- *     'barOptions' => ['class' => ['bg-warning', 'progress-bar-striped']]
- * ]);
- * // or
- * echo Progress::widget([
- *     'bars' => [
- *         ['percent' => 70, 'options' => ['class' => ['bg-warning', 'progress-bar-striped']]]
- *     ]
+ *     'barOptions' => ['class' => 'progress-bar-warning'],
+ *     'options' => ['class' => 'progress-striped']
  * ]);
  *
  * // striped animated
  * echo Progress::widget([
  *     'percent' => 70,
- *     'barOptions' => ['class' => ['bg-success', 'progress-bar-animated', 'progress-bar-striped']]
- * ]);
- * // or
- * echo Progress::widget([
- *     'bars' => [
- *         ['percent' => 70, 'options' => ['class' => ['bg-success', 'progress-bar-animated', 'progress-bar-striped']]]
- *     ]
+ *     'barOptions' => ['class' => 'progress-bar-success'],
+ *     'options' => ['class' => 'active progress-striped']
  * ]);
  *
  * // stacked bars
  * echo Progress::widget([
  *     'bars' => [
- *         ['percent' => 30, 'options' => ['class' => 'bg-danger']],
- *         ['percent' => 30, 'label' => 'test', 'options' => ['class' => 'bg-success']],
- *         ['percent' => 35, 'options' => ['class' => 'bg-warning']],
+ *         ['percent' => 30, 'options' => ['class' => 'progress-bar-danger']],
+ *         ['percent' => 30, 'label' => 'test', 'options' => ['class' => 'progress-bar-success']],
+ *         ['percent' => 35, 'options' => ['class' => 'progress-bar-warning']],
  *     ]
  * ]);
  * ```
- * @see https://getbootstrap.com/docs/4.2/components/progress/
+ * @see http://getbootstrap.com/components/#progress
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @author Alexander Makarov <sam@rmcreative.ru>
- * @author Simon Karlen <simi.albi@outlook.com>
+ * @since 2.0
  */
 class Progress extends Widget
 {
     /**
-     * @var string the button label. This property will only be considered if [[bars]] is empty
+     * @var string the button label.
      */
     public $label;
     /**
-     * @var int the amount of progress as a percentage. This property will only be considered if [[bars]] is empty
+     * @var int the amount of progress as a percentage.
      */
     public $percent = 0;
     /**
-     * @var array the HTML attributes of the bar. This property will only be considered if [[bars]] is empty
+     * @var array the HTML attributes of the bar.
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
-     * @since 2.0.6
      */
     public $barOptions = [];
     /**
@@ -114,23 +90,26 @@ class Progress extends Widget
 
 
     /**
-     * {@inheritdoc}
+     * Initializes the widget.
+     * If you override this method, make sure you call the parent implementation first.
      */
     public function init()
     {
         parent::init();
-
         Html::addCssClass($this->options, ['widget' => 'progress']);
     }
 
     /**
-     * {@inheritdoc}
-     * @throws InvalidConfigException
+     * Renders the widget.
      */
     public function run()
     {
         BootstrapAsset::register($this->getView());
-        return $this->renderProgress();
+        return implode("\n", [
+            Html::beginTag('div', $this->options),
+            $this->renderProgress(),
+            Html::endTag('div')
+        ]) . "\n";
     }
 
     /**
@@ -140,11 +119,8 @@ class Progress extends Widget
      */
     protected function renderProgress()
     {
-        $out = Html::beginTag('div', $this->options) . "\n";
         if (empty($this->bars)) {
-            $this->bars = [
-                ['label' => $this->label, 'percent' => $this->percent, 'options' => $this->barOptions]
-            ];
+            return $this->renderBar($this->percent, $this->label, $this->barOptions);
         }
         $bars = [];
         foreach ($this->bars as $bar) {
@@ -155,31 +131,36 @@ class Progress extends Widget
             $options = ArrayHelper::getValue($bar, 'options', []);
             $bars[] = $this->renderBar($bar['percent'], $label, $options);
         }
-        $out .= implode("\n", $bars) . "\n";
-        $out .= Html::endTag('div');
 
-        return $out;
+        return implode("\n", $bars);
     }
 
     /**
      * Generates a bar
      * @param int $percent the percentage of the bar
-     * @param string $label , optional, the label to display at the bar
+     * @param string $label, optional, the label to display at the bar
      * @param array $options the HTML attributes of the bar
      * @return string the rendering result.
      */
     protected function renderBar($percent, $label = '', $options = [])
     {
-        $percent = (float)trim(rtrim($percent, '%'));
-        $options = array_merge($options, [
+        $defaultOptions = [
             'role' => 'progressbar',
             'aria-valuenow' => $percent,
             'aria-valuemin' => 0,
-            'aria-valuemax' => 100
-        ]);
+            'aria-valuemax' => 100,
+            'style' => "width:{$percent}%",
+        ];
+        $options = array_merge($defaultOptions, $options);
         Html::addCssClass($options, ['widget' => 'progress-bar']);
-        Html::addCssStyle($options, ['width' => $percent . '%'], true);
 
-        return Html::tag('div', $label, $options);
+        $out = Html::beginTag('div', $options);
+        $out .= $label;
+        $out .= Html::tag('span', \Yii::t('yii', '{percent}% Complete', ['percent' => $percent]), [
+            'class' => 'sr-only'
+        ]);
+        $out .= Html::endTag('div');
+
+        return $out;
     }
 }

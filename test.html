@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,3 +119,43 @@
 </body>
 
 </html>
+=======
+<div id="bus_block" class="panel-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+
+      <h3>Bus Number: <b><?php echo $busno ?></b></h3>
+      <div>
+        <h3>Date <b><?php echo $date ?></b></h3>
+      </div>
+
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm">
+          <h4>From</h4>
+          <h3 style="text-transform:capitalize;"><?php echo $from ?></h3>
+
+        </div>
+        <div class="col-sm">
+          <h4>To</h4>
+          <h3 style="text-transform: capitalize;"><?php echo $to ?></h3>
+        </div>
+        <div class="col-sm">
+          <h4>Timing</h4>
+          <h3><?php echo $time ?></h3>
+        </div>
+      </div>
+      <div class="row " style="">
+        <div class="col-md" style="text-align:right;">
+          <?= Html::a(
+'Select seats',
+['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
+['class' => 'btn btn-primary']
+); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> 19af2aeaeacbd429bf1ca701918ac0dee3866641

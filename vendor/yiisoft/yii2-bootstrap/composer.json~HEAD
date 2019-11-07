@@ -1,15 +1,15 @@
 {
-    "name": "yiisoft/yii2-bootstrap4",
+    "name": "yiisoft/yii2-bootstrap",
     "description": "The Twitter Bootstrap extension for the Yii framework",
-    "keywords": ["yii2", "bootstrap", "bootstrap4"],
+    "keywords": ["yii2", "bootstrap"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/yii2-bootstrap4/issues",
+        "issues": "https://github.com/yiisoft/yii2-bootstrap/issues",
         "forum": "http://www.yiiframework.com/forum/",
         "wiki": "http://www.yiiframework.com/wiki/",
         "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2-bootstrap4"
+        "source": "https://github.com/yiisoft/yii2-bootstrap"
     },
     "authors": [
         {
@@ -29,18 +29,13 @@
         {
             "name": "Paul Klimov",
             "email": "klimov.paul@gmail.com"
-        },
-        {
-            "name": "Simon Karlen",
-            "email": "simi.albi@outlook.com"
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0",
-        "npm-asset/bootstrap": "^4.3"
+        "yiisoft/yii2": "~2.0.6",
+        "bower-asset/bootstrap": "3.4.* | 3.3.* | 3.2.* | 3.1.*"
     },
     "require-dev": {
-        "yiisoft/yii2-coding-standards": "~2.0",
         "phpunit/phpunit": "<7"
     },
     "repositories": [
@@ -51,17 +46,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "yii\\bootstrap4\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "yiiunit\\extensions\\bootstrap4\\": "tests"
+            "yii\\bootstrap\\": "src"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }
