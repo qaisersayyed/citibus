@@ -56,7 +56,15 @@ $this->title = $model->name;
         .well {
             ;
         }
+        
+        body {
+            background-image: url("http://localhost/citibus/web/img.jpg");
+            background-size: cover;
+            background-position: center;
+
+        }
     </style>
+   
 </head>
 
 <body>
@@ -68,7 +76,7 @@ $this->title = $model->name;
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
                 <div class=" ">
-                    <div class="row" style="background-color:#F4B41A">
+                    <div class="row" style="background-color:aliceblue">
                         <div class="modal-header" style="background-color: #143D59;margin:0px">
                             <center>
                                 <h1 style="color:aliceblue;">User Profile</h1>
@@ -79,21 +87,7 @@ $this->title = $model->name;
                             <center><img src="http://localhost/citibus/web/logos/Avatar.png" alt="citibus" class="img-rounded" height="200px"/></center>
                         </div>
 
-                        <!-- <?= DetailView::widget([
-                            'model' => $model,
-                            'attributes' => [
-                                // 'customer_id',
-                                // 'user_id',
-                                'name',
-                                'phone_no',
-                                'email_id:email',
-                                // 'password',
-                                // 'e_wallet',
-                                // 'created_at',
-                                // 'updated_at',
-                                // 'deleted_at',
-                            ],
-                        ]) ?> -->
+                        
 
 
                         <table class="table">
@@ -102,7 +96,7 @@ $this->title = $model->name;
 
                                 </tr>
                             </thead>
-                            <tbody style="background-color:#F4B41A">
+                            <tbody style="background-color:aliceblue">
                                 <tr>
                                     <td><b>Name</b></td>
 
