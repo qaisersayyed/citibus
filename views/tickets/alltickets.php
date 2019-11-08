@@ -9,13 +9,13 @@
 use app\models\Tickets;
 use app\models\RouteStopTypeSearch;
 
-//echo $user_id,"<br>";
-//echo $customer_id;
+//echo $user_id;
 //echo json_encode($data);
 //echo $data->fare;
 $mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->all();
 //echo "<br>";
 $seats = array();
+
 //$ctime = new DateTime($time);
 echo "<center><h1>All Bookings</h1></center><br>";
 foreach ($mod as $col) {
@@ -27,7 +27,7 @@ foreach ($mod as $col) {
     $from = $rst->route->from;
     $to = $rst->stop->stop_name;
     //$time = $tickets->bus_route_id;
-    //echo $tme('H:i');
+    $col->route_stop_type_id;
     
     $doj = $date->created_at;
     // echo $doj;
@@ -37,17 +37,18 @@ foreach ($mod as $col) {
         
         array_push($seats, $cols->seat_code);
     }
+    $ftime = new DateTime($time);
     // echo $time;
     //echo "each",json_encode($seats),"<br>";?>
        <html>
        
-       <body style="background-color:grey">
+       <body style="background-color:white">
        
            <div>
-           <div class="card bg-info text-dark">
+           <div class="card bg-info text-dark" >
     <div class="card-body">
-           <div class="panel panel-info">
-                    <div class="panel-heading">
+           <div class="panel panel-info" style="background-color:#F4B41A;">
+                    <div class="panel-heading" style="background-color:#143D59; color:white" >
                     <div class="row">
                     <div class="col-md-3">
                                         <h4>Bus Number: <b><?php echo 'GA376336' ?></b></h4>
@@ -75,7 +76,7 @@ foreach ($mod as $col) {
                                         </div>
                                         <div class="col-sm-2">
                                             <p>Timing</p>
-                                            <h4><?php echo $time; ?> </h4>
+                                            <h4><?php echo $ftime->format('h:i A') ?> </h4>
                                         </div>
                         </div>
                         <div class=row>

@@ -125,7 +125,8 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
         $time= $col->timing;
         $seats_count = Tickets::find()->where(['bus_route_id' => $col->bus_route_id,'date(created_at)' => $date])->count();
         $bus_seat_count = Bus::find()->where(['bus_id' => $col->bus_id ])->one();
-        $seats_left = $bus_seat_count->no_of_seats - $seats_count ?>
+        $seats_left = $bus_seat_count->no_of_seats - $seats_count ;
+        $ftime = new DateTime($time); ?>
         
         
               
@@ -165,7 +166,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                         </div>
                                         <div class="col-sm-2">
                                             <p>Timing</p>
-                                            <h4><?php echo $time; ?> </h4>
+                                            <h4><?php echo $ftime->format('h:i A'); ?> </h4>
                                         </div>
                                         <div style="padding-top:10px;display:inline-block;" class="col-sm-2">
                                         <?= Html::a(
@@ -195,7 +196,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
         </div>
 
 <!-- Modal -->
-<?php 
+<?php
 //  echo $stop_id;
 ?>
 
@@ -211,19 +212,17 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
       </div>
       <div class="panel-body">
         <?php
-            foreach($stop_id as $stopid){
+            foreach ($stop_id as $stopid) {
                 // echo $stopid->stop_id;
-                $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one();
-
-                
-                ?>
+                $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one(); ?>
                     <div > 
                         <p style="display:inline-block"> <i class="material-icons"> my_location </i></p><p style="display:inline-block;vertical-align:top;margin-top:5px;margin-left:10px"><?php echo $stop_name->stop_name?></p><br><br>
                         
                     </div>
             
             
-            <?php }
+            <?php
+            }
                 
         ?>
         
