@@ -25,6 +25,8 @@ use yii\widgets\ActiveForm;
         function myFunction() {
 
             document.getElementById("button").click();
+            $('#myModal').modal({backdrop: 'static', keyboard: false})
+
         }
     </script>
 
@@ -37,7 +39,7 @@ use yii\widgets\ActiveForm;
 
         <div class="container">
 
-            <button type="button" style="visibility: hidden;;" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="button">
+            <button type="button" style="visibility: hidden;" data-backdrop="static" data-keyboard="false"  class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="button">
                 Login
             </button>
 
@@ -49,7 +51,7 @@ use yii\widgets\ActiveForm;
                         <!-- Modal Header -->
                         <div class="modal-header" style="background-color: #143D59;">
                             <center>
-                                <h4 class="modal-title " style="color:aliceblue;">Sign Up <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                <h4 class="modal-title " style="color:aliceblue;">Sign Up <a href='http://localhost/citibus/web/route-stop-type/form'> <button type="button" class="close" >&times;</button></a></h4>
                             </center>
 
                         </div>
@@ -88,7 +90,7 @@ use yii\widgets\ActiveForm;
 
                         <!-- Modal footer -->
                         <div class="modal-footer" style="background-color: white;">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href='http://localhost/citibus/web/route-stop-type/form'><button type="button" class="btn btn-secondary">Close</button></a>
                         </div>
 
                     </div>
