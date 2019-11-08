@@ -60,7 +60,7 @@ menu
 search
 </i></a></li>
         <?php if (Yii::$app->user->isGuest) {
-      ?>
+    ?>
       <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">account_circle</i> <span class="caret"></span></a>
           
@@ -69,8 +69,9 @@ search
             <li style="font-size:18px"><a href='http://localhost/citibus/web/customer/create'>Sign Up</a></li>
           </ul>
         </li>
-          <?php }else{
-      ?>  
+          <?php
+} else {
+        ?>  
       <li><a href='http://localhost/citibus/web/tickets/alltickets'><i class="material-icons" style="color:#F4B41A; font-size:30px">
       confirmation_number
 </i></a></li>
@@ -80,7 +81,8 @@ search
             <li style="font-size:18px"><a href='http://localhost/citibus/web/customer/profile'>Profile</a></li>
             <li style="font-size:18px"><a href='http://localhost/citibus/web/site/logout' data-method="post">Log Out</a></li>
           </ul>
-          <?php }
+          <?php
+    }
       ?>
         </li>
         <li class="dropdown">
