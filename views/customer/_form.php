@@ -43,8 +43,8 @@ use yii\widgets\ActiveForm;
 
             <!-- The Modal -->
             <div class="modal fade" id="myModal">
-                <div class="modal-dialog " style="margin-top:10%">
-                    <div class="modal-content">
+                <div class="modal-dialog " style="margin-top:10%; ">
+                    <div class="modal-content" style="background-color: #F4B41A;">
 
                         <!-- Modal Header -->
                         <div class="modal-header" style="background-color: #143D59;">
@@ -55,7 +55,7 @@ use yii\widgets\ActiveForm;
                         </div>
 
                         <!-- Modal body -->
-                        <div class="modal-body" style="margin-left:15%;margin-right:15%">
+                        <div class="modal-body" style="margin-left:15%;margin-right:15%;background-color: #F4B41A;">
 
                             <?php $form = ActiveForm::begin(); ?>
 
@@ -87,7 +87,7 @@ use yii\widgets\ActiveForm;
                         </div>
 
                         <!-- Modal footer -->
-                        <div class="modal-footer">
+                        <div class="modal-footer" style="background-color: white;">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
 
