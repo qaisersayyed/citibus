@@ -98,7 +98,7 @@ directions_bus
             <li style="font-size:18px"><a href='http://localhost/citibus/web/employee'>Employees</a></li>
             <li style="font-size:18px"><a href='http://localhost/citibus/web/users'>User</a></li>
             <li style="font-size:18px"><a href='http://localhost/citibus/web/tickets'>Tickets</a></li>
-            <li style="font-size:18px"><a href='http://localhost/citibus/web/transaction'>transactions</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/transaction'>Transactions</a></li>
         </ul>
         </li>
       </ul> 
