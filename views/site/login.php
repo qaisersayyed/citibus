@@ -66,7 +66,7 @@ $this->title = 'Login';
                     </div>
 
                     <!-- Modal body -->
-                    <div class="modal-body">
+                    <div class="modal-body" style="background-color: #F4B41A;">
 
 
                         <?= $form->field($model, 'email_id')->textInput(['autofocus' => true]) ?>
