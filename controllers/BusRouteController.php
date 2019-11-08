@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\BusRoute;
+use app\models\RouteSearch;
+use app\models\Stops;
 use app\models\BusRouteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,11 +62,61 @@ class BusRouteController extends Controller
     //bus view
     public function actionBus_view($from, $to, $date)
     {
-        return $this->render('bus_view', [
-            'f' => $from,
-            't' => $to,
-            'date' => $date
-        ]);
+        $searchModel = new RouteSearch();
+        echo $from;
+        echo $to;
+        // $model = Route::find()->where(['to'=>$to])->one();
+        $query = new \yii\db\Query;
+        $query->select('route_id')->from('route')->where(['from' => $from])->andwhere(['to' => $to])->all();
+        $rows = $query->all();
+        $command = $query->createCommand();
+        $rows = $command->queryAll();
+        $route_id = ($rows[0]["route_id"]);
+
+        $query = new \yii\db\Query;
+        $query->select(['stop_id'])->from('route_stop_type')->where(['route_id' => $route_id])->orderBy(['stop_order' => SORT_ASC])->all();
+        $rows = $query->all();
+        $command = $query->createCommand();
+        $rows = $command->queryAll();
+        echo json_encode($rows);
+
+        // $stops = array();
+        // function mod($i, $length)
+        // {
+        //     $m = $i % $length;
+        //     if ($m > $length) {
+        //         mod($m, $length);
+        //     }
+        //     return $m;
+        // }       
+        // $query = new \yii\db\Query;
+        // for ($a = 0; $a < sizeof($rows);$a=$a+1) {
+        //     $k=mod($a, 50);
+           
+        //     echo $k;
+            $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $rows[0]])->all();
+        //     $query->select('stop_name')->from('stops')->where(['stop_id' => $rows[$k]['stop_id']])->one();
+        //     $rows = $query->all();
+        //     // $command = $query->createCommand();
+        //     echo json_encode($rows);
+        //     array_push($stops, $rows);
+        //     $a = $a+1;
+        //     //  echo json_encode($seat);
+        // }
+        
+       
+        // $rows = $command->queryAll();
+        // $a  = 0;
+        // for($a<sizeof($rows);$a = $a+1;){
+            
+        // }
+        
+        echo json_encode($stop_name);
+        // return $this->render('bus_view', [
+        //     'f' => $from,
+        //     't' => $to,
+        //     'date' => $date
+        // ]);
     }
 
     /**

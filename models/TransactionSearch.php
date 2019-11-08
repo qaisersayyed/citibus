@@ -18,7 +18,7 @@ class TransactionSearch extends Transaction
     {
         return [
             [['transaction_id', 'bus_route_id', 'customer_id', 'route_stop_type_id', 'ticket_id', 'amount', 'status'], 'integer'],
-            [['seat_code', 'order_id', 'date', 'creted_at', 'updated_at'], 'safe'],
+            [['seat_code', 'order_id', 'txn_id','date', 'creted_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -63,6 +63,7 @@ class TransactionSearch extends Transaction
             'customer_id' => $this->customer_id,
             'route_stop_type_id' => $this->route_stop_type_id,
             'ticket_id' => $this->ticket_id,
+            'txn_id' => $this->txn_id,
             'amount' => $this->amount,
             'status' => $this->status,
             'creted_at' => $this->creted_at,

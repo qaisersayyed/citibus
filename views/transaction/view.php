@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'seat_code',
             'ticket_id',
             'order_id',
+            'txn_id',
             'amount',
             'date',
             'status',
