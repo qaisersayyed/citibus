@@ -25,7 +25,7 @@ console.log("onload");
 function handelclick(){
 
 	console.log("clicked");
-	//document.getElementById("paysubmitbtn").click();
+	document.getElementById("paysubmitbtn").click();
 	
 }
 
@@ -131,8 +131,8 @@ body{
 			<h4>From</h4><h3 style="text-transform: capitalize;"><?php echo $f; ?></h3>
 			</div>
 			<div class="col-md-7">
-			<div style="text-align: center;margin-top:40px" >
-				<p>---------------------------------------</p>
+			<div style="text-align: center;margin-top:40px;margin-left:10px" >
+				<p>------------------------------------------------</p>
 			</div>
 			</div>
 			<div class="col-md-3">
@@ -151,11 +151,11 @@ body{
 			</div>
 		</div><br>
 		<div class="row">
-			<div class="col-md-12" style="margin-right:50px">
+			<div class="col-md-12" style="margin-right:60px">
 			
-			<div style="text-align:right">
+			<div style="text-align:right;padding-right:30px">
 			<p>_____________</p>
-			<p>Total <h3><?php echo $amount; ?></h3> </p>
+			<p>Total <h3><?php echo "₹ ",$amount; ?></h3> </p>
 			</div>
 				
 			</div>

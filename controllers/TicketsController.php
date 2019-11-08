@@ -4,10 +4,14 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Tickets;
+use app\models\Customer;
 use app\models\TicketsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Transaction;
+
+//use app\models\Tickets;
 
 /**
  * TicketsController implements the CRUD actions for Tickets model.
@@ -59,8 +63,8 @@ class TicketsController extends Controller
 
     public function actionViewtickets()
     {
-        
-        return $this->render('viewtickets'
+        return $this->render(
+            'viewtickets'
         // ,[
         //     'order_id' => $order_id,
         //     'amount' => $amount,
@@ -69,8 +73,32 @@ class TicketsController extends Controller
         //     'status' => $status
 
         // ]
-    );
+        );
     }
+
+    public function actionAlltickets()
+    {
+        $model = new Tickets();
+        
+        $user_id = Yii::$app->user->id;
+        $cus = Customer::find()->where(['user_id' => $user_id ])->one();
+
+        $tickets = Tickets::find()->where(['customer_id' => $cus ])->all();
+        
+       
+      
+        return $this->render(
+            'alltickets',
+            [
+            'user_id' => $user_id,
+            'customer_id' => $cus->customer_id,
+        //    'data' => $tickets
+
+        ]
+        );
+    }
+
+    
 
     /**
      * Creates a new Tickets model.
