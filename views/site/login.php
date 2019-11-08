@@ -35,6 +35,14 @@ $this->title = 'Login';
 
         }
     </script>
+     <style>
+        body {
+            background-image: url("http://localhost/citibus/web/img.jpg");
+            background-size: cover;
+            background-position: center;
+
+        }
+    </style>
 
 </head>
 
