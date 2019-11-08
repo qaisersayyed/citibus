@@ -75,11 +75,7 @@ class LoginForm extends Model
     {
         if ($this->_user === false) {
             $this->_user = Users::findByEmail($this->email_id);
-            $count = Customer::find()
-                                ->where(['user_id' => $this->_user->user_id])
-                                ->count();
-            $count == 0 ? $this->_user->type = "emp" : $this->_user->type = "cust";
-            echo  $this->_user->type;
+            
         }
 
         return $this->_user;
