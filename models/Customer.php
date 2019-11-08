@@ -42,17 +42,18 @@ class Customer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email_id', 'password','password_repeat' ], 'required'],
-            [['customer_id','user_id', 'phone_no', 'e_wallet'], 'integer'],
+            [['name', 'email_id', 'password', 'password_repeat'], 'required'],
+            [['customer_id', 'user_id', 'phone_no', 'e_wallet'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
-            [['name'], 'string', 'max' => 40 ],
-            // ['phone_no', 'compare', 'compareValue' => 10, 'operator' => '>'],
-            ['email_id','email'],
+            [['name'], 'string', 'max' => 40],
+            ['phone_no','match', 'pattern' => '/^\d{10}$/', 'message' => 'Please Enter A Valid Phone No'],
+            ['email_id', 'email'],
             [['password'], 'string', 'max' => 100],
-            [['password_repeat'],'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
+            [['password_repeat'], 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'user_id']],
         ];
     }
+    
 
     /**
      * {@inheritdoc}
@@ -75,6 +76,7 @@ class Customer extends \yii\db\ActiveRecord
             'deleted_at' => 'Deleted At',
         ];
     }
+
 
 
     /**
