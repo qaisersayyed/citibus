@@ -67,6 +67,8 @@ $this->title = 'Login';
                             <center>
                                 <h4 class="modal-title " style="color:aliceblue;">Login <a href='http://localhost/citibus/web/route-stop-type/form'><button type="button"  class="close">&times;</button></a></h4>
                             </center>
+                    <!-- Modal body -->
+                    <div class="modal-body" style="background-color: #F4B41A;">
 
                         </div>
 
