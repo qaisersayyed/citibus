@@ -1,3 +1,9 @@
+<head>
+<style>
+
+</style>
+</head>
+
 <?php
 
 use app\models\Tickets;
@@ -10,7 +16,8 @@ use app\models\RouteStopTypeSearch;
 $mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->all();
 echo "<br>";
 $seats = array();
-echo "<h2>All Bookings</h2><br>";
+$ctime = new DateTime($time);
+echo "<center><h1>All Bookings</h1></center><br>";
 foreach ($mod as $col) {
     // echo $col->ticket_id,"<br>";
 
@@ -34,9 +41,11 @@ foreach ($mod as $col) {
     //echo "each",json_encode($seats),"<br>";?>
        <html>
        
-       <body>
+       <body style="background-color:grey">
        
            <div>
+           <div class="card bg-info text-dark">
+    <div class="card-body">
            <div class="panel panel-info">
                     <div class="panel-heading">
                     <div class="row">
@@ -66,7 +75,7 @@ foreach ($mod as $col) {
                                         </div>
                                         <div class="col-sm-2">
                                             <p>Timing</p>
-                                            <h4><?php echo $time; ?> </h4>
+                                            <h4><?php echo $ctime->format('h:i') ?> </h4>
                                         </div>
                         </div>
                         <div class=row>
@@ -84,6 +93,8 @@ foreach ($mod as $col) {
                     </div>
             </div>           
            </div>
+           </div>
+  </div>
        </body>
        </html> 
 
