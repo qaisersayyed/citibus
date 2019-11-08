@@ -9,8 +9,7 @@
 use app\models\Tickets;
 use app\models\RouteStopTypeSearch;
 
-echo $user_id,"<br>";
-echo $customer_id;
+
 //echo json_encode($data);
 //echo $data->fare;
 $mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->all();
@@ -41,13 +40,13 @@ foreach ($mod as $col) {
     //echo "each",json_encode($seats),"<br>";?>
        <html>
        
-       <body style="background-color:grey">
+       <body style="background-color:white">
        
            <div>
-           <div class="card bg-info text-dark">
+           <div class="card bg-info text-dark" >
     <div class="card-body">
-           <div class="panel panel-info">
-                    <div class="panel-heading">
+           <div class="panel panel-info" style="background-color:#F4B41A;">
+                    <div class="panel-heading" style="background-color:#143D59; color:white" >
                     <div class="row">
                     <div class="col-md-3">
                                         <h4>Bus Number: <b><?php echo 'GA376336' ?></b></h4>
