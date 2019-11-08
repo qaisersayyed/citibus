@@ -20,6 +20,7 @@ Yii::$app->session->setFlash('success', "You have successfully Booked Ticket ");
 
 $format_date =  Yii::$app->formatter->asDate($date, 'long');
 // echo $format_date;
+echo $time;
 $dateObject = new DateTime($time);
 
 ?>
