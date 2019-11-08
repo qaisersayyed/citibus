@@ -11,6 +11,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Transaction;
 use app\models\RouteStopType;
+
+//use app\models\Tickets;
+
 /**
  * TicketsController implements the CRUD actions for Tickets model.
  */
@@ -124,7 +127,8 @@ class TicketsController extends Controller
         $command = $query->createCommand();
         $rows = $command->queryAll();
         $bus_no = ($rows[0]["license_plate"]);
-       // echo json_encode($bus_no);
+        echo json_encode($bus_no);
+        
         return $this->render('viewtickets'
         ,[
                 'name' => $name,
@@ -134,10 +138,33 @@ class TicketsController extends Controller
                 'to' =>$to,
                 'bus_no' => $bus_no,
                 'time' => $time,
-                'seat' => $seat,
+                'seat' => $seat
+        ]);
+    }
+
+    public function actionAlltickets()
+    {
+        $model = new Tickets();
+        
+        $user_id = Yii::$app->user->id;
+        $cus = Customer::find()->where(['user_id' => $user_id ])->one();
+
+        $tickets = Tickets::find()->where(['customer_id' => $cus ])->all();
+        
+       
+      
+        return $this->render(
+            'alltickets',
+            [
+            'user_id' => $user_id,
+            'customer_id' => $cus->customer_id,
+        //    'data' => $tickets
+
         ]
         );
     }
+
+    
 
     /**
      * Creates a new Tickets model.

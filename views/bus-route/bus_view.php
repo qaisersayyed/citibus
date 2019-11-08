@@ -18,8 +18,8 @@ $this->title = 'All Buses';
 // echo "route id",$routeid ,"<br>";
 // echo "rst id",$routeStopType;
 
- echo $f,"->";
- echo $t;"->";
+ //echo $f,"->";
+ //echo $t;"->";
 // echo $date;
 
 
@@ -101,6 +101,18 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
               
         <body>
         <div class="container">
+        <div class="card bg-info text-white" style="margin-right:40px;padding-top:10px">
+       <div class="card-body">
+        <center>
+        <div class="row">
+         <div class="col-md-4" style="text-align: ;"><h4>From</h4><h3 style="text-transform: capitalize;"><?php echo $f ?></h3></div>
+         <div class="col-md-4" style=""></div>
+         <div class="col-md-4" style="text-align: ;"><h4>To</h4><h3 style="text-transform: capitalize;"><?php echo $t ?></h3></div>
+        </div><br>
+        </center>
+        </div>
+        </div><br>
+        
            
 </div>
 
@@ -111,7 +123,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
         $from = $col->route->from;
         $to = $col->route->to;
         $time= $col->timing;
-        $seats_count = Tickets::find()->where(['bus_route_id' => $col->bus_route_id ])->count();
+        $seats_count = Tickets::find()->where(['bus_route_id' => $col->bus_route_id,'date(created_at)' => $date])->count();
         $bus_seat_count = Bus::find()->where(['bus_id' => $col->bus_id ])->one();
         $seats_left = $bus_seat_count->no_of_seats - $seats_count ?>
         
@@ -129,6 +141,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                     </div>
                                     
                                     <div class="col-md-2" style="padding-left:160px">
+                                    
                                        <img src="http://localhost/citibus/web/seat.png" alt="seat-left" height="40px" width="40px">
 
                                     </div>
