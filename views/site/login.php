@@ -38,6 +38,14 @@ $this->title = 'Login';
 
         }
     </script>
+    <style>
+        body {
+            background-image: url("http://localhost/citibus/web/img.jpg");
+            background-size: cover;
+            background-position: center;
+
+        }
+    </style>
 
 </head>
 
@@ -71,10 +79,11 @@ $this->title = 'Login';
                                 <h4 class="modal-title " style="color:aliceblue;">Login <a href='http://localhost/citibus/web/route-stop-type/form'><button type="button" class="close">&times;</button></a></h4>
                             </center>
                         </div>
-                        
+                        <!-- Modal body -->
+
 
                         <!-- Modal body -->
-                        <div class="modal-body">
+                        <div class="modal-body" style="background-color:#F4B41A;">
 
 
                             <?= $form->field($model, 'email_id')->textInput(['autofocus' => true]) ?>
