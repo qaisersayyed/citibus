@@ -228,7 +228,6 @@ class BusSeatsController extends Controller
             // 'txn_id' => $txnid
             
         ));
-        
     }
 
     /**

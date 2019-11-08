@@ -14,11 +14,12 @@ class UsersSearch extends Users
     /**
      * {@inheritdoc}
      */
+    public $type;
     public function rules()
     {
         return [
             [['user_id'], 'integer'],
-            [['email_id', 'password', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['email_id', 'password', 'created_at', 'updated_at', 'deleted_at','type'], 'safe'],
         ];
     }
 

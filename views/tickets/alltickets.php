@@ -1,16 +1,22 @@
+<head>
+<style>
+
+</style>
+</head>
+
 <?php
 
 use app\models\Tickets;
 use app\models\RouteStopTypeSearch;
 
-//echo $user_id,"<br>";
 
 //echo json_encode($data);
 //echo $data->fare;
 $mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->all();
-echo "<br>";
+//echo "<br>";
 $seats = array();
-echo "<h2>All Bookings</h2><br>";
+//$ctime = new DateTime($time);
+echo "<center><h1>All Bookings</h1></center><br>";
 foreach ($mod as $col) {
     // echo $col->ticket_id,"<br>";
 
@@ -34,11 +40,13 @@ foreach ($mod as $col) {
     //echo "each",json_encode($seats),"<br>";?>
        <html>
        
-       <body>
+       <body style="background-color:white">
        
            <div>
+           <div class="card bg-info text-dark" >
+    <div class="card-body">
            <div class="panel panel-info" style="background-color:#F4B41A;">
-                    <div class="panel-heading" style="background-color:#143D59; color:white">
+                    <div class="panel-heading" style="background-color:#143D59; color:white" >
                     <div class="row">
                     <div class="col-md-3">
                                         <h4>Bus Number: <b><?php echo 'GA376336' ?></b></h4>
@@ -84,6 +92,8 @@ foreach ($mod as $col) {
                     </div>
             </div>           
            </div>
+           </div>
+  </div>
        </body>
        </html> 
 
