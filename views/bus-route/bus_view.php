@@ -78,10 +78,21 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
 ?>
 <html>
            <head>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
                    <style>
+                   
            #bus_block:hover {
                transform: scale(1.01);
            }
+            
+            
            /* #progress{
                 width:<?php //echo 50?>%
            } */
@@ -156,12 +167,15 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                             <p>Timing</p>
                                             <h4><?php echo $time; ?> </h4>
                                         </div>
-                                        <div style="padding-top:10px" class="col-sm-2">
+                                        <div style="padding-top:10px;display:inline-block;" class="col-sm-2">
                                         <?= Html::a(
             'Select seats',
             ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'date'=>$date,'f'=>$f,'t' => $t,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
             ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
         ); ?>
+                                <div style="text-align:center;padding-top:10px" >
+                                <a    data-toggle="modal" data-target="#myModal"><b>Stops</a>
+                                </div>
                                         </div>
                                     </div>
 
@@ -180,6 +194,49 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
    
         </div>
 
+<!-- Modal -->
+<?php 
+//  echo $stop_id;
+?>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">All Stops</h4>
+      </div>
+      <div class="panel-body">
+        <?php
+            foreach($stop_id as $stopid){
+                // echo $stopid->stop_id;
+                $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one();
+
+                
+                ?>
+                    <div > 
+                        <p style="display:inline-block"> <i class="material-icons"> my_location </i></p><p style="display:inline-block;vertical-align:top;margin-top:5px;margin-left:10px"><?php echo $stop_name->stop_name?></p><br><br>
+                        
+                    </div>
+            
+            
+            <?php }
+                
+        ?>
+        
+            
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class='btn btn-primary' data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
         </body>
         </html>
        

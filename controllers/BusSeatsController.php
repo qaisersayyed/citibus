@@ -77,14 +77,15 @@ class BusSeatsController extends Controller
             //  echo $bus_route_id;
             //  $rows = TicketsSearch::find()->where(['bus_route_id' => $bus_route_id])->one();
             
-    
+            $date =  Yii::$app->formatter->asDate($date, 'yyyy-MM-dd');
             $query = new \yii\db\Query;
             $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->andWhere(['date(created_at)' => $date])->all();
             $rows = $query->all();
             $command = $query->createCommand();
             $rows = $command->queryAll();
-            // echo $date;
-            // echo json_encode($rows);
+            
+            //  echo $date;
+            //  echo json_encode($rows);
             return $this->render('seatselect', [
                 'model' => $model,
                 'route_id' =>$route_id,
@@ -221,9 +222,13 @@ class BusSeatsController extends Controller
                 "UPDATE transaction SET ticket_id = '$tickets->ticket_id', txn_id = '$txnid' ,date = '$date', status = 1  WHERE order_id = '$data->order_id'; )"
             )->execute();
         }
-        return $this->redirect(['tickets/viewtickets']);
-        // return $this->render('tickets/viewtickets'
-        //   );
+        
+        return $this->redirect(array('tickets/viewtickets',
+             'order_id' => $orderid,
+            // 'txn_id' => $txnid
+            
+        ));
+        
     }
 
     /**

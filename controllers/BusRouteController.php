@@ -4,6 +4,9 @@ namespace app\controllers;
 
 use Yii;
 use app\models\BusRoute;
+use app\models\RouteSearch;
+use app\models\RouteStopType;
+use app\models\Stops;
 use app\models\BusRouteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,10 +63,31 @@ class BusRouteController extends Controller
     //bus view
     public function actionBus_view($from, $to, $date)
     {
+        $searchModel = new RouteSearch();
+        echo $from;
+        echo $to;
+        // $model = Route::find()->where(['to'=>$to])->one();
+        $query = new \yii\db\Query;
+        $query->select('route_id')->from('route')->where(['from' => $from])->andwhere(['to' => $to])->all();
+        $rows = $query->all();
+        $command = $query->createCommand();
+        $rows = $command->queryAll();
+        $route_id = ($rows[0]["route_id"]);
+
+        $stop_id = RouteStopType::find(['stop_id'])->where(['route_id' => $route_id])->orderby(['stop_order' =>SORT_ASC])->all();
+
+        
+        foreach($stop_id as $stopid){
+            echo $stopid->stop_id;
+            $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one();
+            echo $stop_name->stop_name;
+        }
+        
         return $this->render('bus_view', [
             'f' => $from,
             't' => $to,
-            'date' => $date
+            'date' => $date,
+            'stop_id' => $stop_id,
         ]);
     }
 
