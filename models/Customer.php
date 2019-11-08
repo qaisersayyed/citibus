@@ -46,7 +46,7 @@ class Customer extends \yii\db\ActiveRecord
             [['customer_id','user_id', 'phone_no', 'e_wallet'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['name'], 'string', 'max' => 40 ],
-            ['phone_no', 'compare', 'compareValue' => 10, 'operator' => '==','message'=>"Phone No is invalid please enter a valid phone no" ],
+            // ['phone_no', 'compare', 'compareValue' => 10, 'operator' => '>'],
             ['email_id','email'],
             [['password'], 'string', 'max' => 100],
             [['password_repeat'],'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
