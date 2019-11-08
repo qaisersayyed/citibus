@@ -84,8 +84,8 @@ for ($z=0;$z<$a;$z++) {
 		</div>
 	</div>
 <br>
-<div class="card bg-success text-white">
-    <div class="card-body">
+<div class="card bg-success text-white" >
+    <div class="card-body" style="background-color:#F4B41A; color:black">
 	<div class="row" style="text-align: center;padding:30px">
 <div class="col-md-4"><p>From:<h3><?php echo $f ?></h3></p></div>
 <div class="col-md-4"><p>To:<h3><?php echo $t ?></h3></p></div>
@@ -162,11 +162,11 @@ echo $s;?>
 
 		</div>
 		<div class="col-md-2">
-		<a type="button" href="javascript:history.back()" class="btn btn-default" >Go Back</a>
+		<a type="button" href="javascript:history.back()" class="btn btn-default" , style = 'background-color:#143D59; color: white'>Go Back</a>
 
 		</div>
 		<div class="col-md-2">
-		<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success']) ?>
+		<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success', 'style' => 'background-color:#F4B41A']) ?>
 
 		</div>
 

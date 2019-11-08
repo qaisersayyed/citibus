@@ -101,10 +101,10 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
               
         <body>
         <div class="container">
-        <div class="card bg-info text-white" style="margin-right:40px;padding-top:10px">
+        <div class="card bg-info text-white" style="margin-right:40px;padding-top:10px; background-color:#F4B41A;">
        <div class="card-body">
         <center>
-        <div class="row">
+        <div class="row" >
          <div class="col-md-4" style="text-align: ;"><h4>From</h4><h3 style="text-transform: capitalize;"><?php echo $f ?></h3></div>
          <div class="col-md-4" style=""></div>
          <div class="col-md-4" style="text-align: ;"><h4>To</h4><h3 style="text-transform: capitalize;"><?php echo $t ?></h3></div>
@@ -130,8 +130,8 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
         
               
                     <div id="bus_block" class="panel-group">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
+                        <div class="panel panel-primary" style="background-color:#F4B41A;">
+                            <div class="panel-heading" style="background-color:#143D59;">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <h4>Bus Number: <b><?php echo $busno ?></b></h4>
@@ -171,7 +171,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                         <?= Html::a(
             'Select seats',
             ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'date'=>$date,'f'=>$f,'t' => $t,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
-            ['class' => 'btn btn-primary']
+            ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
         ); ?>
                                 <div style="text-align:center;padding-top:10px" >
                                 <a    data-toggle="modal" data-target="#myModal"><b>Stops</a>

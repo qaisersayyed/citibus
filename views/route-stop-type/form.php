@@ -41,7 +41,7 @@ body {
 </style>
 <br>
 <div class="container">
-<div class="card bg-success text-white" style="margin-top:100px;margin-left:150px;margin-right:150px">
+<div class="card bg-success text-white" style="margin-top:100px;margin-left:150px;margin-right:150px; background-color:#143D59; color:white;">
     <div class="card-body">
 	
     <div  id="form" class="form" style="padding:50px">
@@ -95,7 +95,7 @@ body {
 
             
             <div class="form-group" id="button">
-                <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Search', ['class' => 'btn btn-custom', 'style' => 'background-color:#F4B41A']) ?>
             </div>
 </div>
             
