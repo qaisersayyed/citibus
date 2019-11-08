@@ -16,8 +16,10 @@ use app\models\TransactionSearch;
 
 Yii::$app->session->setFlash('success', "You have successfully Booked Ticket ");
 
-$date =  Yii::$app->formatter->asDate($date, 'd-m-y');
+// $date =  Yii::$app->formatter->asDate($date, 'dd-mm-yyyy');
+
 $format_date =  Yii::$app->formatter->asDate($date, 'long');
+// echo $format_date;
 $dateObject = new DateTime($time);
 
 ?>
@@ -63,13 +65,19 @@ $dateObject = new DateTime($time);
                 </div>
             </div>
         </div>
-        <div class="card-footer text-muted" style="background-color:#5F9EA0;height:50px;border-radius: 0px 0px 20px 20px;color:white">
+        <div class="card-footer text-muted" style="background-color:#5F9EA0;height:30px;border-radius: 0px 0px 20px 20px;color:white">
            
+         
         </div>
-        </div>   
-    </div>
+     
+        
+    </div> 
+    
 
- 
-</div> 
+    </div class="responsive">
+            <button type="button" style="background-color:#5F9EA0;margin-top:50px;float:right" class="btn btn-primary">Print</button>
+    </div>
+</div>
+
  </body>
 </html>

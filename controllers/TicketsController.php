@@ -67,7 +67,7 @@ class TicketsController extends Controller
         // Yii::$app->session->setFlash('success', "You have successfully Booked Ticket ");
         echo $order_id; 
         $query = new \yii\db\Query;
-        $query->select(['customer_id','amount','date','seat_code','route_stop_type_id','bus_route_id'])->from('transaction')->where(['order_id' => $order_id])->all();
+        $query->select(['customer_id','amount','creted_at','seat_code','route_stop_type_id','bus_route_id'])->from('transaction')->where(['order_id' => $order_id])->all();
         $rows = $query->all();
         $command = $query->createCommand();
         $rows = $command->queryAll();
@@ -91,7 +91,7 @@ class TicketsController extends Controller
         $customer = Customer::find()->where(['customer_id'=>$rows[0]])->one();
         $name =  $customer->name;
         $amount = ($rows[0]["amount"]);
-        $date = $rows[0]["date"];
+        $date = $rows[0]["creted_at"];
         $route_stop_type =  ($rows[0]["route_stop_type_id"]);
         $bus_route_id = ($rows[0]["bus_route_id"]);
 
