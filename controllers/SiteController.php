@@ -83,7 +83,7 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) ) {
             $model->login();
-            $this->redirect(['bus/index']);
+            $this->redirect(['route-stop-type/form']);
         }
 
         //$model->password = '';
