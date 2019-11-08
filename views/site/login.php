@@ -6,7 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
- 
+
 $this->title = 'Login';
 
 ?>
@@ -30,11 +30,22 @@ $this->title = 'Login';
             console.log('')
 
             document.getElementById("button").click();
-            $('#myModal').modal({backdrop: 'static', keyboard: false})
+            $('#myModal').modal({
+                backdrop: 'static',
+                keyboard: false
+            })
 
 
         }
     </script>
+    <style>
+        body {
+            background-image: url("http://localhost/citibus/web/img.jpg");
+            background-size: cover;
+            background-position: center;
+
+        }
+    </style>
 
 </head>
 
@@ -65,11 +76,11 @@ $this->title = 'Login';
                         <!-- Modal Header -->
                         <div class="modal-header" style="background-color: #143D59;">
                             <center>
-                                <h4 class="modal-title " style="color:aliceblue;">Login <a href='http://localhost/citibus/web/route-stop-type/form'><button type="button"  class="close">&times;</button></a></h4>
+                                <h4 class="modal-title " style="color:aliceblue;">Login <a href='http://localhost/citibus/web/route-stop-type/form'><button type="button" class="close">&times;</button></a></h4>
                             </center>
-                            </div>
-                    <!-- Modal body -->
-                
+                        </div>
+                        <!-- Modal body -->
+
 
                         <!-- Modal body -->
                         <div class="modal-body" style="background-color:#F4B41A;">
@@ -89,7 +100,7 @@ $this->title = 'Login';
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                        <a href='http://localhost/citibus/web/route-stop-type/form'><button type="button" class="btn btn-secondary" >Close</button></a>
+                            <a href='http://localhost/citibus/web/route-stop-type/form'><button type="button" class="btn btn-secondary">Close</button></a>
                         </div>
 
                     </div>
