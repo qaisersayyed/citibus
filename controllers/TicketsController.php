@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Transaction;
+use app\models\RouteStopType;
 
 //use app\models\Tickets;
 
@@ -61,19 +62,84 @@ class TicketsController extends Controller
         ]);
     }
 
-    public function actionViewtickets()
+    public function actionViewtickets($order_id)
     {
-        return $this->render(
-            'viewtickets'
-        // ,[
-        //     'order_id' => $order_id,
-        //     'amount' => $amount,
-        //     'date' => $date,
-        //     'txn_id' => $txn_id,
-        //     'status' => $status
+        // Yii::$app->session->setFlash('success', "You have successfully Booked Ticket ");
+        echo $order_id; 
+        $query = new \yii\db\Query;
+        $query->select(['customer_id','amount','creted_at','seat_code','route_stop_type_id','bus_route_id'])->from('transaction')->where(['order_id' => $order_id])->all();
+        $rows = $query->all();
+        $command = $query->createCommand();
+        $rows = $command->queryAll();
+        echo json_encode($rows);
+     
+        $seat = array();
+        function mod($i, $length)
+        {
+            $m = $i % $length;
+            if ($m > $length) {
+                mod($m, $length);
+            }
+            return $m;
+        }
+       
+        for ($a = 0; $a < sizeof($rows);$a=$a+1) {
+            $k=mod($a, 50);
+             array_push($seat, $rows[$k]["seat_code"]);
+            //  echo json_encode($seat);
+        }
+        $customer = Customer::find()->where(['customer_id'=>$rows[0]])->one();
+        $name =  $customer->name;
+        $amount = ($rows[0]["amount"]);
+        $date = $rows[0]["creted_at"];
+        $route_stop_type =  ($rows[0]["route_stop_type_id"]);
+        $bus_route_id = ($rows[0]["bus_route_id"]);
 
-        // ]
-        );
+        $query = new \yii\db\Query;
+        $query->select('*')->from('route_stop_type')->where(['route_stop_type_id'=>$route_stop_type])->one();
+        $rows = $query->all();
+        $command = $query->createCommand();
+        $rows = $command->queryAll();
+        //echo json_encode($rows);
+        $route_id = ($rows[0]["route_id"]);
+        $stop_id = ($rows[0]["stop_id"]);
+        
+        $query = new \yii\db\Query;
+        $query->select('*')->from('route')->where(['route_id'=>$route_id])->one();
+        $rows = $query->all();
+        $command = $query->createCommand();
+        $rows = $command->queryAll();
+        $from= ($rows[0]["from"]);
+        $to = ($rows[0]["to"]);
+        //echo json_encode($rows);
+        
+        $query = new \yii\db\Query;
+        $query->select(['bus_id','timing'])->from('bus_route')->where(['bus_route_id'=>$bus_route_id])->one();
+        $rows = $query->all();
+        $command = $query->createCommand();
+        $rows = $command->queryAll();
+        $bus_id = ($rows[0]["bus_id"]);
+        $time = ($rows[0]["timing"]);
+        
+        $query = new \yii\db\Query;
+        $query->select('license_plate')->from('bus')->where(['bus_id'=>$bus_id])->one();
+        $rows = $query->all();
+        $command = $query->createCommand();
+        $rows = $command->queryAll();
+        $bus_no = ($rows[0]["license_plate"]);
+        echo json_encode($bus_no);
+        
+        return $this->render('viewtickets'
+        ,[
+                'name' => $name,
+                'amount' => $amount,
+                'date' => $date,
+                'from' =>$from,
+                'to' =>$to,
+                'bus_no' => $bus_no,
+                'time' => $time,
+                'seat' => $seat
+        ]);
     }
 
     public function actionAlltickets()

@@ -76,14 +76,14 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+        // if (!Yii::$app->user->isGuest) {
+        //     return $this->goHome();
+        // }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) ) {
             $model->login();
-            $this->redirect(['bus/index']);
+            $this->redirect(['route-stop-type/form']);
         }
 
         //$model->password = '';
@@ -102,11 +102,8 @@ class SiteController extends Controller
         $model = new LoginForm();
 
         Yii::$app->user->logout();
-
-        return $this->render('login', [
-            'model' => $model,
-            
-        ]);
+        return $this->redirect(['route-stop-type/form']);
+     
     }
 
     /**

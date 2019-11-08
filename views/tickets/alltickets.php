@@ -44,10 +44,8 @@ foreach ($mod as $col) {
        <body style="background-color:grey">
        
            <div>
-           <div class="card bg-info text-dark">
-    <div class="card-body">
-           <div class="panel panel-info">
-                    <div class="panel-heading">
+           <div class="panel panel-info" style="background-color:#F4B41A;">
+                    <div class="panel-heading" style="background-color:#143D59; color:white">
                     <div class="row">
                     <div class="col-md-3">
                                         <h4>Bus Number: <b><?php echo 'GA376336' ?></b></h4>

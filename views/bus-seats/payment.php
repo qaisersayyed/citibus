@@ -121,10 +121,10 @@ body{
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h4 class="modal-title">Confirm Details</h4>
+      <div class="modal-header bg-primary" style="background-color:#143D59">
+        <h4 class="modal-title" style="text-align:center">Confirm Details</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="background-color:#F4B41A">
 		<div class="row" style="text-align: center;">
 
 			<div class="col-md-2">
@@ -165,7 +165,7 @@ body{
       <div class="modal-footer">
 		  <div class="row">
 				<div class="col-md-3">
-				<a type="button" href="javascript:history.back()" class="btn btn-default" >Go Back</a>
+				<a type="button" href="javascript:history.back()" class="btn btn-default"  style="background-color:#143D59; color:white" >Go Back</a>
 
 
 				</div>
@@ -173,7 +173,7 @@ body{
 
 				</div>
 				<div class="col-md-2" >
-				<button type="button" class="btn btn-primary" onClick="handelclick()" data-dismiss="modal">Complete Payment</button>
+				<button type="button" class="btn btn-primary" style="background-color:#F4B41A; color:white" onClick="handelclick()" data-dismiss="modal">Complete Payment</button>
 
 				</div>
 		  </div>     
