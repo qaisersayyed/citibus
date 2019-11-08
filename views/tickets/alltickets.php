@@ -9,8 +9,8 @@
 use app\models\Tickets;
 use app\models\RouteStopTypeSearch;
 
-echo $user_id,"<br>";
-echo $customer_id;
+//echo $user_id,"<br>";
+//echo $customer_id;
 //echo json_encode($data);
 //echo $data->fare;
 $mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->all();

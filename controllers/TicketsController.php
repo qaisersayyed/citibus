@@ -65,7 +65,7 @@ class TicketsController extends Controller
     public function actionViewtickets($order_id)
     {
         // Yii::$app->session->setFlash('success', "You have successfully Booked Ticket ");
-        echo $order_id; 
+        echo $order_id;
         $query = new \yii\db\Query;
         $query->select(['customer_id','amount','creted_at','seat_code','route_stop_type_id','bus_route_id'])->from('transaction')->where(['order_id' => $order_id])->all();
         $rows = $query->all();
@@ -85,7 +85,7 @@ class TicketsController extends Controller
        
         for ($a = 0; $a < sizeof($rows);$a=$a+1) {
             $k=mod($a, 50);
-             array_push($seat, $rows[$k]["seat_code"]);
+            array_push($seat, $rows[$k]["seat_code"]);
             //  echo json_encode($seat);
         }
         $customer = Customer::find()->where(['customer_id'=>$rows[0]])->one();
@@ -129,8 +129,7 @@ class TicketsController extends Controller
         $bus_no = ($rows[0]["license_plate"]);
         echo json_encode($bus_no);
         
-        return $this->render('viewtickets'
-        ,[
+        return $this->render('viewtickets', [
                 'name' => $name,
                 'amount' => $amount,
                 'date' => $date,
