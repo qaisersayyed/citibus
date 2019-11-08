@@ -25,7 +25,7 @@ console.log("onload");
 function handelclick(){
 
 	console.log("clicked");
-	//document.getElementById("paysubmitbtn").click();
+	document.getElementById("paysubmitbtn").click();
 	
 }
 
@@ -121,18 +121,18 @@ body{
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h4 class="modal-title">Confirm Details</h4>
+      <div class="modal-header bg-primary" style="background-color:#143D59">
+        <h4 class="modal-title" style="text-align:center">Confirm Details</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="background-color:#F4B41A">
 		<div class="row" style="text-align: center;">
 
 			<div class="col-md-2">
 			<h4>From</h4><h3 style="text-transform: capitalize;"><?php echo $f; ?></h3>
 			</div>
 			<div class="col-md-7">
-			<div style="text-align: center;margin-top:40px" >
-				<p>---------------------------------------</p>
+			<div style="text-align: center;margin-top:40px;margin-left:10px" >
+				<p>------------------------------------------------</p>
 			</div>
 			</div>
 			<div class="col-md-3">
@@ -151,11 +151,11 @@ body{
 			</div>
 		</div><br>
 		<div class="row">
-			<div class="col-md-12" style="margin-right:50px">
+			<div class="col-md-12" style="margin-right:60px">
 			
-			<div style="text-align:right">
+			<div style="text-align:right;padding-right:30px">
 			<p>_____________</p>
-			<p>Total <h3><?php echo $amount; ?></h3> </p>
+			<p>Total <h3><?php echo "₹ ",$amount; ?></h3> </p>
 			</div>
 				
 			</div>
@@ -165,7 +165,7 @@ body{
       <div class="modal-footer">
 		  <div class="row">
 				<div class="col-md-3">
-				<a type="button" href="javascript:history.back()" class="btn btn-default" >Go Back</a>
+				<a type="button" href="javascript:history.back()" class="btn btn-default"  style="background-color:#143D59; color:white" >Go Back</a>
 
 
 				</div>
@@ -173,7 +173,7 @@ body{
 
 				</div>
 				<div class="col-md-2" >
-				<button type="button" class="btn btn-primary" onClick="handelclick()" data-dismiss="modal">Complete Payment</button>
+				<button type="button" class="btn btn-primary" style="background-color:#F4B41A; color:white" onClick="handelclick()" data-dismiss="modal">Complete Payment</button>
 
 				</div>
 		  </div>     

@@ -77,14 +77,15 @@ class BusSeatsController extends Controller
             //  echo $bus_route_id;
             //  $rows = TicketsSearch::find()->where(['bus_route_id' => $bus_route_id])->one();
             
-    
+            $date =  Yii::$app->formatter->asDate($date, 'yyyy-MM-dd');
             $query = new \yii\db\Query;
             $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->andWhere(['date(created_at)' => $date])->all();
             $rows = $query->all();
             $command = $query->createCommand();
             $rows = $command->queryAll();
-            // echo $date;
-            // echo json_encode($rows);
+            
+            //  echo $date;
+            //  echo json_encode($rows);
             return $this->render('seatselect', [
                 'model' => $model,
                 'route_id' =>$route_id,
@@ -145,15 +146,15 @@ class BusSeatsController extends Controller
     public function actionPaymentaction()
     {
 //         $od = Yii::$app->request->post('ORDER_ID');
-        echo $name = Yii::$app->request->post('CUST_ID'),"<br>";
+        $name = Yii::$app->request->post('CUST_ID');
         $data = Customer::find()->where(['name' => $name ])->one();
 
-        echo $amount =Yii::$app->request->post('TXN_AMOUNT'),"<br>";
-        echo $order_id = Yii::$app->request->post('ORDER_ID'),"<br>";
-        echo $route_id = Yii::$app->request->post('routeid'),"<br>";
-        echo $seat =Yii::$app->request->post('seat'),"<br>";
-        echo $bus_route_id = Yii::$app->request->post('busroute'),"<br>";
-        echo $route_stop_type_id =Yii::$app->request->post('rstid'),"<br>";
+        $amount =Yii::$app->request->post('TXN_AMOUNT');
+        $order_id = Yii::$app->request->post('ORDER_ID');
+        $route_id = Yii::$app->request->post('routeid');
+        $seat =Yii::$app->request->post('seat');
+        $bus_route_id = Yii::$app->request->post('busroute');
+        $route_stop_type_id =Yii::$app->request->post('rstid');
 
         $s = array();
         $length =strlen($seat);
@@ -204,19 +205,12 @@ class BusSeatsController extends Controller
         echo $date,"<br>";
         echo $txnid,"<br>";
         echo $status,"<br>";
-        // foreach($s as $seats){
-        // Yii::$app->db->createCommand("INSERT INTO transaction (transaction_id,bus_route_id,customer_id,route_stop_type_id,seat_code,order_id,amount)
-        //  VALUES (NULL,'$bus_route_id','$data->customer_id','$route_stop_type_id','$seats','$order_id','$amount')"
-        //  )->execute();
-            
-        //     }
+       
         $transactions = Transaction::find()->where(['order_id' => $orderid, 'amount' => $amount ])->all();
 
         foreach ($transactions as $data) {
             echo $data->transaction_id,"<br>";
-            // Yii::$app->db->createCommand("UPDATE transaction SET column1 = value1, column2 = value2,WHERE condition; )"
-            //  )->execute();
-            //inserting in ticket
+            
             Yii::$app->db->createCommand(
                 "INSERT INTO tickets (ticket_id,customer_id,bus_route_id,route_stop_type_id,seat_code,fare)
              VALUES (NULL,'$data->customer_id','$data->bus_route_id','$data->route_stop_type_id','$data->seat_code','$amount')"
@@ -228,9 +222,13 @@ class BusSeatsController extends Controller
                 "UPDATE transaction SET ticket_id = '$tickets->ticket_id', txn_id = '$txnid' ,date = '$date', status = 1  WHERE order_id = '$data->order_id'; )"
             )->execute();
         }
-        return $this->redirect(['tickets/viewtickets']);
-        // return $this->render('tickets/viewtickets'
-        //   );
+        
+        return $this->redirect(array('tickets/viewtickets',
+             'order_id' => $orderid,
+            // 'txn_id' => $txnid
+            
+        ));
+        
     }
 
     /**

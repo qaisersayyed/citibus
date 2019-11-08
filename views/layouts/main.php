@@ -90,7 +90,77 @@ AppAsset::register($this);
 
     </div>
 
-    <!-- <footer class="footer">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href='http://localhost/citibus/web/route-stop-type/form'><i class="material-icons" style="color:#F4B41A; font-size:30px">
+search
+</i></a></li>
+        <?php if (Yii::$app->user->isGuest) {
+      ?>
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">account_circle</i> <span class="caret"></span></a>
+          
+          <ul class="dropdown-menu" style="background-color:#F4B41A; color:white">
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/site/login'>Log In</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/customer/create'>Sign Up</a></li>
+          </ul>
+        </li>
+          <?php }else{
+      ?>  
+      <li><a href='http://localhost/citibus/web/tickets/alltickets'><i class="material-icons" style="color:#F4B41A; font-size:30px">
+      confirmation_number
+</i></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">account_circle</i> <span class="caret"></span></a>
+          <ul class="dropdown-menu" style="background-color:#F4B41A; color:white">
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/customer/profile'>Profile</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/site/logout' data-method="post">Log Out</a></li>
+          </ul>
+          <?php }
+      ?>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">
+directions_bus
+</i> <span class="caret"></span></a>
+        <ul class="dropdown-menu"  style="background-color:#F4B41A; color:white" >
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/bus/'>Buses</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/route/'>Route</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/stops'>Stops</a></li>
+          <!-- //  <li style="font-size:18px"><a href='http://localhost/citibus/web/route-stop/'>Route Stop</a></li> -->
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/bus-route/index'>Bus_Route</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/route-stop-type/index'>Route Stop type</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/customer'>Customers</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/employee'>Employees</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/users'>User</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/tickets'>Tickets</a></li>
+            <li style="font-size:18px"><a href='http://localhost/citibus/web/transaction'>Transactions</a></li>
+        </ul>
+        </li>
+      </ul> 
+    </div>
+    
+    <!-- /.navbar-collapse -->
+    
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+
+            
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
+
+
+    </div>
+    
+
+                
+
+        </div>
+
+        <!-- <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>

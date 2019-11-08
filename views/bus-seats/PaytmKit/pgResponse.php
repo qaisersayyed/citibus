@@ -1,5 +1,9 @@
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
 <?php
-use yii\helpers\Html;
+
+
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
@@ -19,23 +23,21 @@ $paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : ""; //
 $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum); //will return TRUE or FALSE string.
 
 
-if($isValidChecksum == "TRUE") {
-	echo '<script>console.log("checksum matched")</script>';
-	if ($_POST["STATUS"] == "TXN_SUCCESS") {
-		echo "<center><b>Transaction status is success</b><br><h1>Please wait</h1></center>";
-		
-		if (isset($_POST) && count($_POST)>0 )
-	{ 
-		// foreach($_POST as $paramName => $paramValue) {
-		// 		echo "<br/>" . $paramName . " = " . $paramValue;
-		// }
-		echo "<br>";
-		$orderno = $_POST["ORDERID"];
-		$date = $_POST["TXNDATE"];
-		$txn_id = $_POST["TXNID"];
-		$amount = $_POST["TXNAMOUNT"];
-		$stat  = $_POST["STATUS"];
- 		?>
+if ($isValidChecksum == "TRUE") {
+    echo '<script>console.log("checksum matched")</script>';
+    if ($_POST["STATUS"] == "TXN_SUCCESS") {
+        echo "<center><b>Transaction status is success</b><br><h1>Please wait</h1></center>";
+        
+        if (isset($_POST) && count($_POST)>0) {
+            // foreach($_POST as $paramName => $paramValue) {
+            // 		echo "<br/>" . $paramName . " = " . $paramValue;
+            // }
+            echo "<br>";
+            $orderno = $_POST["ORDERID"];
+            $date = $_POST["TXNDATE"];
+            $txn_id = $_POST["TXNID"];
+            $amount = $_POST["TXNAMOUNT"];
+            $stat  = $_POST["STATUS"]; ?>
 		<html>
 		<head>
 		
@@ -70,22 +72,24 @@ console.log("onload");
 		
 		
 		<?php
-		 
-	}
-	
+        }
+    
 
-		//Process your transaction here as success transaction.
-		//Verify amount & order id received from Payment gateway with your application's order id and amount.
-	}
-	else {
-		echo "<b>Transaction status is failure</b>" . "<br/>";
-	}
-
-	
-}
-else {
-	echo "<b> Checksum mismatched.</b>";
-	//Process transaction as suspicious.
+        //Process your transaction here as success transaction.
+        //Verify amount & order id received from Payment gateway with your application's order id and amount.
+    } else {
+        ?>
+	<center>
+	<div>
+	<h2>Transaction status is failure</h2>
+	<a href='http://localhost/citibus/web/route-stop-type/form' class='btn btn-primary'>Back Home</a>
+	</div>
+	</center>
+	<?php
+    }
+} else {
+    echo "<b> Checksum mismatched.</b>";
+    //Process transaction as suspicious.
 }
 
 ?>

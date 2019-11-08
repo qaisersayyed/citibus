@@ -18,8 +18,8 @@ $this->title = 'All Buses';
 // echo "route id",$routeid ,"<br>";
 // echo "rst id",$routeStopType;
 
- echo $f,"->";
- echo $t;"->";
+ //echo $f,"->";
+ //echo $t;"->";
 // echo $date;
 
 
@@ -78,10 +78,21 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
 ?>
 <html>
            <head>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
                    <style>
+                   
            #bus_block:hover {
                transform: scale(1.01);
            }
+            
+            
            /* #progress{
                 width:<?php //echo 50?>%
            } */
@@ -90,6 +101,18 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
               
         <body>
         <div class="container">
+        <div class="card bg-info text-white" style="margin-right:40px;padding-top:10px; background-color:#F4B41A;">
+       <div class="card-body">
+        <center>
+        <div class="row" >
+         <div class="col-md-4" style="text-align: ;"><h4>From</h4><h3 style="text-transform: capitalize;"><?php echo $f ?></h3></div>
+         <div class="col-md-4" style=""></div>
+         <div class="col-md-4" style="text-align: ;"><h4>To</h4><h3 style="text-transform: capitalize;"><?php echo $t ?></h3></div>
+        </div><br>
+        </center>
+        </div>
+        </div><br>
+        
            
 </div>
 
@@ -100,15 +123,15 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
         $from = $col->route->from;
         $to = $col->route->to;
         $time= $col->timing;
-        $seats_count = Tickets::find()->where(['bus_route_id' => $col->bus_route_id ])->count();
+        $seats_count = Tickets::find()->where(['bus_route_id' => $col->bus_route_id,'date(created_at)' => $date])->count();
         $bus_seat_count = Bus::find()->where(['bus_id' => $col->bus_id ])->one();
         $seats_left = $bus_seat_count->no_of_seats - $seats_count ?>
         
         
               
                     <div id="bus_block" class="panel-group">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
+                        <div class="panel panel-primary" style="background-color:#F4B41A;">
+                            <div class="panel-heading" style="background-color:#143D59;">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <h4>Bus Number: <b><?php echo $busno ?></b></h4>
@@ -118,6 +141,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                     </div>
                                     
                                     <div class="col-md-2" style="padding-left:160px">
+                                    
                                        <img src="http://localhost/citibus/web/seat.png" alt="seat-left" height="40px" width="40px">
 
                                     </div>
@@ -143,12 +167,15 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                             <p>Timing</p>
                                             <h4><?php echo $time; ?> </h4>
                                         </div>
-                                        <div style="padding-top:10px" class="col-sm-2">
+                                        <div style="padding-top:10px;display:inline-block;" class="col-sm-2">
                                         <?= Html::a(
             'Select seats',
             ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'date'=>$date,'f'=>$f,'t' => $t,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
-            ['class' => 'btn btn-primary']
+            ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
         ); ?>
+                                <div style="text-align:center;padding-top:10px" >
+                                <a    data-toggle="modal" data-target="#myModal"><b>Stops</a>
+                                </div>
                                         </div>
                                     </div>
 
@@ -167,6 +194,49 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
    
         </div>
 
+<!-- Modal -->
+<?php 
+//  echo $stop_id;
+?>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">All Stops</h4>
+      </div>
+      <div class="panel-body">
+        <?php
+            foreach($stop_id as $stopid){
+                // echo $stopid->stop_id;
+                $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one();
+
+                
+                ?>
+                    <div > 
+                        <p style="display:inline-block"> <i class="material-icons"> my_location </i></p><p style="display:inline-block;vertical-align:top;margin-top:5px;margin-left:10px"><?php echo $stop_name->stop_name?></p><br><br>
+                        
+                    </div>
+            
+            
+            <?php }
+                
+        ?>
+        
+            
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class='btn btn-primary' data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
         </body>
         </html>
        
