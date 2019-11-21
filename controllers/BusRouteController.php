@@ -67,31 +67,33 @@ class BusRouteController extends Controller
         $searchModel = new RouteSearch();
         echo $from;
         echo $to;
-
-        $route_id = Route::find(['route_id'])->where(['from' => $from])->andwhere(['to' => $to])->one();
-
-        // $model = Route::find()->where(['to'=>$to])->one();
+        $from_id = Stops::find(['stop_id'])->where(['stop_name' => $from])->one();
+        $to_id = Stops::find(['stop_id'])->where(['stop_name' => $to])->one();
+         
+         $route_id = RouteStopType::find(['route_id'])->where(['stop_id' => $from_id->stop_id])->andwhere(['stop_id' => $to_id->stop_id])->all();
+         echo json_encode($route_id);
+         // $model = Route::find()->where(['to'=>$to])->one();
         // $query = new \yii\db\Query;
         // $query->select('route_id')->from('route')->where(['from' => $from])->andwhere(['to' => $to])->one();
         // $rows = $query->all();
         // $command = $query->createCommand();
         // $rows = $command->queryAll();
         // $route_id = ($rows[0]["route_id"]);
-        // foreach($route_id as $routeid){
-        //     echo ($route_id->route_id);
-        // }
+        foreach($route_id as $routeid){
+            echo ($routeid->route_id);
+        }
         
-        $stop_id = RouteStopType::find(['stop_id'])->where(['route_id' => $route_id])->orderby(['stop_order' =>SORT_ASC])->all();
-        
-        
+        // $stop_id = RouteStopType::find(['stop_id'])->where(['route_id' => $route_id])->orderby(['stop_order' =>SORT_ASC])->all();
         
         
-        return $this->render('bus_view', [
-            'f' => $from,
-            't' => $to,
-            'date' => $date,
-            'stop_id' => $stop_id,
-        ]);
+        
+        
+        // return $this->render('bus_view', [
+        //     'f' => $from,
+        //     't' => $to,
+        //     'date' => $date,
+        //     'stop_id' => $stop_id,
+        // ]);
     }
 
     /**
