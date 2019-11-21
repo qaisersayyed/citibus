@@ -31,8 +31,9 @@ class LoginForm extends Model
             [['email_id', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
+            // password is validated by validatePassword
             ['password', 'validatePassword'],
+            ['email_id','email']
         ];
     }
 
@@ -75,11 +76,7 @@ class LoginForm extends Model
     {
         if ($this->_user === false) {
             $this->_user = Users::findByEmail($this->email_id);
-            $count = Customer::find()
-                                ->where(['user_id' => $this->_user->user_id])
-                                ->count();
-            $count == 0 ? $this->_user->type = "emp" : $this->_user->type = "cust";
-            echo  $this->_user->type;
+            
         }
 
         return $this->_user;

@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Transaction', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -27,14 +27,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'transaction_id',
-            'bus_route_id',
+           // 'bus_route_id',
             'customer_id',
             'route_stop_type_id',
             'seat_code',
-            //'ticket_id',
-            //'order_id',
-            //'amount',
-            //'date',
+            'ticket_id',
+            'order_id',
+            'amount',
+            'date',
             //'status',
             //'creted_at',
             //'updated_at',

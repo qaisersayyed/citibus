@@ -89,7 +89,7 @@ for ($z=0;$z<$a;$z++) {
 	<div class="row" style="text-align: center;padding:30px">
 <div class="col-md-4"><p>From:<h3><?php echo $f ?></h3></p></div>
 <div class="col-md-4"><p>To:<h3><?php echo $t ?></h3></p></div>
-<div class="col-md-4"><p>Timing:<h3><?php echo $bus_route_id->timing  ?></h3></p></div>
+<div class="col-md-4"><p>Timing:<h3><?php $ftime = new DateTime($bus_route_id->timing);echo $ftime->format('h:i A');;   ?></h3></p></div>
 
 		
 	</div>
