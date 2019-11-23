@@ -76,21 +76,8 @@ class BusSeatsController extends Controller
         } else {
             
             $date =  Yii::$app->formatter->asDate($date, 'yyyy-MM-dd');
-            $seat_code = Transaction::find(['seat_code'])->where(['bus_route_id' => $bus_route_id])->andWhere(['not', ['txn_id' => null]])->andWhere(['date' => $date])->all();
-            // echo json_encode($seat_code);
-            // foreach($seat_code as $sc){
-            //     $rows =  $sc->seat_code;
-            //     echo $rows;
-            // }
-
-            // $query = new \yii\db\Query;
-            // $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->andWhere(['date(created_at)' => $date])->all();
-            // $rows = $query->all();
-            // $command = $query->createCommand();
-            // $rows = $command->queryAll();
-            
-            //  echo $date;
-            //  echo json_encode($rows);
+            $seat_code = Transaction::find(['seat_code'])->where(['bus_route_id' => $bus_route_id])->andWhere(['not', ['ticket_id' => null]])->andWhere(['date' => $date])->all();
+           
             return $this->render('seatselect', [
                 'model' => $model,
                 'route_id' =>$route_id,
@@ -175,7 +162,7 @@ class BusSeatsController extends Controller
             return $m;
         }
         for ($a = 0; $a <= $length;$a=$a+3) {
-            $k=mod($a, 50);
+            $k=mod($a, 150);
             // echo $k;
             array_push($s, $seat[$k].$seat[$k+1]);
                 

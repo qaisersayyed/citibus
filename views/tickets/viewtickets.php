@@ -20,7 +20,7 @@ Yii::$app->session->setFlash('success', "You have successfully Booked Ticket ");
 
 $format_date =  Yii::$app->formatter->asDate($date, 'long');
 // echo $format_date;
-echo $time;
+// echo $time;
 $dateObject = new DateTime($time);
 
 ?>
@@ -56,7 +56,16 @@ $dateObject = new DateTime($time);
                     
                 </div>
                 <div class="col-sm-3" style="display:inline-block;">
-                    <h4 >Seat: <br><h3><b><?php echo json_encode($seat)?></h3></h4><br>
+                    <h4 >Seat: <br><h3><b>
+                        <?php 
+                            $s = "";
+                            foreach($seat as $value){
+                                $s =  $s.$value;
+                                $s =  $s.',';                           
+                            }                           
+                            echo substr_replace($s ,"",-1);
+                       
+                        ?></h3></h4><br>
                     <h4>Amount: <br> <h3><b><?php echo $amount?></h3></h4><br>
                    
                 </div>

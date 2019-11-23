@@ -7,7 +7,7 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 
-   echo json_encode($rows);
+//    echo json_encode($rows);
 //echo $f,$t;
 
 
@@ -130,25 +130,24 @@ function myClick(id){
 }
 
 function my_code(){
-	var booked_seats = array()
+	
 	<?php 
+	$booked_seats = [ ];
 	foreach($rows as $seat){
-		echo $seat->seat_code;
-		array_push($booked_seats,$seat->seat_code);
+		array_push($booked_seats,$seat->seat_code);		
 	}
+
 	?>
+	var booked_seats = <?php echo json_encode($booked_seats) ?>;
 	console.log(booked_seats)
-//     	var booked_seats = <? // php echo json_encode($rows) ?>;
-// // var booked_seats = ['e1','e2']
-//     	console.log(booked_seats);
-//     for (i = 0; i < booked_seats.length; i++) { 
-//         var ele = booked_seats[i];
-//         var s_id = document.getElementById( ele) ;
-// 		console.log(ele);
-//         s_id.className= 'btn btn-info';
-//         s_id.disabled = true
-//         
-//     }
+    for (i = 0; i < booked_seats.length; i++) { 
+        var ele = booked_seats[i];
+        var s_id = document.getElementById( ele) ;
+		console.log(ele);
+        s_id.className= 'btn btn-secondary';
+        s_id.disabled = true
+        
+    }
 }
 window.onload=my_code();
 
