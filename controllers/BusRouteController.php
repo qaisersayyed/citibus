@@ -64,52 +64,14 @@ class BusRouteController extends Controller
     //bus view
     public function actionBus_view($from, $to, $date)
     {
-        $searchModel = new RouteSearch();
-        echo $from;
-        echo $to;
-        $from_id = Stops::find(['stop_id'])->where(['stop_name' => $from])->one();
-        $to_id = Stops::find(['stop_id'])->where(['stop_name' => $to])->one();
-         
-         $from_route_id = RouteStopType::find('route_id')->where([route_id(['stop_id' => $from_id]) == route_id(['stop_id'=>$to_id])])->all();
-        //  $to_route_id = RouteStopType::find('route_id')->where(['stop_id' => $to_id])->all();
-          echo ($from_route_id);
-        // // $a = 0;
-        // for($i = 0; $i < count($from_route_id) ;$i++) {
-            
-        // }
-        // // if($from_route_id->route_id == $to_route_id->route_id && $from_route_id->stop_order < $to_route_id->stop_order){
-        //     echo $from_route_id->route_id;
-        // }
-        // echo json_encode($route_id);
-        // foreach($route_id as $routeid){
-        //         echo ($routeid);
-        //         echo " ";
-        //     }
-        //  $model = Route::find()->where(['to'=>$to])->one();
-        // $query = new \yii\db\Query;
-        // $query->select('route_id')->from('route')->where(['from' => $from])->andwhere(['to' => $to])->one();
-        // $rows = $query->all();
-        // $command = $query->createCommand();
-        // $rows = $command->queryAll();
-        // $route_id = ($rows[0]["route_id"]);
-        // foreach($route_id as $routeid){
-        //     echo ($routeid->route_id);
-        // }
+        $searchModel = new RouteSearch();    
         
-        //  $stop_id = RouteStopType::find(['stop_id'])->where(['route_id' => $route_id])->orderby(['stop_order' =>SORT_ASC])->all();
-        // echo json_encode($stop_id);
-         //  foreach($stop_id as $routeid){
-        //     echo ($routeid->stop_id);
-        //     echo "hh";
-        // }
-        
-       
-        // return $this->render('bus_view', [
-        //     'f' => $from,
-        //     't' => $to,
-        //     'date' => $date,
-        //     'stop_id' => $stop_id,
-        // ]);
+        return $this->render('bus_view', [
+            'f' => $from,
+            't' => $to,
+            'date' => $date,
+            // 'stop_id' => $stop_id,
+        ]);
     }
 
     /**

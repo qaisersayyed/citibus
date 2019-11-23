@@ -74,15 +74,20 @@ class BusSeatsController extends Controller
                 'date' => $date
          ));
         } else {
-            //  echo $bus_route_id;
-            //  $rows = TicketsSearch::find()->where(['bus_route_id' => $bus_route_id])->one();
             
             $date =  Yii::$app->formatter->asDate($date, 'yyyy-MM-dd');
-            $query = new \yii\db\Query;
-            $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->andWhere(['date(created_at)' => $date])->all();
-            $rows = $query->all();
-            $command = $query->createCommand();
-            $rows = $command->queryAll();
+            $seat_code = Transaction::find(['seat_code'])->where(['bus_route_id' => $bus_route_id])->andWhere(['not', ['txn_id' => null]])->andWhere(['date' => $date])->all();
+            // echo json_encode($seat_code);
+            // foreach($seat_code as $sc){
+            //     $rows =  $sc->seat_code;
+            //     echo $rows;
+            // }
+
+            // $query = new \yii\db\Query;
+            // $query->select('seat_code')->from('tickets')->where(['bus_route_id' => $bus_route_id])->andWhere(['date(created_at)' => $date])->all();
+            // $rows = $query->all();
+            // $command = $query->createCommand();
+            // $rows = $command->queryAll();
             
             //  echo $date;
             //  echo json_encode($rows);
@@ -91,12 +96,11 @@ class BusSeatsController extends Controller
                 'route_id' =>$route_id,
                 'bus_route_id' => $bus_route_id_m,
                 'route_stop_type_id' => $route_stop_type_id,
-                'rows' =>$rows,
+                'rows' =>$seat_code,
                 'f' => $f,
                 't' => $t,
-                'date' => $date
-                // 'booked_seats' => $booked_seats
-                // 'seat' =>$seat
+                'date' => $date,
+                
              ]);
         }
     }

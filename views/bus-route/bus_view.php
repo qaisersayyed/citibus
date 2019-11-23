@@ -197,44 +197,57 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
 
 <!-- Modal -->
 <?php
-//  echo $stop_id;
+$from_id = Stops::find(['stop_id'])->where(['stop_name' => $f])->one();
+$to_id = Stops::find(['stop_id'])->where(['stop_name' => $t])->one();
+ 
+$from_route_id = RouteStopType::find('*')->where(['stop_id' => $from_id]) ->all();
+$to_route_id = RouteStopType::find('*')->where(['stop_id' => $to_id])->all();
+//   echo json_encode($to_route_id);
+
+for($i = 0; $i < count($from_route_id) ;$i++) {
+    if($from_route_id[$i]->route_id == $to_route_id[$i]->route_id and $from_route_id[$i]->stop_order < $to_route_id[$i]->stop_order){
+        $route_id =  $from_route_id[$i]->route_id;
+        $stop_id = RouteStopType::find(['stop_id'])->where(['route_id' => $route_id])->orderby(['stop_order' =>SORT_ASC])->all();
+        if($stop_id>0){
+        ?>
+<!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">All Stops</h4>
+            </div>
+            <div class="panel-body">
+                <?php
+                    foreach ($stop_id as $stopid) {
+                        // echo $stopid->stop_id;
+                        $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one(); ?>
+                            <div > 
+                                <p style="display:inline-block"> <i class="material-icons"> my_location </i></p><p style="display:inline-block;vertical-align:top;margin-top:5px;margin-left:10px"><?php echo $stop_name->stop_name?></p><br><br>                               
+                            </div>  
+                    <?php
+                    }
+                        
+                ?>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class='btn btn-primary' data-dismiss="modal">Close</button>
+            </div>
+            </div>
+
+        </div>
+<?php 
+        break;
+            }
+        }
+    }    
 ?>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">All Stops</h4>
-      </div>
-      <div class="panel-body">
-        <?php
-            foreach ($stop_id as $stopid) {
-                // echo $stopid->stop_id;
-                $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one(); ?>
-                    <div > 
-                        <p style="display:inline-block"> <i class="material-icons"> my_location </i></p><p style="display:inline-block;vertical-align:top;margin-top:5px;margin-left:10px"><?php echo $stop_name->stop_name?></p><br><br>
-                        
-                    </div>
-            
-            
-            <?php
-            }
-                
-        ?>
-        
-            
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class='btn btn-primary' data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
 </div>
         </body>
         </html>
