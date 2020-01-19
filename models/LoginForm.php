@@ -33,7 +33,7 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword
             ['password', 'validatePassword'],
-            ['email_id','email']
+           // ['email_id','email']
         ];
     }
 
@@ -76,7 +76,6 @@ class LoginForm extends Model
     {
         if ($this->_user === false) {
             $this->_user = Users::findByEmail($this->email_id);
-            
         }
 
         return $this->_user;
