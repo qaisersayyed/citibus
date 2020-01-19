@@ -107,13 +107,32 @@ class RouteStopTypeController extends Controller
     {
         $model = new RouteStopType();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->route_stop_type_id]);
-        }
+        if ($model->load(Yii::$app->request->post()) ) {
+            $s_id =  $model->stop_id;
+            echo json_encode($model->stop_order);
+            // foreach ($s_id as $sid) {
+            //     echo $sid->stop_id;
+                // if($rid != null){
+                //     // echo $rid;
+                //     // echo "<br>";
+                //     // echo $model->bus_id;
+                //     // echo "<br>";
+                //     // echo $model->timing;
+                //     // echo "<br>";
+                //     $mod = new BusRoute();
+                //     $mod->route_id = $rid;
+                //     $mod->bus_id = $model->bus_id;
+                //     $mod->timing = $model->timing;
+                //      $mod->save();
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+                // }                    
+                // }  
+        //     return $this->redirect(['view', 'id' => $model->route_stop_type_id]);
+         }
+
+        // return $this->render('create', [
+        //     'model' => $model,
+        // ]);
     }
 
     /**

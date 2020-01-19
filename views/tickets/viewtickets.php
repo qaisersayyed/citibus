@@ -8,7 +8,7 @@ use app\models\TransactionSearch;
         history.go(1);
     };
   
-}
+
 
 </script>
 
@@ -31,12 +31,14 @@ $dateObject = new DateTime($time);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 </head>
 <body>
 <div class="container"  >
-
-    <div class="responsive" style="height:300px;width:100%;border-radius: 20px;">
+<div id="editor"></div>
+    <div class="responsive" id="ticket" style="height:300px;width:100%;border-radius: 20px;">
             
         <div class="card text-left" style="background-color:#143D59;height:70px;border-radius: 20px 20px 0px 0px;color:white">
             <img alt="CitiBus" src="http://localhost/citibus/web/logos/bus-logo.png" style=" display:inline-block;height:62px; width:auto; padding-top:0; padding-bottom:9px; padding-left:30px">
@@ -85,9 +87,28 @@ $dateObject = new DateTime($time);
     
 
     </div class="responsive">
-            <button type="button" style="background-color:#143D59;margin-top:50px;float:right" class="btn btn-primary">Print</button>
+        <!-- <a class="btn btn-default" href='<? //= $model->file1 ?>' Download>Download File 1</a> -->
+            
+            <button type="button" onclick="printDiv('ticket');"  id="download" style="background-color:#143D59;margin-top:50px;float:right" class="btn btn-primary">Print</button>
     </div>
 </div>
 
  </body>
 </html>
+<script>
+
+
+    function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+     
+     
+}
+
+</script>

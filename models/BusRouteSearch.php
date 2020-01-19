@@ -69,7 +69,7 @@ class BusRouteSearch extends BusRoute
             'deleted_at' => $this->deleted_at,
         ]);
         $query->andFilterWhere(['like', 'bus.license_plate', $this->bus_id]);
-        $query->andFilterWhere(['like', 'route.form', $this->route_id]);
+        $query->andFilterWhere(['like', 'route.from', $this->route_id]);
         $query->andFilterWhere(['like', 'route.to', $this->route_id]);
         return $dataProvider;
     }

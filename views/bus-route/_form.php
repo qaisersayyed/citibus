@@ -2,7 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\widgets\TimePicker;
+use yii\helpers\ArrayHelper;
+use app\models\Bus;
+use app\models\Route;
 /* @var $this yii\web\View */
 /* @var $model app\models\BusRoute */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,17 +15,30 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'bus_id')->textInput() ?>
+    <?= $form->field($model, 'bus_id')->dropDownList(
+        ArrayHelper::map(Bus::find()->where(['status' => 1])->all(),'bus_id','license_plate'),
+        ['prompt'=>'Select ']) ?>
 
-    <?= $form->field($model, 'route_id')->textInput() ?>
+    <div id="dynamicInput">
+            <?php
+            $models1 = Route::find()->all();
+            $data = array();
+            foreach ($models1 as $model1)
+                $data[$model1->route_id] = $model1->from . ' -> '. $model1->to;
 
-    <?= $form->field($model, 'timing')->textInput() ?>
+            echo $form->field($model, 'route_id')->dropDownList(
+                                        $data,
+                                        ['prompt'=>'Select','name' => 'BusRoute[route_id][]']);
+        ?>
+        <?//=  $form->field($model, 'route_id')->dropDownList(
+        // ArrayHelper::map(Route::find()->where(['deleted_at' => null])->all(),'route_id','from','to'),
+        // ['prompt'=>'select ']) ?>
+    </div>
+        <input class="btn btn-custom" style ="background-color:#F4B41A;float:right" type="button" id="add" name="add" value="Add Route"> 
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'timing')->textInput(['placeholder' => "H:M "])->widget(TimePicker::classname(), []) ?>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'deleted_at')->textInput() ?>
+    
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -31,3 +47,13 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+
+  $('#add').on('click', function() { 
+    var newel = $('#dynamicInput:last').clone();
+    $(newel).insertAfter("#dynamicInput:last");
+    
+  })
+
+</script>

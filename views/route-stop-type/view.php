@@ -2,42 +2,39 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use app\models\RouteStopType;
 /* @var $this yii\web\View */
 /* @var $model app\models\RouteStopType */
 
 $this->title = $model->route_stop_type_id;
 
+$stop_id =  RouteStopType::find()
+        ->where(['route_id' => $model->route_id, 'deleted_at' => null])
+        ->all();
+
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="route-stop-type-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->route_stop_type_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->route_stop_type_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'route_stop_type_id',
-            'route_id',
-            'stop_id',
-            'bus_type_id',
-            'fare',
-            'stop_order',
-            'created_at',
-            'updated_at',
-            'deleted_at',
-        ],
-    ]) ?>
+    <h1>All Stops</h1>
+    <?php    
+         foreach($stop_id as $s_id){
+             echo $s_id->stop_order; ?>
+         
+            <?= DetailView::widget([
+                'model' => $s_id,
+                'attributes' => [
+                    // 'route_stop_type_id',
+                    'route.from',
+                    'route.to',
+                    'stop.stop_name',
+                    'busType.type',
+                    'fare',
+                    'stop_order',
+                    
+                ],
+            ]) ?>
+    <?php } ?>
+    
 
 </div>
