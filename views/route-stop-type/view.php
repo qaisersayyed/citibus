@@ -10,6 +10,7 @@ $this->title = $model->route_stop_type_id;
 
 $stop_id =  RouteStopType::find()
         ->where(['route_id' => $model->route_id, 'deleted_at' => null])
+        ->orderBy(['stop_order' => SORT_ASC])
         ->all();
 
 \yii\web\YiiAsset::register($this);
@@ -19,7 +20,7 @@ $stop_id =  RouteStopType::find()
     <h1>All Stops</h1>
     <?php    
          foreach($stop_id as $s_id){
-             echo $s_id->stop_order; ?>
+            //  echo $s_id->stop_order; ?>
          
             <?= DetailView::widget([
                 'model' => $s_id,

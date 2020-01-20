@@ -23,7 +23,7 @@ use app\models\BusType;
 
             echo $form->field($model, 'route_id')->dropDownList(
                                         $data,
-                                        ['prompt'=>'Select','name' => 'BusRoute[route_id][]']);
+                                        ['prompt'=>'Select']);
         ?>
     <?//= $form->field($model, 'route_id')->textInput() ?>
 
@@ -34,10 +34,10 @@ use app\models\BusType;
                 ['prompt'=>'Select ','name' => 'RouteStopType[stop_id][]']) ?>
         </div>
         <div class=row style="display:inline-block;margin:10px">	
-            <?= $form->field($model, 'fare')->textInput(['name' => 'RouteStopType[fare][]']) ?>
+            <?= $form->field($model, 'fare[]')->textInput() ?>
         </div>
         <div class=row style="display:inline-block;margin:10px">	
-            <?= $form->field($model, 'stop_order')->textInput(['name' => 'RouteStopType[stop_order][]']) ?>
+            <?= $form->field($model, 'stop_order[]')->textInput() ?>
         </div>
     </div>
     <input class="btn btn-custom" style ="background-color:#F4B41A;float:right" type="button" id="add" name="add" value="Add Stops"> 

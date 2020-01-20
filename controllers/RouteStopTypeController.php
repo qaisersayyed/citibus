@@ -108,31 +108,34 @@ class RouteStopTypeController extends Controller
         $model = new RouteStopType();
 
         if ($model->load(Yii::$app->request->post()) ) {
-            $s_id =  $model->stop_id;
-            echo json_encode($model->stop_order);
-            // foreach ($s_id as $sid) {
-            //     echo $sid->stop_id;
-                // if($rid != null){
-                //     // echo $rid;
-                //     // echo "<br>";
-                //     // echo $model->bus_id;
-                //     // echo "<br>";
-                //     // echo $model->timing;
-                //     // echo "<br>";
-                //     $mod = new BusRoute();
-                //     $mod->route_id = $rid;
-                //     $mod->bus_id = $model->bus_id;
-                //     $mod->timing = $model->timing;
-                //      $mod->save();
-
-                // }                    
-                // }  
-        //     return $this->redirect(['view', 'id' => $model->route_stop_type_id]);
+            $stop_id =  $model->stop_id;
+            $fare =  $model->fare;
+            $stop_order =  $model->stop_order;
+             echo json_encode($fare);
+             echo json_encode( $model->stop_order);
+            // echo json_encode($stop_order);
+            foreach ($stop_id as $index => $sid ) {
+                        echo $sid;echo $fare[$index];echo $stop_order[$index];echo "<br>";
+                        if($sid != null && $fare[$index] != null && $stop_order[$index] != null){
+                            $mod = new RouteStopType();
+                            $mod->route_id = $model->route_id;
+                            $mod->stop_id = $sid;
+                            $mod->fare = $fare[$index] ;
+                            $mod->stop_order = $stop_order[$index];
+                            $mod->bus_type_id = $model->bus_type_id;
+                           $mod->save();
+                    }
+                
+                }
+                echo $mod->route_stop_type_id;
+            
+                  
+            return $this->redirect(['view', 'id' => $mod->route_stop_type_id]);
          }
 
-        // return $this->render('create', [
-        //     'model' => $model,
-        // ]);
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
