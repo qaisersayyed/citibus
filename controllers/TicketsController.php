@@ -66,6 +66,7 @@ class TicketsController extends Controller
 
     public function actionViewtickets($order_id)
     {
+        //manisha
         // Yii::$app->session->setFlash('success', "You have successfully Booked Ticket ");
         // echo $order_id;
 
@@ -128,6 +129,7 @@ class TicketsController extends Controller
 
     public function actionAlltickets()
     {
+        //qaiser
         $model = new Tickets();
         
         $user_id = Yii::$app->user->id;
@@ -148,7 +150,97 @@ class TicketsController extends Controller
         );
     }
 
-    
+
+    public function actionScanticket()
+    {
+
+        return $this->render(
+            'scanticket',
+            [
+        ]
+        );
+       
+       
+    }
+
+    public function actionScan()
+    {
+        
+        return $this->render('scan', [
+            
+        ]);
+    }
+
+    public function actionMarkticket()
+    {
+        $customer_name = '';
+        $busno = '';
+        $ticket_id = '';
+        $model = new Tickets();
+        if (Yii::$app->request->isAjax) {
+            
+            $data = Yii::$app->request->post();   
+            $code =  $data['ticket'];   
+            $model = Tickets::find()->where(['ticket_id' => $code ])->one();
+
+            if($model == '') {
+                $code = 0;
+            }elseif ($model->status == 0) {
+                $code = 2;
+            }else{
+                $model->status = 0;
+               
+                $customer_id = $model->customer_id;
+                $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();
+                $customer_name = $cus_name->name;
+                $bus_route = BusRoute::find()->where(['bus_route_id' => $model->bus_route_id ])->one();
+                $busno = $bus_route->bus->license_plate;
+                $ticket_id = $model->ticket_id;
+                $model->save();
+                $code = 1;
+            }
+            
+        }
+
+     return json_encode(["code"=> $code,"name" =>$customer_name ,"busno" => $busno,"ticket_id" => $ticket_id
+     ]);
+    // return $code;
+   
+    }
+    public function actionMarkticketqr()
+    {
+        $model = new Tickets();
+        $customer_name = '';
+        $busno = '';
+        $ticket_id = '';
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();   
+            $code =  $data['data'];   
+            $model = Tickets::find()->where(['ticket_id' => $code ])->one();
+
+            if($model == '') {
+                $code = 0;
+            }elseif ($model->status == 0) {
+                $code = 2;
+            } 
+            
+            else {
+                $model->status = 0;
+                $customer_id = $model->customer_id;
+                $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();
+                $customer_name = $cus_name->name;
+                $bus_route = BusRoute::find()->where(['bus_route_id' => $model->bus_route_id ])->one();
+                $busno = $bus_route->bus->license_plate;
+                $ticket_id = $model->ticket_id;
+                       $model->save();
+                       $code = 1;
+
+            }
+            
+        }
+        return json_encode(["code"=> $code,"name" =>$customer_name ,"busno" => $busno,"ticket_id" => $ticket_id
+        ]);
+    }
 
     /**
      * Creates a new Tickets model.

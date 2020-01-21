@@ -37,11 +37,12 @@ class Tickets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            
             [['customer_id', 'bus_route_id', 'route_stop_type_id', 'seat_code', 'fare'], 'required'],
             [['customer_id', 'bus_route_id', 'route_stop_type_id'], 'integer'],
-            [['created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['created_at', 'updated_at', 'deleted_at','status'], 'safe'],
             [['seat_code'], 'string', 'max' => 10],
-            [['seat_name'], 'string', 'max' => 30],
+           
             [['bus_route_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusRoute::className(), 'targetAttribute' => ['bus_route_id' => 'bus_route_id']],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'customer_id']],
             [['route_stop_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => RouteStopType::className(), 'targetAttribute' => ['route_stop_type_id' => 'route_stop_type_id']],
@@ -60,6 +61,7 @@ class Tickets extends \yii\db\ActiveRecord
             'route_stop_type_id' => 'Route Stop Type ID',
             'seat_code' => 'Seat Code',
             'fare' => 'Fare',
+            'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'deleted_at' => 'Deleted At',

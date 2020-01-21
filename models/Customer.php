@@ -86,7 +86,10 @@ class Customer extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['user_id' => 'user_id']);
     }
-
+    public function getCustomer()
+    {
+        return $this->hasOne(User::className(), ['customer_id' => 'customer_id']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

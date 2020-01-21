@@ -18,7 +18,7 @@ class TicketsSearch extends Tickets
     {
         return [
             [['ticket_id', 'customer_id', 'bus_route_id', 'route_stop_type_id'], 'integer'],
-            [['seat_code', 'fare', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['seat_code', 'fare', 'created_at', 'updated_at', 'deleted_at','status'], 'safe'],
         ];
     }
 
