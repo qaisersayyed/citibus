@@ -87,9 +87,10 @@ for ($z=0;$z<$a;$z++) {
 <div class="card bg-success text-white" >
     <div class="card-body" style="background-color:#F4B41A; color:black">
 	<div class="row" style="text-align: center;padding:30px">
-<div class="col-md-4"><p>From:<h3><?php echo $f ?></h3></p></div>
-<div class="col-md-4"><p>To:<h3><?php echo $t ?></h3></p></div>
-<div class="col-md-4"><p>Timing:<h3><?php $ftime = new DateTime($bus_route_id->timing);echo $ftime->format('h:i A');;   ?></h3></p></div>
+<div class="col-md-3"><p>From:<h3><?php echo $f ?></h3></p></div>
+<div class="col-md-3"><p>To:<h3><?php echo $t ?></h3></p></div>
+<div class="col-md-3"><p>Date:<h3><?php $format_date =  Yii::$app->formatter->asDate($date, 'long');echo $format_date ?></h3></p></div>
+<div class="col-md-3"><p>Timing:<h3><?php $ftime = new DateTime($bus_route_id->timing);echo $ftime->format('h:i A');;   ?></h3></p></div>
 
 		
 	</div>

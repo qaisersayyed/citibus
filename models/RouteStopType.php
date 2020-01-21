@@ -53,9 +53,9 @@ class RouteStopType extends \yii\db\ActiveRecord
     {
         return [
             'route_stop_type_id' => 'Route Stop Type ID',
-            'route_id' => 'Route ID',
-            'stop_id' => 'Stop ID',
-            'bus_type_id' => 'Bus Type ID',
+            'route_id' => 'Route ',
+            'stop_id' => 'Stop',
+            'bus_type_id' => 'Bus Type ',
             'fare' => 'Fare',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

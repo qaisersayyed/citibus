@@ -72,7 +72,7 @@ class BusController extends Controller
     {
         $model = new Bus();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())&& $model->save()) {  
             return $this->redirect(['view', 'id' => $model->bus_id]);
         }
 
@@ -80,7 +80,17 @@ class BusController extends Controller
             'model' => $model,
         ]);
     }
+    // public function actionForm(){
+    //     $model = new Bus();
 
+    //     if ($model->load(Yii::$app->request->post())&& $model->save()) {  
+    //         return $this->redirect(['view', 'id' => $model->bus_id]);
+    //     }
+
+    //     return $this->render('form', [
+    //         'model' => $model,
+    //     ]);
+    // }
     /**
      * Updates an existing Bus model.
      * If update is successful, the browser will be redirected to the 'view' page.

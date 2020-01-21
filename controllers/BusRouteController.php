@@ -56,7 +56,9 @@ class BusRouteController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        
+        //  echo $id;
+        return $this->render('view', [            
             'model' => $this->findModel($id),
         ]);
     }
@@ -83,8 +85,26 @@ class BusRouteController extends Controller
     {
         $model = new BusRoute();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->bus_route_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $r_id =  $model->route_id;
+            
+            foreach ($r_id as $rid) {
+                if($rid != null){
+                    // echo $rid;
+                    // echo "<br>";
+                    // echo $model->bus_id;
+                    // echo "<br>";
+                    // echo $model->timing;
+                    // echo "<br>";
+                    $mod = new BusRoute();
+                    $mod->route_id = $rid;
+                    $mod->bus_id = $model->bus_id;
+                    $mod->timing = $model->timing;
+                     $mod->save();
+
+                }                    
+                }               
+               return $this->redirect(['view', 'id' => $mod->bus_route_id]);
         }
 
         return $this->render('create', [

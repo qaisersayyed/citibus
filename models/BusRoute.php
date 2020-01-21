@@ -51,8 +51,8 @@ class BusRoute extends \yii\db\ActiveRecord
     {
         return [
             'bus_route_id' => 'Bus Route ID',
-            'bus_id' => 'Bus ID',
-            'route_id' => 'Route ID',
+            'bus_id' => 'Bus License Plate',
+            'route_id' => 'Route ',
             'timing' => 'Timing',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

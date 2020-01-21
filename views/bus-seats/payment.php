@@ -140,13 +140,16 @@ body{
 			</div>
 		</div><br><br>
 		<div class="row" style="text-align: center;">
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<h5>Customer name </h5><h4><b style="text-transform: capitalize;"><?php echo $name; ?></b></h4>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<h5>Bus No. </h5><h4><b><?php echo $bus_no; ?></b></h4>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
+			<h5>Date </h5><h4><b><?php echo $date; ?></b></h4>
+			</div>
+			<div class="col-md-3">
 			<h5>Seat No. </h5><h4><b><?php echo $seats; ?></b></h4>
 			</div>
 		</div><br>
