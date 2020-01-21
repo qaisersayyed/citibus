@@ -103,6 +103,11 @@ body{
 			<input class="form-control" style="display:none" type="text" name="busroute"
 					value=<?php echo $bus_route_id ?> >
 		</div>	
+		<div class="form-group">
+			
+			<input class="form-control" style="display:none" type="text" name="jdate"
+					value=<?php echo $date ?> >
+		</div>	
 		
 		<div class="form-group">
 		<input class="btn btn-success" type="submit" id="paysubmitbtn" value="submit">

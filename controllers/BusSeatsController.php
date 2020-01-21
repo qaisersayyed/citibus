@@ -148,6 +148,8 @@ class BusSeatsController extends Controller
         $seat =Yii::$app->request->post('seat');
         $bus_route_id = Yii::$app->request->post('busroute');
         $route_stop_type_id =Yii::$app->request->post('rstid');
+        $jdate =Yii::$app->request->post('jdate');
+        
 
         $s = array();
         $length =strlen($seat);
@@ -172,8 +174,9 @@ class BusSeatsController extends Controller
         
         foreach ($s as $seats) {
             Yii::$app->db->createCommand(
-                "INSERT INTO transaction (transaction_id,bus_route_id,customer_id,route_stop_type_id,seat_code,order_id,amount)
-             VALUES (NULL,'$bus_route_id','$data->customer_id','$route_stop_type_id','$seats','$order_id','$amount')"
+                "INSERT INTO transaction (transaction_id,bus_route_id,customer_id,route_stop_type_id,seat_code,order_id,amount,date)
+             VALUES (NULL,'$bus_route_id','$data->customer_id','$route_stop_type_id','$seats','$order_id','$amount','$jdate
+             ')"
             )->execute();
         }
             
@@ -206,14 +209,14 @@ class BusSeatsController extends Controller
             //echo $data->customer_id,"<br>";
             
             Yii::$app->db->createCommand(
-                "INSERT INTO tickets (ticket_id,customer_id,bus_route_id,route_stop_type_id,seat_code,fare)
-             VALUES (NULL,'$data->customer_id','$data->bus_route_id','$data->route_stop_type_id','$data->seat_code','$amount')"
+                "INSERT INTO tickets (ticket_id,customer_id,bus_route_id,route_stop_type_id,seat_code,fare,date)
+             VALUES (NULL,'$data->customer_id','$data->bus_route_id','$data->route_stop_type_id','$data->seat_code','$amount','$data->date')"
             )->execute();
 
             $tickets = Tickets::find()->where(['customer_id' => $data->customer_id,'seat_code' => $data->seat_code,'fare' => $amount ])->one();
             //  echo "ticketd" ,$tickets->ticket_id;
             Yii::$app->db->createCommand(
-                "UPDATE transaction SET ticket_id = '$tickets->ticket_id', txn_id = '$txnid' ,date = '$date', status = 1  WHERE order_id = '$data->order_id'; )"
+                "UPDATE transaction SET ticket_id = '$tickets->ticket_id', txn_id = '$txnid',status = 1  WHERE order_id = '$data->order_id'; )"
             )->execute();
         }
         

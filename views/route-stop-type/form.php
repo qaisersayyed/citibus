@@ -70,8 +70,9 @@ body {
                             'value' => date('d-M-Y'),
                             'options' => ['placeholder' => 'Select issue date ...'],
                             'pluginOptions' => [
-                                'format' => 'dd-M-yyyy',
-                                'todayHighlight' => true
+                                'format' => 'yyyy-mm-dd',
+                                'todayHighlight' => true,    
+                            'startDate' => date("yyyy-MM-dd H:i:s"),
                             ]
                         ]);
                                         ?>
