@@ -137,7 +137,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                     <div class="col-md-8">
                                         <h4>Bus Number: <b><?php echo $busno ?></b></h4>
                                         <div>
-                                            <h4>Date  <b><?php echo $date ?></b></h4>
+                                            <h4>Date  <b><?php $jdate =  Yii::$app->formatter->asDate($date, 'long');echo $jdate ?></b></h4>
                                         </div>
                                     </div>
                                     
@@ -205,7 +205,10 @@ $to_route_id = RouteStopType::find('*')->where(['stop_id' => $to_id])->all();
 //   echo json_encode($to_route_id);
 
 for($i = 0; $i < count($from_route_id) ;$i++) {
-    if($from_route_id[$i]->route_id == $to_route_id[$i]->route_id and $from_route_id[$i]->stop_order < $to_route_id[$i]->stop_order){
+    if($from_route_id[$i]->route_id != $to_route_id[$i]->route_id and $from_route_id[$i]->stop_order > $to_route_id[$i]->stop_order){
+        echo "not Available";  
+    }
+    else{
         $route_id =  $from_route_id[$i]->route_id;
         $stop_id = RouteStopType::find(['stop_id'])->where(['route_id' => $route_id])->orderby(['stop_order' =>SORT_ASC])->all();
         if($stop_id>0){
@@ -245,7 +248,7 @@ for($i = 0; $i < count($from_route_id) ;$i++) {
             }
             
         }
-       
+           
     }    
 ?>
 

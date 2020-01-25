@@ -152,7 +152,7 @@ body{
 			<h5>Bus No. </h5><h4><b><?php echo $bus_no; ?></b></h4>
 			</div>
 			<div class="col-md-3">
-			<h5>Date </h5><h4><b><?php echo $date; ?></b></h4>
+			<h5>Date </h5><h4><b><?php $jdate =  Yii::$app->formatter->asDate($date, 'long');echo $jdate ?></b></h4>
 			</div>
 			<div class="col-md-3">
 			<h5>Seat No. </h5><h4><b><?php echo $seats; ?></b></h4>
