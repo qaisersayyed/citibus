@@ -12,7 +12,7 @@ use app\models\RouteStopTypeSearch;
 //echo $user_id;
 //echo json_encode($data);
 //echo $data->fare;
-$mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->all();
+$mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['date'])->all();
 //echo "<br>";
 $seats = array();
 
@@ -21,15 +21,15 @@ echo "<center><h1>All Bookings</h1></center><br>";
 foreach ($mod as $col) {
     // echo $col->ticket_id,"<br>";
 
-    $tickets = Tickets::find()->where(['created_at' => $col->created_at ])->all();
+    $tickets = Tickets::find()->where(['date' => $col->date ])->all();
     $rst = RouteStopTypeSearch::find()->where(['route_stop_type_id' => $col->route_stop_type_id ])->one();
-    $date = Tickets::find()->select('created_at')->where(['created_at' => $col->created_at ])->one();
+    $date = Tickets::find()->where(['date' => $col->date ])->one();
     $from = $rst->route->from;
     $to = $rst->stop->stop_name;
     //$time = $tickets->bus_route_id;
     $col->route_stop_type_id;
     
-    $doj = $date->created_at;
+    $doj = $date->date;
     // echo $doj;
     foreach ($tickets as $cols) {
         $time = $cols->busRoute->timing;
