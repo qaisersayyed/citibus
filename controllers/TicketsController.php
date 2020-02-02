@@ -63,7 +63,7 @@ class TicketsController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
-
+    
     public function actionViewtickets($order_id)
     {
         //manisha
@@ -73,6 +73,7 @@ class TicketsController extends Controller
         $transaction_id = Transaction::find()->where(['order_id' => $order_id])->all();
         $seat_code = array();
         foreach($transaction_id as $t_id){
+            $ticketid = $t_id->ticket_id;
             $customer_id  = $t_id->customer_id;
             $amount = $t_id->amount;
             $route_stop_type_id = $t_id->route_stop_type_id;
@@ -123,8 +124,18 @@ class TicketsController extends Controller
                 'to' =>$to,
                 'bus_no' => $bus_no,
                 'time' => $time,
-                'seat' => $seat_code
+                'seat' => $seat_code,
+                'ticketid' => $ticketid
         ]);
+    }
+
+    public function actionViewticket2($tid)
+    {
+        
+        $transaction = Transaction::find()->where(['ticket_id' => $tid])->one();
+        
+        return $this->redirect(['tickets/viewtickets', 'order_id' => $transaction->order_id]);
+       
     }
 
     public function actionAlltickets()
@@ -177,19 +188,36 @@ class TicketsController extends Controller
         $busno = '';
         $ticket_id = '';
         $model = new Tickets();
+
+        
+       
         if (Yii::$app->request->isAjax) {
             
             $data = Yii::$app->request->post();   
-            $code =  $data['ticket'];   
-            $model = Tickets::find()->where(['ticket_id' => $code ])->one();
+            $code =  $data['ticket']; 
+            $fst = substr($code,0,1);
+            $no = substr($code,1);
+            //echo $no;
+            if($fst == "T" OR $fst == "t"){
+                $model = Tickets::find()->where(['ticket_id' => $no ])->one();
+                //echo $model->ticket_id;
+            }elseif($fst == "P" OR $fst == "p"){
+                $model = '';
+                // $model = Tickets::find()->where(['ticket_id' => $code ])->one();
+            }else{
+                $model = '';
+              //  echo "none";
+            }
+            
 
             if($model == '') {
                 $code = 0;
             }elseif ($model->status == 0) {
                 $code = 2;
-            }else{
-                $model->status = 0;
-               
+            }
+            else{
+                $model->status = 0;     
+
                 $customer_id = $model->customer_id;
                 $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();
                 $customer_name = $cus_name->name;
@@ -204,7 +232,7 @@ class TicketsController extends Controller
 
      return json_encode(["code"=> $code,"name" =>$customer_name ,"busno" => $busno,"ticket_id" => $ticket_id
      ]);
-    // return $code;
+    //return $code;
    
     }
     public function actionMarkticketqr()

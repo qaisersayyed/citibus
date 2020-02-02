@@ -17,8 +17,8 @@ class EmployeeSearch extends Employee
     public function rules()
     {
         return [
-            [['employee_id', 'user_id', 'phone_no', 'aadhar_card_no'], 'integer'],
-            [['name', 'role', 'license_no', 'address', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['employee_id',  'phone_no', 'aadhar_card_no'], 'integer'],
+            [['name', 'role', 'license_no', 'address', 'user_id','created_at', 'updated_at', 'deleted_at'], 'safe'],
         ];
     }
 

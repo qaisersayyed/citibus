@@ -8,6 +8,7 @@ use app\models\EmployeeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Users;
 
 /**
  * EmployeeController implements the CRUD actions for Employee model.
@@ -64,12 +65,22 @@ class EmployeeController extends Controller
      */
     public function actionCreate()
     {
+        $user = new Users();
         $model = new Employee();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        if ($model->load(Yii::$app->request->post())) {
+            
+            $user->email_id = Yii::$app->request->post('email');
+            $user->password = Yii::$app->getSecurity()->generatePasswordHash(Yii::$app->request->post('password'));
+            $user->save(false);
+            $model->user_id = $user->user_id;
+            $model->save(false);
             return $this->redirect(['view', 'id' => $model->employee_id]);
         }
 
+        
+        //Yii::$app->request->post('email');
         return $this->render('create', [
             'model' => $model,
         ]);

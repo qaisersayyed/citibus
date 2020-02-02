@@ -44,6 +44,8 @@ var ticket_id = document.getElementById('ticket_id');
            console.log(result.name);
            console.log(result.busno);
            console.log(result.ticket_id);
+       //   console.log(data);
+          
    
           if (result.code == 1){
               sucess.style.display = "block";
@@ -73,10 +75,6 @@ var ticket_id = document.getElementById('ticket_id');
 }
 </script>
 <div class="tickets-scanticket" >
-
-
-
-
 
 
 <div class="alert alert-success" id="1" style="display:none" role="alert">
