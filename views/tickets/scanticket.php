@@ -32,12 +32,12 @@ var ticket_id = document.getElementById('ticket_id');
     warning.style.display = "none";
    
 
-    $.ajax({
-            url: '<?php echo Yii::$app->request->baseUrl. '/tickets/markticket' ?>',
-           type: 'post',
-           data: { 'ticket' : a },
-          
-           success: function (data) {
+  $.ajax({
+          url: '<?php echo Yii::$app->request->baseUrl. '/tickets/markticket' ?>',
+          type: 'post',
+          data: { 'ticket' : a },
+        
+          success: function (data) {
              snd.play()
             var result = $.parseJSON(data);
            console.log(result.data);
