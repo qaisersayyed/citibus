@@ -64,6 +64,26 @@ class TestController extends Controller
         ]);
     }
 
+    public function actionGps()
+    {
+
+        if (Yii::$app->request->isAjax) {
+            
+            $data = Yii::$app->request->post();   
+            $lat =  $data['lat'];
+            $lng =  $data['lng'];   
+
+            $code = 1;
+            return $code;
+
+            
+        }
+        return $this->render('gps', [
+          
+
+        ]);
+    }
+
     /**
      * Creates a new Route model.
      * If creation is successful, the browser will be redirected to the 'view' page.
