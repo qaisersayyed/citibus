@@ -26,7 +26,7 @@
         var map = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
           center: point,
-          mapTypeIdh: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
         var marker = null;
@@ -70,7 +70,7 @@
           });
 
           
-          setTimeout(autoUpdate, 5000);
+          setTimeout(autoUpdate, 15000);
         }
 
         autoUpdate();
