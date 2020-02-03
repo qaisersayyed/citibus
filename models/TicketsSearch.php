@@ -18,7 +18,7 @@ class TicketsSearch extends Tickets
     {
         return [
             [['ticket_id', 'customer_id', 'bus_route_id', 'route_stop_type_id'], 'integer'],
-            [['seat_code', 'fare', 'created_at', 'updated_at', 'deleted_at','status'], 'safe'],
+            [['seat_code','date', 'fare', 'created_at', 'updated_at', 'deleted_at','status'], 'safe'],
         ];
     }
 
@@ -58,6 +58,7 @@ class TicketsSearch extends Tickets
 
         // grid filtering conditions
         $query->andFilterWhere([
+            'date' => $this->date,
             'ticket_id' => $this->ticket_id,
             'customer_id' => $this->customer_id,
             'bus_route_id' => $this->bus_route_id,

@@ -59,14 +59,13 @@
               // If Marker does not exist 
               marker = new google.maps.Marker({
                 position: newPoint,
-                map: map
+                map:map
               });
             }
 
             // Center the map on the new position
             map.setCenter(newPoint);
           });
-
 
           setTimeout(autoUpdate, 15000);
         }

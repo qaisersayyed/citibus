@@ -1,2 +1,9 @@
 12/01/2020
 ALTER TABLE `tickets` ADD `status` BOOLEAN NOT NULL DEFAULT TRUE AFTER `fare`; 
+
+30/01/2020;
+ALTER TABLE `customer` CHANGE `password` `password` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL; 
+
+02/02/2020
+CREATE TABLE `citibus`.`location` ( `location_id` INT NOT NULL AUTO_INCREMENT ,  `lat` TEXT NOT NULL ,  `lon` TEXT NOT NULL ,  `bus_employee_id` INT NOT NULL ,  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,  `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL ,  `deleted_at` TIMESTAMP NULL ,    PRIMARY KEY  (`location_id`)) ENGINE = InnoDB;
+ALTER TABLE `location` ADD CONSTRAINT `a1` FOREIGN KEY (`bus_employee_id`) REFERENCES `bus_employee`(`bus_employee_id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
