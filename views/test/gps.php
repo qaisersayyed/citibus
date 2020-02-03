@@ -2,6 +2,10 @@
 <html>
 
 <head>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4HbvUsOuKl5yYnN3At_yF4sogOZQWUKw">
+  </script>
+
   <style>
     /* Set the size of the div element that contains the map */
     #map {
@@ -11,12 +15,6 @@
       /* The width is the width of the web page */
     }
   </style>
-</head>
-
-<body>
-
-  <div id="map"></div>
-
   <script>
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -26,7 +24,7 @@
         var map = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
           center: point,
-          mapTypeIdh: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
         var marker = null;
@@ -69,8 +67,8 @@
             map.setCenter(newPoint);
           });
 
-          
-          setTimeout(autoUpdate, 5000);
+
+          setTimeout(autoUpdate, 15000);
         }
 
         autoUpdate();
@@ -79,8 +77,15 @@
       alert("W3C Geolocation API is not available");
     }
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4HbvUsOuKl5yYnN3At_yF4sogOZQWUKw">
-  </script>
+
+</head>
+
+<body>
+
+  <div id="map"></div>
+
+
+
 </body>
 
 </html>
