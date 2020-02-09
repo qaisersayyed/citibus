@@ -123,7 +123,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
         $from = $col->route->from;
         $to = $col->route->to;
         $time= $col->timing;
-        $seats_count = Tickets::find()->where(['bus_route_id' => $col->bus_route_id,'date(created_at)' => $date])->count();
+        $seats_count = Tickets::find()->where(['bus_route_id' => $col->bus_route_id,'date' => $date])->count();
         $bus_seat_count = Bus::find()->where(['bus_id' => $col->bus_id ])->one();
         $seats_left = $bus_seat_count->no_of_seats - $seats_count ;
         $ftime = new DateTime($time); ?>
@@ -263,3 +263,4 @@ for($i = 0; $i < count($from_route_id) ;$i++) {
 
 
 
+        

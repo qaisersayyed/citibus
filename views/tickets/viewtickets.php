@@ -1,6 +1,10 @@
 <?php use yii\helpers\Html;
 use app\models\TransactionSearch;
-
+require_once 'phpqrcode/qrlib.php';
+$path = 'images/';
+$file = $path.uniqid().".png";
+$text = $ticketid;
+QRcode::png($text,$file);
 ?> 
 <script  type="text/javascript">
        history.pushState(null, null, location.href);
@@ -72,7 +76,7 @@ $dateObject = new DateTime($time);
                    
                 </div>
                 <div class="col-sm-2" style="display:inline-block;margin-top:7%;vertical-align:top;border-left: .22em dashed #fff;">
-                   <img src="http://localhost/citibus/web/uploads/qr.png" alt="" height="150" width="auto">
+                   <img src=<?php echo Yii::$app->request->baseUrl. "/$file"?> alt="" height="150" width="auto" data-toggle="modal" data-target="#myModal">
                     <?// echo Html::img('@web/uploads/qr.png', ['width'=>'150px']);?>
                 </div>
             </div>
@@ -91,6 +95,18 @@ $dateObject = new DateTime($time);
             
             <button type="button" onclick="printDiv('ticket');"  id="download" style="background-color:#143D59;margin-top:50px;float:right" class="btn btn-primary">Print</button>
     </div>
+
+
+    <!-- Model to view qr  -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+        <center><img src=<?php echo Yii::$app->request->baseUrl. "/$file"?> alt="" height="300" width="300"></center>
+        </div>
+    </div>
+  </div>
+</div>
 </div>
 
  </body>

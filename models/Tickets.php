@@ -40,7 +40,7 @@ class Tickets extends \yii\db\ActiveRecord
             
             [['customer_id', 'bus_route_id', 'route_stop_type_id', 'seat_code', 'fare'], 'required'],
             [['customer_id', 'bus_route_id', 'route_stop_type_id'], 'integer'],
-            [['created_at', 'updated_at', 'deleted_at','status'], 'safe'],
+            [['created_at','date', 'updated_at', 'deleted_at','status'], 'safe'],
             [['seat_code'], 'string', 'max' => 10],
            
             [['bus_route_id'], 'exist', 'skipOnError' => true, 'targetClass' => BusRoute::className(), 'targetAttribute' => ['bus_route_id' => 'bus_route_id']],
@@ -55,6 +55,7 @@ class Tickets extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'date' => 'Date',
             'ticket_id' => 'Ticket ID',
             'customer_id' => 'Customer ID',
             'bus_route_id' => 'Bus Route ID',
