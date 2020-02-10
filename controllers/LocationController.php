@@ -57,6 +57,30 @@ class LocationController extends Controller
         ]);
     }
 
+
+
+    public function actionGps()
+    {
+
+        if (Yii::$app->request->isAjax) {
+            
+            $data = Yii::$app->request->post();   
+            $lat =  $data['lat'];
+            $lng =  $data['lng'];  
+            $user_id = Yii::$app->user->id;
+            echo $user_id;
+
+            $code = 1;
+            return $user_id;
+
+            
+        }
+        return $this->render('gps', [
+          
+
+        ]);
+    }
+
     /**
      * Creates a new Location model.
      * If creation is successful, the browser will be redirected to the 'view' page.
