@@ -17,7 +17,7 @@ class PassSearch extends Pass
     public function rules()
     {
         return [
-            [['pass_id', 'customer_id', 'route_id', 'up', 'down'], 'integer'],
+            [['pass_id', 'customer_id', 'route_id', 'up_down','fare'], 'integer'],
             [['start_date', 'end_date', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
         ];
     }
@@ -63,8 +63,9 @@ class PassSearch extends Pass
             'route_id' => $this->route_id,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'up' => $this->up,
-            'down' => $this->down,
+            'up_down' => $this->up_down,
+            'fare' => $this->fare,
+            // 'down' => $this->down,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,

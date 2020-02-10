@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Pass;
+use app\models\RouteStopType;
+use app\models\Customer;
 use app\models\PassSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -65,9 +67,17 @@ class PassController extends Controller
     public function actionCreate()
     {
         $model = new Pass();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->pass_id]);
+        if ($model->load(Yii::$app->request->post()) ) {
+            $route_id  = $model->route_id;
+            $route = RouteStopType::find()->where(['route_id'=> $route_id])->orderBy(['stop_order' => SORT_DESC]) ->one();
+            $fare = ($route->fare)* 60;
+            $user_id = Yii::$app->user->id;
+            $customer = Customer::find()->where(['user_id'=> $user_id ])->one();
+            $model->customer_id = $customer->customer_id;
+            $model->fare =  $fare;
+            $model->save();
+            // echo $model->pass_id;
+             return $this->redirect(['view', 'id' => $model->pass_id]);
         }
 
         return $this->render('create', [

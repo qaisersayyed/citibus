@@ -33,11 +33,11 @@ $this->title = $model->pass_id;
             'route_id',
             'start_date',
             'end_date',
-            'up',
-            'down',
-            'created_at',
-            'updated_at',
-            'deleted_at',
+            'up_down',
+            'fare',
+            // 'created_at',
+            // 'updated_at',
+            // 'deleted_at',
         ],
     ]) ?>
 

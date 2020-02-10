@@ -38,8 +38,8 @@ class Pass extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'route_id', 'start_date', 'end_date', 'up', 'down'], 'required'],
-            [['customer_id', 'route_id', 'up', 'down'], 'integer'],
+            [['customer_id', 'route_id', 'start_date', 'end_date', 'up_down','fare'], 'required'],
+            [['customer_id', 'route_id', 'up_down','fare'], 'integer'],
             [['start_date', 'end_date', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'customer_id']],
             [['route_id'], 'exist', 'skipOnError' => true, 'targetClass' => Route::className(), 'targetAttribute' => ['route_id' => 'route_id']],
@@ -54,11 +54,10 @@ class Pass extends \yii\db\ActiveRecord
         return [
             'pass_id' => 'Pass ID',
             'customer_id' => 'Customer ID',
-            'route_id' => 'Route ID',
+            'route_id' => 'Route',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
-            'up' => 'Up',
-            'down' => 'Down',
+            'up_down' => 'Total Ride',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'deleted_at' => 'Deleted At',
