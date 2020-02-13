@@ -75,9 +75,12 @@ class PassController extends Controller
             $customer = Customer::find()->where(['user_id'=> $user_id ])->one();
             $model->customer_id = $customer->customer_id;
             $model->fare =  $fare;
-            $model->save();
+           // $model->save();
+            echo $route_id," ",$fare," ",$model->up_down," ",$customer->customer_id," ",$model->start_date," ",$model->end_date;
             // echo $model->pass_id;
-             return $this->redirect(['view', 'id' => $model->pass_id]);
+            return $this->redirect(array('preview','customer_id' => $customer->customer_id,
+            'route_id' => $route_id, 'start_date' => $model->start_date, 'end_date' => $model->end_date,
+            'up_down' => $model->up_down , 'fare' => $fare,'customer_name' => $customer->name));
         }
 
         return $this->render('create', [
@@ -85,6 +88,32 @@ class PassController extends Controller
         ]);
     }
 
+
+    public function actionPreview($route_id,$fare,$up_down,$customer_id,$start_date,$end_date,$customer_name)
+    {
+       
+        return $this->render('preview', [
+            'customer_id' => $customer_id,
+            'route_id' => $route_id, 'start_date' => $start_date, 'end_date' => $end_date,
+            'up_down' => $up_down , 'fare' => $fare, 'customer_name' => $customer_name
+            
+        ]);
+    }
+
+
+    public function actionPaymentaction()
+    {
+        $amount =Yii::$app->request->post('TXN_AMOUNT');
+        $order_id = Yii::$app->request->post('ORDER_ID');
+        $route_id = Yii::$app->request->post('route_id');
+        $customer_id =Yii::$app->request->post('CUST_ID');
+        $start_date = Yii::$app->request->post('start_date');
+        $end_date =Yii::$app->request->post('end_date');
+
+        
+       echo $amount,"##",$order_id,"##",$route_id,"##",$customer_id,"##",$start_date,"##",$end_date;
+        //return $this->render('preview');
+    }
     /**
      * Updates an existing Pass model.
      * If update is successful, the browser will be redirected to the 'view' page.
