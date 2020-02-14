@@ -40,7 +40,7 @@ class Pass extends \yii\db\ActiveRecord
         return [
             [['customer_id', 'route_id', 'start_date', 'end_date', 'up_down','fare'], 'required'],
             [['customer_id', 'route_id', 'up_down','fare'], 'integer'],
-            [['start_date', 'end_date', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['start_date', 'end_date', 'created_at', 'updated_at', 'deleted_at','order_id','txn_id','status','txn_date'], 'safe'],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'customer_id']],
             [['route_id'], 'exist', 'skipOnError' => true, 'targetClass' => Route::className(), 'targetAttribute' => ['route_id' => 'route_id']],
         ];
@@ -52,6 +52,10 @@ class Pass extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'order_id' => 'Order_id',
+            'txn_date' => 'Txn_date',
+            'status' => 'status',
+            'txn_id' => 'Txn_id',
             'pass_id' => 'Pass ID',
             'customer_id' => 'Customer ID',
             'route_id' => 'Route',

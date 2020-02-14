@@ -34,3 +34,4 @@ ALTER TABLE `pass` CHANGE `up` `up_down` INT(11) NOT NULL;
 
 //2 jan 2020
 ALTER TABLE `pass` ADD `fare` INT NOT NULL AFTER `up_down`;
+ALTER TABLE `pass` DROP `down`;
