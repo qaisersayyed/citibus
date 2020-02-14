@@ -113,7 +113,7 @@ $model = new Pass();
                                     DatePicker::class, 
                                     [
                                         'value' => date('d-M-Y'),
-                                        'options' => ['id'=>'end_date','placeholder' => 'Select issue time ...'],
+                                        'options' => ['id'=>'end_date','placeholder' => 'Select issue time ...','disabled'=>true],
                                             'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
                                             'startDate' => date("yyyy-MM-dd H:i:s"),
