@@ -45,7 +45,7 @@ if ($isValidChecksum == "TRUE") {
 		<body onload="onload()">
 
 		</div>
-		<form action="http://localhost/citibus/web/bus-seats/paymentresponse" method="get">
+		<form action="http://localhost/citibus/web/pass/paymentresponse" method="get">
             <input style="display:none" type="text" name="order_no" value=<?php echo $orderno ?> 
 			/>
             <input style="display:none" type="number" step="any" name="amount" value=<?php echo $amount ?>
@@ -82,7 +82,7 @@ console.log("onload");
 	<center>
 	<div>
 	<h2>Transaction status is failure</h2>
-	<a href='http://localhost/citibus/web/route-stop-type/form' class='btn btn-primary'>Back Home</a>
+	<a href='http://localhost/citibus/web/pass/create' class='btn btn-primary'>Back Home</a>
 	</div>
 	</center>
 	<?php

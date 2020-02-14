@@ -10,11 +10,11 @@ require_once("lib/encdec_paytm.php");
 $checkSum = "";
 $paramList = array();
 
-$ORDER_ID = $_POST["ORDER_ID"];
-$CUST_ID = $_POST["CUST_ID"];
-$INDUSTRY_TYPE_ID = $_POST["INDUSTRY_TYPE_ID"];
-$CHANNEL_ID = $_POST["CHANNEL_ID"];
-$TXN_AMOUNT = $_POST["TXN_AMOUNT"];
+$ORDER_ID = $ORDER_ID;
+$CUST_ID = $CUST_ID;
+$INDUSTRY_TYPE_ID = $INDUSTRY_TYPE_ID;
+$CHANNEL_ID = $CHANNEL_ID;
+$TXN_AMOUNT = $TXN_AMOUNT;
 
 
 // Create an array having all required parameters for creating checksum.
@@ -28,7 +28,8 @@ $paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
 
 
 
-$paramList["CALLBACK_URL"] = "http://localhost/citibus/views/bus-seats/PaytmKit/pgResponse.php";
+
+$paramList["CALLBACK_URL"] = "http://localhost/citibus/views/pass/PaytmKit/pgResponse.php";
 //http://localhost/paytm/PaytmKit/pgResponse.php
 ///opt/lampp/htdocs/citibus/views/bus-seats/PaytmKit/pgResponse.php
 

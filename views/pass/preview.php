@@ -68,7 +68,11 @@ $routes = Route::find()->where(['route_id'=> $route_id ])->one();
 		</div>
 		
 </div>
-<?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); 
+
+
+
+?>
 <style>
 
 </style>

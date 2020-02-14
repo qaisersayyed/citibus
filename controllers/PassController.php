@@ -71,12 +71,13 @@ class PassController extends Controller
             $route_id  = $model->route_id;
             $route = RouteStopType::find()->where(['route_id'=> $route_id])->orderBy(['stop_order' => SORT_DESC]) ->one();
             $fare = ($route->fare)* 60;
+            $fare = (10 / 100) * $fare;
             $user_id = Yii::$app->user->id;
             $customer = Customer::find()->where(['user_id'=> $user_id ])->one();
-            $model->customer_id = $customer->customer_id;
-            $model->fare =  $fare;
+          //  $model->customer_id = $customer->customer_id;
+          //  $model->fare =  $fare;
            // $model->save();
-            echo $route_id," ",$fare," ",$model->up_down," ",$customer->customer_id," ",$model->start_date," ",$model->end_date;
+          //  echo $route_id," ",$fare," ",$model->up_down," ",$customer->customer_id," ",$model->start_date," ",$model->end_date;
             // echo $model->pass_id;
             return $this->redirect(array('preview','customer_id' => $customer->customer_id,
             'route_id' => $route_id, 'start_date' => $model->start_date, 'end_date' => $model->end_date,
@@ -103,6 +104,9 @@ class PassController extends Controller
 
     public function actionPaymentaction()
     {
+
+        
+
         $amount =Yii::$app->request->post('TXN_AMOUNT');
         $order_id = Yii::$app->request->post('ORDER_ID');
         $route_id = Yii::$app->request->post('route_id');
@@ -110,10 +114,67 @@ class PassController extends Controller
         $start_date = Yii::$app->request->post('start_date');
         $end_date =Yii::$app->request->post('end_date');
 
+
+        // Yii::$app->db->createCommand(
+        //     "INSERT INTO pass (customer_id,route_id,start_date,end_date,up_down,fare,order_id)
+        //  VALUES ('$customer_id','$route_id','$start_date','$end_date',60,'$amount','$order_id
+        //  ')"
+        // )->execute();
+       // echo $model->pass_id;
+
+
         
-       echo $amount,"##",$order_id,"##",$route_id,"##",$customer_id,"##",$start_date,"##",$end_date;
-        //return $this->render('preview');
+       //echo $amount,"##",$order_id,"##",$route_id,"##",$customer_id,"##",$start_date,"##",$end_date;
+        return $this->redirect(['paymentprocess','ORDER_ID' =>$order_id,
+        'CUST_ID' => $customer_id,
+     'CHANNEL_ID' => 'WEB' ,'INDUSTRY_TYPE_ID' => 'Retail',
+            'route_id' => $route_id, 'start_date' => $start_date, 'end_date' => $end_date,
+             'fare' => $amount,]);
     }
+
+
+    public function actionPaymentprocess($ORDER_ID,$CUST_ID,$CHANNEL_ID,$INDUSTRY_TYPE_ID,$route_id,$start_date,
+    $end_date,$fare)
+    {
+        $model = new Pass();
+        $model->customer_id = $CUST_ID;
+        $model->route_id = $route_id;
+        $model->start_date = $start_date;
+        $model->end_date = $end_date;
+        $model->up_down = 60;
+        $model->fare = $fare;
+        $model->order_id = $ORDER_ID;
+        $model->save();
+   // echo $ORDER_ID,$CUST_ID,$TXN_AMOUNT,$CHANNEL_ID,$INDUSTRY_TYPE_ID;
+    return $this->render('PaytmKit/pgRedirect',['ORDER_ID' =>$ORDER_ID,
+    'CUST_ID' => $CUST_ID, 'TXN_AMOUNT' => 100, 'CHANNEL_ID' => 'WEB' ,'INDUSTRY_TYPE_ID' => 'Retail']);
+
+    }
+
+    public function actionPaymentresponse(){
+        
+        $orderid = Yii::$app->request->get('order_no');
+        $amount = Yii::$app->request->get('amount');
+        $date = Yii::$app->request->get('date');
+        $txnid = Yii::$app->request->get('txnid');
+        $status = Yii::$app->request->get('status');
+        $user_id = Yii::$app->user->id;
+        $customer = Customer::find()->where(['user_id'=> $user_id ])->one();
+        $pass = Pass::find()->where(['order_id'=> $orderid,'customer_id' =>$customer->customer_id])->one();
+        $pass->order_id = $orderid;
+        $pass->txn_id = $txnid;
+        $pass->status = 1;
+        $pass->txn_date = $date;
+
+        $pass->save();
+        echo "saved";        // return $this->render('', [
+    
+        // ]);
+
+
+
+    }
+
     /**
      * Updates an existing Pass model.
      * If update is successful, the browser will be redirected to the 'view' page.
