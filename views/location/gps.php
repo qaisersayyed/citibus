@@ -37,7 +37,7 @@
             console.log(position);
 
             $.ajax({
-              url: '<?php echo Yii::$app->request->baseUrl . '/test/gps' ?>',
+              url: '<?php echo Yii::$app->request->baseUrl . '/location/gps' ?>',
               type: 'post',
               data: {
                 'lat': position.coords.latitude,
