@@ -33,7 +33,7 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lat', 'lon', 'bus_employee_id'], 'required'],
+            [['lat', 'lon', ], 'required'],
             [['lat', 'lon'], 'string'],
             [['bus_employee_id'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],

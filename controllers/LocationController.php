@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\BusEmployee;
+use app\models\Employee;
 use Yii;
 use app\models\Location;
 use app\models\LocationSearch;
@@ -54,6 +56,41 @@ class LocationController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+
+
+    public function actionGps()
+    {
+
+        $model = new Location();
+
+        if (Yii::$app->request->isAjax) {
+            
+            $data = Yii::$app->request->post();   
+            $lat =  $data['lat'];
+            $lng =  $data['lng'];  
+            $user_id = Yii::$app->user->id;
+            $employee_id = Employee::find()->where(['user_id'=>$user_id])->one();
+            $bus_employee_id = BusEmployee::find()->where(['employee_id'=>$employee_id->employee_id])->one();
+            $model->lat = $lat;
+            $model->lon = $lng;
+            $model->bus_employee_id = $bus_employee_id->bus_employee_id;
+
+
+            $model->save();
+
+
+            
+        //  $code = 1;
+            return $bus_employee_id->bus_employee_id;
+
+            
+        }
+        return $this->render('gps', [
+          
+
         ]);
     }
 

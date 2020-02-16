@@ -164,8 +164,8 @@ class TicketsController extends Controller
 
 
     public function actionScanticket()
-    {
-
+    {   
+        
         return $this->render(
             'scanticket',
             [

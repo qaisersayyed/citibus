@@ -76,6 +76,16 @@ class BusRouteController extends Controller
         ]);
     }
 
+    public function actionStart_ride()
+    {
+        
+               
+        return $this->render('start_ride');
+
+}
+
+    
+
     /**
      * Creates a new BusRoute model.
      * If creation is successful, the browser will be redirected to the 'view' page.

@@ -245,6 +245,11 @@ $this->title = "QR Scan";
 <b>Last detected at: </b>
 <span id="cam-qr-result-timestamp"></span>
 <hr>
+<?= Html::a(
+                    'Done',
+                    ['location/gps'],
+                    ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
+                ); ?>
 
 
 </div>

@@ -1,4 +1,7 @@
-<!-- <!DOCTYPE html>
+<?php
+use yii\helpers\Html;
+?>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -37,7 +40,7 @@
             console.log(position);
 
             $.ajax({
-              url: '<?php echo Yii::$app->request->baseUrl . '/test/gps' ?>',
+              url: '<?php echo Yii::$app->request->baseUrl . '/location/gps' ?>',
               type: 'post',
               data: {
                 'lat': position.coords.latitude,
@@ -80,11 +83,16 @@
 </head>
 
 <body>
-
+  <center><h2>Current location</h2></center>
   <div id="map"></div>
 
-
+<br>
+<?= Html::a(
+                    'Exit',
+                    ['route-stop-type/form'],
+                    ['class' => 'btn btn-custom btn-lg', 'style' => 'background-color:red; color:white']
+                ); ?>
 
 </body>
 
-</html> -->
+</html>
