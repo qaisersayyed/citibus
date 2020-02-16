@@ -10,7 +10,7 @@ use app\models\PassSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use DateTime;
 /**
  * PassController implements the CRUD actions for Pass model.
  */
@@ -68,6 +68,10 @@ class PassController extends Controller
     {
         $model = new Pass();
         if ($model->load(Yii::$app->request->post()) ) {
+            $start_date =  $model->start_date;
+            $end_date = new DateTime($start_date);
+            $end_date->modify("+1 month");
+            $model->end_date = $end_date->format("Y-m-d"); 
             $route_id  = $model->route_id;
             $route = RouteStopType::find()->where(['route_id'=> $route_id])->orderBy(['stop_order' => SORT_DESC]) ->one();
             $fare = ($route->fare)* 60;
@@ -90,6 +94,16 @@ class PassController extends Controller
         ]);
     }
 
+    public function actionViewpass($id)
+    {
+        if (!Yii::$app->user->isGuest) {       
+            return $this->render('viewpass', [
+                'model' => $this->findModel($id),
+            ]);
+            }else{
+                throw new \yii\web\ForbiddenHttpException;
+            }
+    }
 
     public function actionPreview($route_id,$fare,$up_down,$customer_id,$start_date,$end_date,$customer_name)
     {
@@ -168,14 +182,15 @@ class PassController extends Controller
         $pass->txn_date = $date;
 
         $pass->save();
-        echo "saved";        // return $this->render('', [
-    
-        // ]);
+        // echo "saved";        
+        return $this->render('viewpass', [
+            'pass' => $pass,
+        ]);
 
 
 
     }
-
+    
     /**
      * Updates an existing Pass model.
      * If update is successful, the browser will be redirected to the 'view' page.
