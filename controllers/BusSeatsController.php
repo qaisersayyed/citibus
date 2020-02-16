@@ -151,6 +151,8 @@ class BusSeatsController extends Controller
         $jdate =Yii::$app->request->post('jdate');
         
 
+
+        
         $s = array();
         $length =strlen($seat);
         json_encode($seat);

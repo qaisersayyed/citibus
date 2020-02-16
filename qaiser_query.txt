@@ -7,3 +7,8 @@ ALTER TABLE `customer` CHANGE `password` `password` TEXT CHARACTER SET latin1 CO
 02/02/2020
 CREATE TABLE `citibus`.`location` ( `location_id` INT NOT NULL AUTO_INCREMENT ,  `lat` TEXT NOT NULL ,  `lon` TEXT NOT NULL ,  `bus_employee_id` INT NOT NULL ,  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,  `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL ,  `deleted_at` TIMESTAMP NULL ,    PRIMARY KEY  (`location_id`)) ENGINE = InnoDB;
 ALTER TABLE `location` ADD CONSTRAINT `a1` FOREIGN KEY (`bus_employee_id`) REFERENCES `bus_employee`(`bus_employee_id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+
+12/02/2020
+ALTER TABLE `pass` ADD `order_id` TEXT NOT NULL AFTER `fare`, ADD `txn_id` TEXT NOT NULL AFTER `order_id`, ADD `status` BOOLEAN NOT NULL DEFAULT FALSE AFTER `txn_id`;
+ALTER TABLE `pass` ADD `txn_date` DATE NOT NULL AFTER `txn_id`;
+ALTER TABLE `pass` CHANGE `txn_id` `txn_id` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `txn_date` `txn_date` DATE NULL, CHANGE `status` `status` TINYINT(1) NULL DEFAULT '0';

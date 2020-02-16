@@ -18,7 +18,7 @@ class PassSearch extends Pass
     {
         return [
             [['pass_id', 'customer_id', 'route_id', 'up_down','fare'], 'integer'],
-            [['start_date', 'end_date', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['start_date', 'end_date', 'created_at', 'updated_at', 'deleted_at','txn_date','order_id','txn_id','status'], 'safe'],
         ];
     }
 
@@ -58,7 +58,11 @@ class PassSearch extends Pass
 
         // grid filtering conditions
         $query->andFilterWhere([
+            'txn_date' => $this->txn_date,
             'pass_id' => $this->pass_id,
+            'order_id' => $this->order_id,
+            'status' => $this->status,
+            'txn_id' => $this->txn_id,
             'customer_id' => $this->customer_id,
             'route_id' => $this->route_id,
             'start_date' => $this->start_date,
