@@ -181,14 +181,15 @@ class PassController extends Controller
         $pass->txn_date = $date;
 
         $pass->save();
-        echo "saved";        // return $this->render('', [
-    
-        // ]);
+        // echo "saved";        
+        return $this->render('viewpass', [
+            'pass' => $pass,
+        ]);
 
 
 
     }
-
+    
     /**
      * Updates an existing Pass model.
      * If update is successful, the browser will be redirected to the 'view' page.
