@@ -107,7 +107,7 @@ if ($passes == ""){
                     <div class="col-md-12">
                     <?= Html::a(
                     'View Pass',
-                    ['tickets/viewticket2','pass_id'=>$pass->pass_id],
+                    ['pass/viewpass','id'=>$pass->pass_id],
                     ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
                 ); ?>
                     </div>

@@ -1,3 +1,4 @@
+
 <?php use yii\helpers\Html;
 use app\models\TransactionSearch;
 use app\models\Customer;
@@ -5,7 +6,8 @@ use app\models\Route;
 require_once 'phpqrcode/qrlib.php';
 $path = 'images/';
 $file = $path.uniqid().".png";
-$text = $pass->pass_id;
+$p = 'P';
+$text = $p.$pass->pass_id;
 QRcode::png($text,$file);
 ?> 
 <script  type="text/javascript">
@@ -15,7 +17,7 @@ QRcode::png($text,$file);
     };
   
 </script>
-
+<br>
 <?php 
 Yii::$app->session->setFlash('success', "You have successfully Created Pass ");
 

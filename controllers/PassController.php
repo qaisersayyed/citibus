@@ -98,7 +98,7 @@ class PassController extends Controller
     {
         if (!Yii::$app->user->isGuest) {       
             return $this->render('viewpass', [
-                'model' => $this->findModel($id),
+                'pass' => $this->findModel($id),
             ]);
             }else{
                 throw new \yii\web\ForbiddenHttpException;
