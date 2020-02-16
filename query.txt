@@ -29,7 +29,7 @@ ALTER TABLE `customer` CHANGE `password` `password` TEXT CHARACTER SET latin1 CO
 //20 jan 2020
 ALTER TABLE `tickets` ADD `date` TIMESTAMP NOT NULL AFTER `fare`;
 
-//30 jab 2020
+//30 jan 2020
 ALTER TABLE `pass` CHANGE `up` `up_down` INT(11) NOT NULL;
 
 //2 jan 2020

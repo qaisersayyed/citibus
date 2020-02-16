@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $models1 = Route::find()->all();
                 $data = array();
                 foreach ($models1 as $model1)
-                    $data[$model1->route_id] = $model1->from . ' -> ' . $model1->to;
+                    $data[$model1->route_id] = $model1->from . ' - ' . $model1->to;
 
                 echo $form->field($model1, 'route_id')->dropDownList(
                     $data,
@@ -68,19 +68,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="form-group" id="from">
                 <?php
-                echo json_encode($data);
+                // echo json_encode($data);
                 
                 ?>
                     <?= $form->field($model, 'bus_id', ['inputOptions' => ['name' => 'bus_id', 'id' => 'busid']])->widget(Select2::classname(), [
                         'data' => ArrayHelper::map(Bus::find()->all(), 'bus_id', 'license_plate'),
-                        'options' => ['prompt' => 'From'],
+                        'options' => ['prompt' => 'BUS'],
                         'name' => 'from',
                         'pluginOptions' => [
                             'allowClear' => true
                         ],
 
 
-                    ])->label('From') ?>
+                    ])->label('Bus') ?>
                 </div>
 
 
@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                 <div class="form-group" id="button">
-                    <?= Html::submitButton('Search', ['class' => 'btn btn-custom', 'style' => 'background-color:#F4B41A']) ?>
+                    <?= Html::submitButton('Start Ride', ['class' => 'btn btn-custom', 'style' => 'background-color:#F4B41A']) ?>
                 </div>
             </div>
 
