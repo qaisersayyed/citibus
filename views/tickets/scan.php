@@ -49,13 +49,23 @@ function sleep(milliseconds) {
     var name = document.getElementById('name') ;
     var busno = document.getElementById('busno') ;
     var ticket_id = document.getElementById('ticket_id');
+    //pass panel
+   
+    document.getElementById('panal_pass').style.display = "none";
+    var p_name =   document.getElementById('p_name') ;
+    var from = document.getElementById('from') ;
+    var to = document.getElementById('to');
+    var rides = document.getElementById('rides');
     //alerts
     var sucess = document.getElementById('1');
     var fail = document.getElementById('0');
     var warning = document.getElementById('2');
+    var pass_warning = document.getElementById('expired');
+
     sucess.style.display = "none";
     fail.style.display = "none";
     warning.style.display = "none"; 
+    pass_warning.style.display = "none";
     //qr code
         label.textContent = result;
         camQrResultTimestamp.textContent = new Date().toString();
@@ -67,39 +77,94 @@ function sleep(milliseconds) {
         $.ajax({
             url: '<?php echo Yii::$app->request->baseUrl. '/tickets/markticketqr' ?>',
            type: 'post',
-           data: { 'data' : result },
+           data: {'data':result},
           
            success: function (data) {
 
-            var result = $.parseJSON(data);
-            //console.log(result.data);
-           console.log(result.name);
-           console.log(result.busno);
-           console.log(result.ticket_id);
-
-            if (result.code == 1){
-             sucess.style.display = "block";
-             name.innerHTML = result.name;
+          var result = $.parseJSON(data);
+          //console.log(result.data);
+          // console.log(result.name);
+          // console.log(result.busno);
+          // console.log(result.ticket_id);
+          console.log(result);
+          
+          if (result.type == 't'){
+            console.log("type is t");
+            
+              if (result.code == 1){
+              sucess.style.display = "block";
+              console.log(result.code);
+              name.innerHTML = result.name;
               busno.innerHTML = result.busno;
               ticket_id.innerHTML = result.ticket_id;
               document.getElementById('panal').style.display = "block";
-              console.log('1');
 
-               }else if (result.code == 2) {
+               }else if(result.code == 2) {
                 warning.style.display = "block";
-                console.log('2');
-}
-               else{
+                console.log(result.code);
+                
+              }else{
               fail.style.display = "block";
-              console.log('0');
+              console.log(result.code);
                }
+          }
+
+          //pass
+          if (result.type == 'p'){
+            console.log("type is p");
+            
+              if (result.code == 1){
+              sucess.style.display = "block";
+              console.log(result.code);
+              p_name.innerHTML = result.name;
+              from.innerHTML = result.from;
+              to.innerHTML = result.to;
+              rides.innerHTML = result.rides;
+              document.getElementById('panal_pass').style.display = "block";
+
+               }else if(result.code == 2) {
+                pass_warning.style.display = "block";
+                console.log(result.code);
+                
+              }else{
+              fail.style.display = "block";
+              console.log(result.code);
+               }
+          }
+          if(result.code == 0){
+            fail.style.display = "block";
+            console.log("this is node");
+            
+          }
+
+           
+
+//             if (result.code == 1){
+//              sucess.style.display = "block";
+//              name.innerHTML = result.name;
+//               busno.innerHTML = result.busno;
+//               ticket_id.innerHTML = result.ticket_id;
+//               document.getElementById('panal').style.display = "block";
+//               console.log('1');
+
+//                }else if (result.code == 2) {
+//                 warning.style.display = "block";
+//                 console.log('2');
+// }
+//                else{
+//               fail.style.display = "block";
+//               console.log('0');
+//                }
+
+
+
            },
         // const data = document.getElementById('data');
         // const sub = document.getElementById('sub');
         // data.value = result;
         // sub.click();
     });
-    sleep(2000);
+    sleep(1500);
     }
 
     // ####### Web Cam Scanning #######
@@ -141,6 +206,13 @@ $this->title = "QR Scan";
 <div class="alert alert-warning" id="2" style="display:none" role="alert">
   <h4><b>Ticket Already Used!!</b></h4>
 </div>
+
+<!-- pass -->
+<div class="alert alert-warning" id="expired" style="display:none" role="alert">
+  <h4><b>Pass Expired OR No Rides Left...</b></h4>
+  
+</div>
+
 <div>
 <div class="panel panel-info" id="panal" style="display:none">
       <div class="panel-heading">Scaned Details.</div>
@@ -151,7 +223,16 @@ $this->title = "QR Scan";
       </div>
     </div>
 </div>
-
+<!-- pass panel -->
+<div class="panel panel-info" id="panal_pass" style="display:none">
+      <div class="panel-heading">Scaned Details.</div>
+      <div class="panel-body">
+      <h5 class="text-info">Name: <b id="p_name"></b></h5>
+      <h5 class="text-info">From: <b id="from"> </b></h5>
+       <h5 class="text-info">To: <b id="to"> </b></h5>
+       <h5 class="text-info">Rides Left: <b id="rides"> </b></h5>
+      </div>
+  </div>
 <!-- <b>Device has camera: </b>
     <span id="cam-has-camera"></span> -->
     

@@ -1,9 +1,21 @@
+<style>
+body {
+    background-image: url(http://localhost/citibus/web/img.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+</style>
+<br>
+<br>
 <?php use yii\helpers\Html;
+
 use app\models\TransactionSearch;
 require_once 'phpqrcode/qrlib.php';
 $path = 'images/';
 $file = $path.uniqid().".png";
-$text = $ticketid;
+$t = 'T';
+$text = $t.$ticketid;
 QRcode::png($text,$file);
 ?> 
 <script  type="text/javascript">

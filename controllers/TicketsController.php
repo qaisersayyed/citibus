@@ -15,6 +15,7 @@ use app\models\Route;
 use app\models\Stops;
 use app\models\BusRoute;
 use app\models\Bus;
+use app\models\Pass;
 
 /**
  * TicketsController implements the CRUD actions for Tickets model.
@@ -187,9 +188,14 @@ class TicketsController extends Controller
         $customer_name = '';
         $busno = '';
         $ticket_id = '';
-        $model = new Tickets();
+        // $model = new Tickets();
+        // $pass = new Pass();
+        $from = '';
+        $to = '';
+        $rides = '';
 
         
+
        
         if (Yii::$app->request->isAjax) {
             
@@ -200,74 +206,154 @@ class TicketsController extends Controller
             //echo $no;
             if($fst == "T" OR $fst == "t"){
                 $model = Tickets::find()->where(['ticket_id' => $no ])->one();
+                if($model == '') {
+                    $code = 0;
+                }elseif ($model->status == 0) {
+                    $code = 2;
+                }
+                else{
+                    $model->status = 0;     
+    
+                    $customer_id = $model->customer_id;
+                    $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();
+                    $customer_name = $cus_name->name;
+                    $bus_route = BusRoute::find()->where(['bus_route_id' => $model->bus_route_id ])->one();
+                    $busno = $bus_route->bus->license_plate;
+                    $ticket_id = $model->ticket_id;
+                    $model->save();
+                    $code = 1;
+                }
+                return json_encode(["type" => "t","code"=> $code,"name" =>$customer_name ,"busno" => $busno,"ticket_id" => $ticket_id
+                ]);
+                //----------------
+            }
                 //echo $model->ticket_id;
-            }elseif($fst == "P" OR $fst == "p"){
-                $model = '';
-                // $model = Tickets::find()->where(['ticket_id' => $code ])->one();
-            }else{
-                $model = '';
+            if($fst == "P" OR $fst == "p"){
+                //for pass
+                $pass = Pass::find()->where(['pass_id' => $no, 'status' => 1 ])->one();
+                if($pass == '') {
+                    $code = 0;
+                }elseif (date("Y-m-d") > $pass->end_date){
+                    $code = 2;
+                }elseif ($pass->up_down <= 0){
+                    $code = 2;
+                }else{
+                $pass->up_down = $pass->up_down - 1;
+                
+                $customer_name = $pass->customer->name;
+                $to = $pass->route->to;
+                $from = $pass->route->from;
+                $rides = $pass->up_down;
+                $pass->save();
+                $code = 1;
+                
+                }
+                return json_encode(["type" => "p","code"=> $code,"name" =>$customer_name ,"from" => $from,"to" => $to,"rides" => $rides
+                ]);
+            }
+            
+            else{
+                $code = 0;
+                return json_encode(["type" => "none","code"=> $code,"name" =>$customer_name ,"from" => $from,"to" => $to,"rides" => $rides
+                ]);
               //  echo "none";
             }
             
-
-            if($model == '') {
-                $code = 0;
-            }elseif ($model->status == 0) {
-                $code = 2;
-            }
-            else{
-                $model->status = 0;     
-
-                $customer_id = $model->customer_id;
-                $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();
-                $customer_name = $cus_name->name;
-                $bus_route = BusRoute::find()->where(['bus_route_id' => $model->bus_route_id ])->one();
-                $busno = $bus_route->bus->license_plate;
-                $ticket_id = $model->ticket_id;
-                $model->save();
-                $code = 1;
-            }
             
         }
+            
 
-     return json_encode(["code"=> $code,"name" =>$customer_name ,"busno" => $busno,"ticket_id" => $ticket_id
-     ]);
+    
     //return $code;
    
     }
     public function actionMarkticketqr()
     {
-        $model = new Tickets();
         $customer_name = '';
         $busno = '';
         $ticket_id = '';
+        // $model = new Tickets();
+        // $pass = new Pass();
+        $from = '';
+        $to = '';
+        $rides = '';
+
+        
+
+       
         if (Yii::$app->request->isAjax) {
-            $data = Yii::$app->request->post();   
-            $code =  $data['data'];   
-            $model = Tickets::find()->where(['ticket_id' => $code ])->one();
-
-            if($model == '') {
-                $code = 0;
-            }elseif ($model->status == 0) {
-                $code = 2;
-            } 
             
-            else {
-                $model->status = 0;
-                $customer_id = $model->customer_id;
-                $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();
-                $customer_name = $cus_name->name;
-                $bus_route = BusRoute::find()->where(['bus_route_id' => $model->bus_route_id ])->one();
-                $busno = $bus_route->bus->license_plate;
-                $ticket_id = $model->ticket_id;
-                       $model->save();
-                       $code = 1;
+            
 
+            $data = Yii::$app->request->post();   
+            $code = $data['data']; 
+            $code1 = strval($code);
+            $fst = substr($code1,0,1);
+            $no = substr($code1,1);
+
+            
+            //echo $no;
+            if($fst == "T" OR $fst == "t"){
+                $model = Tickets::find()->where(['ticket_id' => $no ])->one();
+                if($model == '') {
+                    $code = 0;
+                }elseif ($model->status == 0) {
+                    $code = 2;
+                }
+                else{
+                    $model->status = 0;     
+    
+                    $customer_id = $model->customer_id;
+                    $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();
+                    $customer_name = $cus_name->name;
+                    $bus_route = BusRoute::find()->where(['bus_route_id' => $model->bus_route_id ])->one();
+                    $busno = $bus_route->bus->license_plate;
+                    $ticket_id = $model->ticket_id;
+                    $model->save();
+                    $code = 1;
+                }
+                return json_encode(["type" => "t","code"=> $code,"name" =>$customer_name ,"busno" => $busno,"ticket_id" => $ticket_id
+                ]);
+                //----------------
+            }
+                //echo $model->ticket_id;
+            if($fst == "P" OR $fst == "p"){
+                //for pass
+                $pass = Pass::find()->where(['pass_id' => $no, 'status' => 1 ])->one();
+                if($pass == '') {
+                    $code = 0;
+                }elseif (date("Y-m-d") > $pass->end_date){
+                    $code = 2;
+                }elseif ($pass->up_down <= 0){
+                    $code = 2;
+                }else{
+                $pass->up_down = $pass->up_down - 1;
+                
+                $customer_name = $pass->customer->name;
+                $to = $pass->route->to;
+                $from = $pass->route->from;
+                $rides = $pass->up_down;
+                $pass->save();
+                $code = 1;
+                
+                }
+                return json_encode(["type" => "p","code"=> $code,"name" =>$customer_name ,"from" => $from,"to" => $to,"rides" => $rides
+                ]);
             }
             
+            else{
+                $code = 0;
+                return json_encode(["type" => "none","code"=> $code,"name" =>$customer_name ,"from" => $from,"to" => $to,"rides" => $rides
+                ]);
+              //  echo "none";
+            }
+            
+            
         }
-        return json_encode(["code"=> $code,"name" =>$customer_name ,"busno" => $busno,"ticket_id" => $ticket_id
-        ]);
+            
+
+
+
     }
 
     /**

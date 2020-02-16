@@ -71,7 +71,8 @@ class PassController extends Controller
             $route_id  = $model->route_id;
             $route = RouteStopType::find()->where(['route_id'=> $route_id])->orderBy(['stop_order' => SORT_DESC]) ->one();
             $fare = ($route->fare)* 60;
-            $fare = (10 / 100) * $fare;
+           // $fare = (10 / 100) * $fare;
+           $fare = 250;
             $user_id = Yii::$app->user->id;
             $customer = Customer::find()->where(['user_id'=> $user_id ])->one();
           //  $model->customer_id = $customer->customer_id;
@@ -193,6 +194,20 @@ class PassController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+
+
+    public function actionAllpasses()
+    {
+        $user_id = Yii::$app->user->id;
+        $customer = Customer::find()->where(['user_id'=> $user_id ])->one();
+        $pass = Pass::find()->where(['customer_id'=> $customer->customer_id, 'status' => 1 ])->all();
+
+        return $this->render('allpasses', [
+            'passes' => $pass,
+        ]);
+        
     }
 
     /**

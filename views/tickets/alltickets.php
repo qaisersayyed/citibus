@@ -1,6 +1,12 @@
 <head>
 <style>
-
+body {
+    background-image: url(http://localhost/citibus/web/img.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 </style>
 </head>
 
