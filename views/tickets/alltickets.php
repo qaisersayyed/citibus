@@ -17,10 +17,10 @@ use yii\helpers\Html;
 use app\models\RouteStopTypeSearch;
 use app\models\Transaction;
 
-//echo $user_id;
 //echo json_encode($data);
 //echo $data->fare;
-$mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['date'])->all();
+$mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->all();
+
 //echo "<br>";
 $seats = array();
 
@@ -28,13 +28,13 @@ $seats = array();
 if ($mod == null) {
     echo "<center><h1>No Bookings Found</h1></center>";
 } else {
-    echo "<center><h1>All Bookings</h1></center><br>";
+    echo "<center><h1>Your Bookings</h1></center><br>";
 }
 
 foreach ($mod as $col) {
     // echo $col->ticket_id,"<br>";
 
-    $tickets = Tickets::find()->where(['date' => $col->date])->all();
+    $tickets = Tickets::find()->where(['created_at' => $col->created_at])->all();
     $rst = RouteStopTypeSearch::find()->where(['route_stop_type_id' => $col->route_stop_type_id])->one();
     // $date = Tickets::find()->where(['date' => $col->date ])->one();
     $from = $rst->route->from;
@@ -101,7 +101,7 @@ foreach ($mod as $col) {
                             <div class=row>
                                 <div class="col-md-4">
                                     <p>Seats</p>
-                                    <h4 ><?php echo implode(",", $seats); ?> </h4>
+                                    <h4 ><b><?php echo implode(",", $seats); ?></b> </h4>
                                 </div>
                                 <div class="col-sm-4">
                                     <p>Amount</p>
@@ -109,20 +109,30 @@ foreach ($mod as $col) {
                                 </div>
                                 <div class="col-sm-2">
 
-                                    <?= Html::a(
-                                        'View Ticket',
-                                        ['tickets/viewticket2', 'tid' => $cols->ticket_id],
-                                        ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
-                                    ); ?>
+                                    <?php if($col->status==1 AND $doj >= date("Y-m-d") ){
+                                       echo  Html::a(
+                                            'View Ticket',
+                                            ['tickets/viewticket2', 'tid' => $cols->ticket_id],
+                                            ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
+                                        );
+                                    }else{
+                                        ?>
+                                        <img src="/citibus/web/ex.png" alt="" height=50px>
+                                    <?php }
+                                    
+                                     ?>
                                 </div>
 
                                 <div class="col-sm-2">
 
-                                    <?= Html::a(
-                                        'Track Bus',
-                                        ['tickets/viewticket2', 'tid' => $cols->ticket_id],
-                                        ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
-                                    ); ?>
+                                    <?php if($col->status==1  AND $doj >= date("Y-m-d")){
+                                        echo   Html::a(
+                                                'Track Bus',
+                                                ['location/gps',],
+                                                ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
+                                            );
+                                    }
+                                     ?>
                                 </div>
 
                             </div>

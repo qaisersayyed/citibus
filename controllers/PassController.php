@@ -225,6 +225,28 @@ class PassController extends Controller
         
     }
 
+    public function actionRefundpass($id)
+    {
+
+        $pass = Pass::find()->where(['pass_id' => $id])->one();
+       // echo $pass->start_date;
+        return $this->render('refundpass', [
+            'model' => $pass,
+        ]);
+        
+    }
+
+    public function actionRefunddone()
+    {
+
+        // $pass = Pass::find()->where(['pass_id' => $id])->one();
+       // echo $pass->start_date;
+        return $this->render('refunddone', [
+                   ]);
+        
+    }
+
+
     /**
      * Deletes an existing Pass model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

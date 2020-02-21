@@ -60,7 +60,7 @@ $dateObject = new DateTime($time);
                 <img alt="CitiBus" src="http://localhost/citibus/web/logos/bus-logo.png" style=" display:inline-block;height:62px; width:auto; padding-top:0; padding-bottom:9px; padding-left:30px">
                 <h2 style="display:inline-block;margin-left:20px">Bus Ticket</h2>
             </div>
-            <div class="card-body" style="border:1px solid black;background-color:#F4B41A; padding-top:15px; padding-bottom:auto; padding-left:10px; padding-right:auto">
+            <div class="card-body" style="background-color:#F4B41A; color:black">
                 <div class="row">
                     <div class="col-sm-3" style="float: left;margin-left:50px;display:inline-block">
                         <h4>Passenger Name: <br>

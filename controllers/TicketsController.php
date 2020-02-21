@@ -147,7 +147,7 @@ class TicketsController extends Controller
         $user_id = Yii::$app->user->id;
         $cus = Customer::find()->where(['user_id' => $user_id ])->one();
 
-        $tickets = Tickets::find()->where(['customer_id' => $cus ])->all();
+        $tickets = Tickets::find()->where(['customer_id' => $cus,'status' => 1 ])->all();
         
        
       
@@ -212,7 +212,12 @@ class TicketsController extends Controller
                     $code = 2;
                 }
                 else{
-                    $model->status = 0;     
+                    $alltickets = Tickets::find()->where(['customer_id' => $model->customer_id,'fare' =>$model->fare,
+                    'created_at' => $model->created_at ])->all();
+                    foreach ($alltickets as $one){
+                        $one->status = 0;
+                        $one->save();
+                    }     
     
                     $customer_id = $model->customer_id;
                     $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();
@@ -294,14 +299,20 @@ class TicketsController extends Controller
             
             //echo $no;
             if($fst == "T" OR $fst == "t"){
-                $model = Tickets::find()->where(['ticket_id' => $no ])->one();
+                $model = Tickets::find()->where(['ticket_id' => $no,'date' => date("Y-m-d") ])->one();
+
                 if($model == '') {
                     $code = 0;
                 }elseif ($model->status == 0) {
                     $code = 2;
                 }
                 else{
-                    $model->status = 0;     
+                    $alltickets = Tickets::find()->where(['customer_id' => $model->customer_id,'fare' =>$model->fare,
+                    'created_at' => $model->created_at ])->all();
+                    foreach ($alltickets as $one){
+                        $one->status = 0;
+                        $one->save();
+                    }    
     
                     $customer_id = $model->customer_id;
                     $cus_name = Customer::find()->where(['customer_id' => $customer_id])->one();

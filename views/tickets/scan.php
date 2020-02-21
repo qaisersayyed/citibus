@@ -40,7 +40,7 @@ function sleep(milliseconds) {
     const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
     const fileSelector = document.getElementById('file-selector');
     const fileQrResult = document.getElementById('file-qr-result');
-
+    var count = 0
     function setResult(label, result) {
         snd.play();
 
@@ -50,6 +50,7 @@ function sleep(milliseconds) {
     var busno = document.getElementById('busno') ;
     var ticket_id = document.getElementById('ticket_id');
     //pass panel
+  
    
     document.getElementById('panal_pass').style.display = "none";
     var p_name =   document.getElementById('p_name') ;
@@ -61,6 +62,11 @@ function sleep(milliseconds) {
     var fail = document.getElementById('0');
     var warning = document.getElementById('2');
     var pass_warning = document.getElementById('expired');
+//table
+var c = document.getElementById("count");
+document.getElementById("fulltable").style.display = "block";
+var table = document.getElementById("myTable");
+
 
     sucess.style.display = "none";
     fail.style.display = "none";
@@ -98,8 +104,18 @@ function sleep(milliseconds) {
               busno.innerHTML = result.busno;
               ticket_id.innerHTML = result.ticket_id;
               document.getElementById('panal').style.display = "block";
+              var row = table.insertRow(1);
+              var cell1 = row.insertCell(0);
+              var cell2 = row.insertCell(1);
+              var cell3 = row.insertCell(2);
+              row.className = "success";
+              cell1.innerHTML = result.name;
+              cell2.innerHTML = "Ticket";
+              cell3.innerHTML = result.busno;
+              count = count + 1;
+              c.innerHTML = count;
 
-               }else if(result.code == 2) {
+              }else if(result.code == 2) {
                 warning.style.display = "block";
                 console.log(result.code);
                 
@@ -121,6 +137,16 @@ function sleep(milliseconds) {
               to.innerHTML = result.to;
               rides.innerHTML = result.rides;
               document.getElementById('panal_pass').style.display = "block";
+              var row = table.insertRow(1);
+              var cell1 = row.insertCell(0);
+              var cell2 = row.insertCell(1);
+              var cell3 = row.insertCell(2);
+              row.className = "info";
+              cell1.innerHTML = result.name;
+              cell2.innerHTML = "pass";
+              cell3.innerHTML = result.from.concat("----").concat(result.to);
+              count = count + 1;
+              c.innerHTML = count;
 
                }else if(result.code == 2) {
                 pass_warning.style.display = "block";
@@ -136,33 +162,8 @@ function sleep(milliseconds) {
             console.log("this is node");
             
           }
-
-           
-
-//             if (result.code == 1){
-//              sucess.style.display = "block";
-//              name.innerHTML = result.name;
-//               busno.innerHTML = result.busno;
-//               ticket_id.innerHTML = result.ticket_id;
-//               document.getElementById('panal').style.display = "block";
-//               console.log('1');
-
-//                }else if (result.code == 2) {
-//                 warning.style.display = "block";
-//                 console.log('2');
-// }
-//                else{
-//               fail.style.display = "block";
-//               console.log('0');
-//                }
-
-
-
            },
-        // const data = document.getElementById('data');
-        // const sub = document.getElementById('sub');
-        // data.value = result;
-        // sub.click();
+      
     });
     sleep(1500);
     }
@@ -245,11 +246,36 @@ $this->title = "QR Scan";
 <b>Last detected at: </b>
 <span id="cam-qr-result-timestamp"></span>
 <hr>
-<?= Html::a(
-                    'Done',
+<div id=fulltable style="display:none">
+<button type="button" class="btn btn-primary">
+  Total Scanned passengers <span class="badge badge-light" id="count"></span>
+</button>
+<br>
+<br>
+<table id="myTable" class="table table-bordered">
+<thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Route/Bus No.</th>
+      </tr>
+    </thead>
+</table>
+</div>
+
+
+
+
+<?= Html::a( 'Done',
                     ['location/gps'],
                     ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
                 ); ?>
 
 
 </div>
+<script>
+function myFunction() {
+  
+ 
+}
+</script>
