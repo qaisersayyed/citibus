@@ -1,1 +1,0 @@
-2020-02-15 15:36:11: imagepng(images/5e4801db65ec6.png): failed to open stream: Permission denied
