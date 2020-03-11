@@ -20,6 +20,7 @@ use app\models\Route;
         ['prompt'=>'Select ']) ?>
 
     <div id="dynamicInput">
+        <div>
             <?php
             $models1 = Route::find()->all();
             $data = array();
@@ -30,13 +31,16 @@ use app\models\Route;
                                         $data,
                                         ['prompt'=>'Select','name' => 'BusRoute[route_id][]']);
         ?>
+        </div>
+        <div>
+            <?= $form->field($model, 'timing[]')->textInput(['placeholder' => "H:M "])->widget(TimePicker::classname(), []) ?>
+        </div>
         <?//=  $form->field($model, 'route_id')->dropDownList(
         // ArrayHelper::map(Route::find()->where(['deleted_at' => null])->all(),'route_id','from','to'),
         // ['prompt'=>'select ']) ?>
     </div>
         <input class="btn btn-custom" style ="background-color:#F4B41A;float:right" type="button" id="add" name="add" value="Add Route"> 
 
-    <?= $form->field($model, 'timing')->textInput(['placeholder' => "H:M "])->widget(TimePicker::classname(), []) ?>
 
     
 

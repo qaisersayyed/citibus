@@ -97,20 +97,21 @@ class BusRouteController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $r_id =  $model->route_id;
-            
-            foreach ($r_id as $rid) {
-                if($rid != null){
-                    // echo $rid;
-                    // echo "<br>";
-                    // echo $model->bus_id;
-                    // echo "<br>";
-                    // echo $model->timing;
-                    // echo "<br>";
-                    $mod = new BusRoute();
-                    $mod->route_id = $rid;
-                    $mod->bus_id = $model->bus_id;
-                    $mod->timing = $model->timing;
-                     $mod->save();
+            $timing = $model->timing;
+            echo json_encode($timing);
+            foreach ($r_id as $index => $rid) {
+                if($rid != null && $timing[$index] !=null){
+                     // echo $rid;
+                     // echo "<br>";
+                     // echo $model->bus_id;
+                     // echo "<br>";
+                     // echo $model->timing;
+                     // echo "<br>";
+                     $mod = new BusRoute();
+                     $mod->route_id = $rid;
+                     $mod->bus_id = $model->bus_id;
+                     $mod->timing = $model->timing[$index];
+                    $mod->save();
 
                 }                    
                 }               

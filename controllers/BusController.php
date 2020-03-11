@@ -63,6 +63,13 @@ class BusController extends Controller
         ]);
     }
 
+    public function actionCustomerview($bus_route_id,$route_id)
+    {
+        return $this->render('customerview', [
+            'bus_route_id' => $bus_route_id,
+            'route_id' => $route_id
+        ]);
+    }
     /**
      * Creates a new Bus model.
      * If creation is successful, the browser will be redirected to the 'view' page.
