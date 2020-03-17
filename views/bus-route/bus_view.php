@@ -143,7 +143,7 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
                                     
                                     <div class="col-md-2" style="padding-left:160px">
                                     
-                                       <img src="http://localhost/citibus/web/seat.png" alt="seat-left" height="40px" width="40px">
+                                       <img src="/citibus/web/seat.png" alt="seat-left" height="40px" width="40px">
 
                                     </div>
                                     <div class="col-md-2">

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\BusEmployee;
 use app\models\Employee;
+use app\models\Bus;
 use Yii;
 use app\models\Location;
 use app\models\LocationSearch;
@@ -71,6 +72,7 @@ class LocationController extends Controller
             $data = Yii::$app->request->post();   
             $lat =  $data['lat'];
             $lng =  $data['lng'];  
+            
             $user_id = Yii::$app->user->id;
             $employee_id = Employee::find()->where(['user_id'=>$user_id])->one();
             $bus_employee_id = BusEmployee::find()->where(['employee_id'=>$employee_id->employee_id])->one();
@@ -99,6 +101,34 @@ class LocationController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    public function actionTrack()
+    {
+        return $this->render('track', [
+            
+        ]);
+    }
+    public function actionGetlatlog(){
+        if (Yii::$app->request->isAjax) {
+            
+            $data = Yii::$app->request->post();   
+            $data =  $data['data']; 
+            $bus = Bus::find()->where(['license_plate'=>$data])->one();
+            $busemp = BusEmployee::find()->where(['bus_id' =>$bus->bus_id])->one();
+
+            $location = Location::find()->where(['bus_employee_id'=>$busemp->bus_employee_id])
+            ->orderBy(['created_at' => SORT_DESC])
+           ->one();
+            if ($location == ''){
+                return json_encode(['code' => 0 ]); 
+            }else{
+                return json_encode(['lat' => $location->lat,'lon' =>$location->lon,'code' =>1 ]);
+            }
+
+            
+        }
+        
+    }
+
     public function actionCreate()
     {
         $model = new Location();

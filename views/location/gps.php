@@ -1,4 +1,8 @@
 <?php
+//echo $bus_id;
+use app\models\BusEmployee;
+//$employee = BusEmployee::find()->where(['bus_id' => $bus_id])->one();
+//echo $employee->bus_employee_id;
 use yii\helpers\Html;
 ?>
 <!DOCTYPE html>

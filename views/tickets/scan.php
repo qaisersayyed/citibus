@@ -189,6 +189,33 @@ var table = document.getElementById("myTable");
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\BusRoute;       
+// echo $bus_id;
+// echo $route_id;
+$bus_routes = BusRoute::find()->where(['bus_id' => $bus_id,'route_id' => $route_id])->one();
+
+if ($bus_routes != null){
+  echo $bus_routes->route->from;
+  ?>
+<center>
+  <ul class="list-group">
+    <li class="list-group-item">From: Margao</li>
+    <li class="list-group-item">To: Panjim</li>
+    <li class="list-group-item">Bus No: GA0862757</li> 
+  </ul>
+</center>
+  
+ 
+<?php
+}else{
+  ?>
+  <center>
+  <ul class="list-group">
+  <li class="list-group-item list-group-item-danger">Invalid Route/Bus</li>
+</ul>
+</center>
+  <?php
+}
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Tickets */
@@ -267,7 +294,7 @@ $this->title = "QR Scan";
 
 
 <?= Html::a( 'Done',
-                    ['location/gps'],
+                    ['location/gps','bus_id' => $bus_id],
                     ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
                 ); ?>
 

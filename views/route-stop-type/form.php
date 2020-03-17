@@ -67,7 +67,7 @@ body {
                 <p>When?</p>
                                     <?php    echo DatePicker::widget([
                             'name' => 'date',
-                            'value' => date('d-M-Y'),
+                            'value' => date('yy-m-d'),
                             'options' => ['placeholder' => 'Select issue date ...'],
                             'pluginOptions' => [
                                 'format' => 'yyyy-mm-dd',

@@ -76,10 +76,13 @@ search
   
   if(Customer::find()->where(['user_id' => Yii::$app->user->id])->count() == 0){
 ?>
-<li><a href='/citibus/web/bus-route/start_ride'><i class="material-icons" style="color:#F4B41A; font-size:30px">
+<li>
+<a href='/citibus/web/bus-route/start_ride'><i class="material-icons" style="color:#F4B41A; font-size:30px">
 label_important
-</i></a></li>
-     <li class="dropdown">
+</i>
+</a>
+</li>
+<li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">
 directions_bus
 </i> <span class="caret"></span></a>
@@ -115,6 +118,10 @@ directions_bus
 </i></a></li>
 <li><a href='/citibus/web/pass/create'><i class="material-icons" style="color:#F4B41A; font-size:30px">
       label
+</i></a></li>
+<!-- location button -->
+<li><a href='/citibus/web/location/track'><i class="material-icons" style="color:#F4B41A; font-size:30px">
+location_on
 </i></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">account_circle</i> <span class="caret"></span></a>

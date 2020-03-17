@@ -78,10 +78,25 @@ class BusRouteController extends Controller
 
     public function actionStart_ride()
     {
+        if(Yii::$app->request->post()){
+            // $a =     Yii::$app->request->post();
+            // $json = \yii\helpers\Json::encode($a,JSON_NUMERIC_CHECK);
+            // echo $json;
+           
         
-               
-        return $this->render('start_ride');
+        $a  =  Yii::$app->request->post('Route');
+        $route =  $a['route_id'];
+        echo "<br>";
+        $bus =    Yii::$app->request->post('bus_id');
 
+        return $this->redirect(['tickets/scan', 'route_id' => $route , 'bus_id' => $bus]);
+     
+        }else{
+            return $this->render('start_ride');
+
+        }
+               
+        
 }
 
     

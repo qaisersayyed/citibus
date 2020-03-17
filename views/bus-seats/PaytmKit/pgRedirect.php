@@ -27,8 +27,8 @@ $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
 $paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
 
 
-
 $paramList["CALLBACK_URL"] = "http://localhost/citibus/views/bus-seats/PaytmKit/pgResponse.php";
+//$paramList["CALLBACK_URL"] = "php Yii::app()->getBaseUrl()citibus/views/bus-seats/PaytmKit/pgResponse.php";
 //http://localhost/paytm/PaytmKit/pgResponse.php
 ///opt/lampp/htdocs/citibus/views/bus-seats/PaytmKit/pgResponse.php
 

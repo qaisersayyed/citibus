@@ -2,6 +2,7 @@
 
 use app\models\Bus;
 use app\models\Route;
+use app\models\BusRoute;
 
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -50,22 +51,21 @@ $this->params['breadcrumbs'][] = $this->title;
         <br>
             <center><h2>Start Ride</h2></center>
             <div id="form" class="form" style="padding:50px">
-                <?php $form = ActiveForm::begin([
-                    'method' => 'get',
-                    'action' => Url::to(['bus-route/start_ride'])
-                ]); ?>
+                <?php $form = ActiveForm::begin(); ?>
 
                 <?php
                 $models1 = Route::find()->all();
                 $data = array();
-                foreach ($models1 as $model1)
-                    $data[$model1->route_id] = $model1->from . ' -- ' . $model1->to;
-
-                echo $form->field($model1, 'route_id')->dropDownList(
-                    $data,
-                    ['prompt' => 'Select']
+                foreach ($models1 as $model1){
+                    $data[$model1->route_id] = $model1->from . ' ---- ' . $model1->to;
+                }
+                    echo $form->field($model1, 'route_id')->dropDownList(
+                        $data,
+                        ['prompt' => 'Select']
+                        
+                    );
+                
                     
-                );
                 ?>
 
                 <div class="form-group" id="from">
@@ -73,8 +73,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 // echo json_encode($data);
                 
                 ?>
-                    <?= $form->field($model, 'bus_id', ['inputOptions' => ['name' => 'bus_id', 'id' => 'busid']])->widget(Select2::classname(), [
-                        'data' => ArrayHelper::map(Bus::find()->all(), 'bus_id', 'license_plate'),
+                     <?php 
+                     
+                    echo $form->field($model, 'bus_id', ['inputOptions' => ['name' => 'bus_id', 'id' => 'busid']])->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(Bus::find()->where('')->all(), 'bus_id', 'license_plate'),
                         'options' => ['prompt' => 'BUS'],
                         'name' => 'from',
                         'pluginOptions' => [
@@ -82,19 +84,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
 
 
-                    ])->label('Bus') ?>
-                </div>
+                    ])->label('Bus')
+                     ?>
+                </div> 
 
 
 
 
 
                 <div class="form-group" id="button">
-                <?= Html::a(
-                    'Next',
-                    ['tickets/scanticket'],
-                    ['class' => 'btn btn-custom', 'style' => 'background-color:#F4B41A; color:black']
-                ); ?>
+                <div class="form-group">
+        <?= Html::submitButton('sat', ['class' => 'btn btn-success']) ?>
+    </div>
+                <?php
+                //  Html::a(
+                //     'Next',
+                //     ['tickets/scanticket','route' => $data,'bus' =>$a],
+                //     ['class' => 'btn btn-custom', 'style' => 'background-color:#F4B41A; color:black']
+                // ); ?>
                     
                 </div>
             </div>

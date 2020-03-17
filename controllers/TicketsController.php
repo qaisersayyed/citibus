@@ -175,10 +175,11 @@ class TicketsController extends Controller
        
     }
 
-    public function actionScan()
+    public function actionScan($route_id,$bus_id)
     {
         
         return $this->render('scan', [
+            'route_id' => $route_id , 'bus_id' => $bus_id
             
         ]);
     }

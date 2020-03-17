@@ -57,7 +57,7 @@ $dateObject = new DateTime($time);
         <div class="responsive" id="ticket" style="height:300px;width:100%;border-radius: 20px;">
 
             <div class="card text-left" style="background-color:#143D59;height:70px;border-radius: 20px 20px 0px 0px;color:white">
-                <img alt="CitiBus" src="http://localhost/citibus/web/logos/bus-logo.png" style=" display:inline-block;height:62px; width:auto; padding-top:0; padding-bottom:9px; padding-left:30px">
+                <img alt="CitiBus" src="/citibus/web/logos/bus-logo.png" style=" display:inline-block;height:62px; width:auto; padding-top:0; padding-bottom:9px; padding-left:30px">
                 <h2 style="display:inline-block;margin-left:20px">Bus Ticket</h2>
             </div>
             <div class="card-body" style="background-color:#F4B41A; color:black">
