@@ -113,6 +113,7 @@ class LocationController extends Controller
             $data = Yii::$app->request->post();   
             $data =  $data['data']; 
             $bus = Bus::find()->where(['license_plate'=>$data])->one();
+            
             $busemp = BusEmployee::find()->where(['bus_id' =>$bus->bus_id])->one();
 
             $location = Location::find()->where(['bus_employee_id'=>$busemp->bus_employee_id])
