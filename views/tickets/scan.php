@@ -192,10 +192,10 @@ use yii\widgets\DetailView;
 use app\models\BusRoute;       
 // echo $bus_id;
 // echo $route_id;
-$bus_routes = BusRoute::find()->where(['bus_id' => $bus_id,'route_id' => $route_id])->one();
+//$bus_routes = BusRoute::find()->where(['bus_id' => $bus_id,'route_id' => $route_id])->one();
 
-if ($bus_routes != null){
-  echo $bus_routes->route->from;
+//if ($bus_routes != null){
+ // echo $bus_routes->route->from;
   ?>
 <center>
   <ul class="list-group">
@@ -207,15 +207,15 @@ if ($bus_routes != null){
   
  
 <?php
-}else{
+//}else{
   ?>
   <center>
-  <ul class="list-group">
+  <!-- <ul class="list-group">
   <li class="list-group-item list-group-item-danger">Invalid Route/Bus</li>
-</ul>
+</ul> -->
 </center>
   <?php
-}
+//}
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Tickets */

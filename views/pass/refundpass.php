@@ -98,7 +98,7 @@ msg.style.display = "none";
             <div class="col-md-2">
             <?= Html::a(
                     'Refund',
-                    ['pass/refunddone'],
+                    ['pass/refunddone','pass_id' => $model->pass_id],
                     ['class' => 'btn btn-custom btn-sm', 'style' => 'background-color:#F4B41A; color:black']
                 ); ?>
             </div>

@@ -19,7 +19,7 @@ use app\models\Transaction;
 
 //echo json_encode($data);
 //echo $data->fare;
-$mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->all();
+$mod = Tickets::find()->where(['customer_id' => $customer_id])->groupBy(['created_at'])->orderBy(['date' => SORT_DESC])->all();
 
 //echo "<br>";
 $seats = array();

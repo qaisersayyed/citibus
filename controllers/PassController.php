@@ -217,7 +217,7 @@ class PassController extends Controller
     {
         $user_id = Yii::$app->user->id;
         $customer = Customer::find()->where(['user_id'=> $user_id ])->one();
-        $pass = Pass::find()->where(['customer_id'=> $customer->customer_id, 'status' => 1 ])->all();
+        $pass = Pass::find()->where(['customer_id'=> $customer->customer_id, 'status' => 1 ])->orderBy(['created_at' => SORT_DESC])->all();
 
         return $this->render('allpasses', [
             'passes' => $pass,
@@ -236,8 +236,11 @@ class PassController extends Controller
         
     }
 
-    public function actionRefunddone()
+    public function actionRefunddone($pass_id)
     {
+        $pass = Pass::find()->where(['pass_id' => $pass_id])->one();
+        $pass->status = 0;
+        $pass->save();
 
         // $pass = Pass::find()->where(['pass_id' => $id])->one();
        // echo $pass->start_date;
