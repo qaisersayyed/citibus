@@ -57,6 +57,7 @@ menu
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+      
         <li><a href='/citibus/web/route-stop-type/form'><i class="material-icons" style="color:#F4B41A; font-size:30px">
 search
 </i></a></li>
@@ -95,11 +96,11 @@ directions_bus
         <li style="font-size:18px"><a href='/citibus/web/bus-route/index'>Bus_Route</a></li>
         <li style="font-size:18px"><a href='/citibus/web/route-stop-type/index'>Route Stop type</a></li>
         <li style="font-size:18px"><a href='/citibus/web/customer'>Customers</a></li>
-        <li style="font-size:18px"><a href='/citibus/web/employee'>Employees</a></li>
+        <!-- <li style="font-size:18px"><a href='/citibus/web/employee'>Employees</a></li> -->
         <li style="font-size:18px"><a href='/citibus/web/users'>User</a></li>
         <li style="font-size:18px"><a href='/citibus/web/tickets'>Tickets</a></li>
         <li style="font-size:18px"><a href='/citibus/web/transaction'>Transactions</a></li>
-        <li style="font-size:18px"><a href='/citibus/web/employee'>add employee</a></li>
+        <li style="font-size:18px"><a href='/citibus/web/employee'>Add employee</a></li>
     </ul>
     <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons" style="color:#F4B41A; font-size:30px">account_circle</i> <span class="caret"></span></a>

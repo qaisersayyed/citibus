@@ -30,13 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             //'route_id',
             [
                     'attribute' => 'route_id',
-                     'label' => 'from',
+                     'label' => 'From',
                      'value' => 'route.from',
                     
                  ],
                  [
                     'attribute' => 'route_id',
-                     'label' => 'to',
+                     'label' => 'To',
                      'value' => 'route.to',
                     
                  ],
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'bus_type_id',
-                 'label' => 'bus type',
+                 'label' => 'Bus type',
                  'value' => 'busType.type',
                 
              ],

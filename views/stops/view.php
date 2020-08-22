@@ -32,9 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'stop_id',
             'stop_name',
             
-            'created_at',
-            'updated_at',
-            'deleted_at',
+            // 'created_at',
+            // 'updated_at',
+            // 'deleted_at',
         ],
     ]) ?>
 

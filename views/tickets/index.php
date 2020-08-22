@@ -15,7 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Tickets', ['create'], ['class' => 'btn btn-success']) ?>
+        <?//= Html::a('Create Tickets', ['create'], ['class' => 'btn btn-success']) ?>
+        <br>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,10 +27,33 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ticket_id',
-            'customer_id',
-            'bus_route_id',
-            'route_stop_type_id',
+            // 'ticket_id',
+            [
+                'attribute' => 'customer_id',
+                'label' => 'Customer Name',
+                'value' => 'customer.name',
+            ],
+            // 'customer_id',
+            [
+
+                'attribute' => 'bus_route_id',
+                'label' => 'From',
+                'value' => 'busRoute.route.from',
+            ],
+            [
+    
+                'attribute' => 'bus_route_id',
+                'label' => 'To',
+                'value' => 'busRoute.route.to',
+            ],
+            
+            // 'bus_route_id',
+            [
+                'attribute' => 'route_stop_type_id',
+                'label' => 'Stop Name',
+                'value' => 'routeStopType.stop.stop_name',
+            ],
+            // 'route_stop_type_id',
             'fare',
             //'seat_name',
             //'created_at',

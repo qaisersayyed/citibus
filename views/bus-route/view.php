@@ -17,7 +17,7 @@ $bus_id =  BusRoute::find()
 ?>
 
 <div class="bus-route-view">
-    <h3>All Routes</h3>
+    <h3>All Routes</h3><br>
     <?php    
          foreach($bus_id as $b_id){
              //  echo $br_id->bus_route_id;?>
