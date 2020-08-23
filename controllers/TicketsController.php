@@ -177,9 +177,13 @@ class TicketsController extends Controller
 
     public function actionScan($route_id,$bus_id)
     {
-        
+        $bus  = Bus ::find()->where(['bus_id'=>$bus_id])->one();
+        $route = Route::find()->where(['route_id'=>$route_id])->one();
+
+
         return $this->render('scan', [
-            'route_id' => $route_id , 'bus_id' => $bus_id
+            'route_id' => $route_id , 'bus_id' => $bus_id,
+            'bus' => $bus ,'route' => $route
             
         ]);
     }

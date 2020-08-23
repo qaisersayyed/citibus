@@ -197,11 +197,12 @@ use app\models\BusRoute;
 //if ($bus_routes != null){
  // echo $bus_routes->route->from;
   ?>
+  <br>
 <center>
   <ul class="list-group">
-    <li class="list-group-item">From: Margao</li>
-    <li class="list-group-item">To: Panjim</li>
-    <li class="list-group-item">Bus No: GA0862757</li> 
+    <li class="list-group-item">From: <?=$route->from?></li>
+    <li class="list-group-item">To: <?=$route->to?></li>
+    <li class="list-group-item">Bus No: <?=$bus->license_plate?></li> 
   </ul>
 </center>
   
