@@ -11,11 +11,14 @@
   </head>
   <body>
   <br>
-    <label for="">Enter Bus No.</label>
-    <input type="text" id="busno" value="GA03G1876" class="form-control" ><br>
-    <div class="row">
-    <div class="col-md-2"><button onclick="track()" class="btn btn-success">Track Bus</button><br>
-</div>
+    
+  <div class="row">
+    <div class="col-md-6">
+      <label for="">Enter Bus No.</label>
+      <input  type="text" id="busno" value="GA03G1876" class="form-control" ><br>
+    </div> 
+    <div class="col-md-2" style="padding-top:24px" ><button onclick="track()" class="btn btn-success">Track Bus</button>
+  </div>
 </div><br>
     
   
@@ -54,6 +57,7 @@
           test();
           map1.style.display = "block";
             }else{
+              console.log('invalid');
                 alert('Invalid Bus No.')
             }
            

@@ -69,10 +69,11 @@ foreach ($mod as $col) {
                     <div class="panel panel-custom" style="background-color:#F4B41A;">
                         <div class="panel-heading" style="background-color:#143D59; color:white">
                             <div class="row">
+                                <div class="col-md-2">
+                                    <h4>ID <b><?php echo $cols->ticket_id ?></b></h4>
+                                </div>
                                 <div class="col-md-3">
                                     <h4>Bus Number: <b><?php echo $busno ?></b></h4>
-
-
                                 </div>
 
                                 <div class="col-md-4">

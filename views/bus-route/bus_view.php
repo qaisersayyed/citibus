@@ -174,65 +174,60 @@ $data = BusRoute::find()->where(['route_id' => $foundroute ])->all();
             ['bus-seats/seatselect', 'rst_id' => $found_rst->route_stop_type_id,'route_id' =>$col->route_id,'date'=>$date,'f'=>$f,'t' => $t,'bus_id'=>$col->bus_id,'bus_route_id'=>$col->bus_route_id],
             ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
         ); ?>
-                                <div style="text-align:center;padding-top:10px" >
+                                <!-- <div style="text-align:center;padding-top:10px" >
                                 <a    data-toggle="modal" data-target="#myModal"><b>Stops</a>
-                                </div>
+                                </div> -->
                                         </div>
-                                    </div>
-
-                                    
-                        
-                            
-                                </div>
-                                
+                                    </div>                         
+                                </div>                                
                         </div>         
                     </div>
                     <br>
-
     <?php
     }
-    ?>
-   
+    ?>   
         </div>
+
+
 
 <!-- Modal -->
 <?php
-$from_id = Stops::find(['stop_id'])->where(['stop_name' => $f])->one();
-$to_id = Stops::find(['stop_id'])->where(['stop_name' => $t])->one();
+// $from_id = Stops::find(['stop_id'])->where(['stop_name' => $f])->one();
+// $to_id = Stops::find(['stop_id'])->where(['stop_name' => $t])->one();
  
-$from_route_id = RouteStopType::find('*')->where(['stop_id' => $from_id]) ->all();
-$to_route_id = RouteStopType::find('*')->where(['stop_id' => $to_id])->all();
-//   echo json_encode($to_route_id);
+// $from_route_id = RouteStopType::find('*')->where(['stop_id' => $from_id]) ->all();
+// $to_route_id = RouteStopType::find('*')->where(['stop_id' => $to_id])->all();
+// //   echo json_encode($to_route_id);
 
-for($i = 0; $i < count($from_route_id) ;$i++) {
-    if($from_route_id[$i]->route_id != $to_route_id[$i]->route_id and $from_route_id[$i]->stop_order > $to_route_id[$i]->stop_order){
-        echo "not Available";  
-    }
-    else{
-        $route_id =  $from_route_id[$i]->route_id;
-        $stop_id = RouteStopType::find(['stop_id'])->where(['route_id' => $route_id])->orderby(['stop_order' =>SORT_ASC])->all();
-        if($stop_id>0){
+// for($i = 0; $i < count($from_route_id) ;$i++) {
+//     if($from_route_id[$i]->route_id != $to_route_id[$i]->route_id and $from_route_id[$i]->stop_order > $to_route_id[$i]->stop_order){
+//         echo "not Available";  
+//     }
+//     else{
+//         $route_id =  $from_route_id[$i]->route_id;
+//         $stop_id = RouteStopType::find(['stop_id'])->where(['route_id' => $route_id])->orderby(['stop_order' =>SORT_ASC])->all();
+//         if($stop_id>0){
         ?>
 <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
+        <!-- <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="panel panel-primary">
+             Modal content-->
+            <!-- <div class="panel panel-primary">
             <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">All Stops</h4>
             </div>
             <div class="panel-body">
-                <?php
-                    foreach ($stop_id as $stopid) {
+                <?//php
+                    // foreach ($stop_id as $stopid) {
                         // echo $stopid->stop_id;
-                        $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one(); ?>
+                        // $stop_name = Stops::find(['stop_name'])->where(['stop_id' => $stopid->stop_id])->one(); ?>
                             <div > 
-                                <p style="display:inline-block"> <i class="material-icons"> my_location </i></p><p style="display:inline-block;vertical-align:top;margin-top:5px;margin-left:10px"><?php echo $stop_name->stop_name?></p><br><br>                               
+                                <p style="display:inline-block"> <i class="material-icons"> my_location </i></p><p style="display:inline-block;vertical-align:top;margin-top:5px;margin-left:10px"><?//php echo $stop_name->stop_name?></p><br><br>                               
                             </div>  
-                    <?php
-                    }
+                    <?//php
+                   // }
                         
                 ?>
 
@@ -242,14 +237,14 @@ for($i = 0; $i < count($from_route_id) ;$i++) {
             </div>
             </div>
 
-        </div>
+        </div>  -->
 <?php 
-        break;
-            }
+    //     break;
+    //         }
             
-        }
+    //     }
            
-    }    
+    // }    
 ?>
 
 

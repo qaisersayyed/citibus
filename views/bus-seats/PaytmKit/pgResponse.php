@@ -26,12 +26,12 @@ $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecks
 if ($isValidChecksum == "TRUE") {
     echo '<script>console.log("checksum matched")</script>';
     if ($_POST["STATUS"] == "TXN_SUCCESS") {
-        echo "<center><b>Transaction status is success</b><br><h1>Please wait</h1></center>";
-        
+		echo "<center><b>Transaction status is success</b><br><h1>Please wait</h1></center>";
+		
         if (isset($_POST) && count($_POST)>0) {
-            // foreach($_POST as $paramName => $paramValue) {
-            // 		echo "<br/>" . $paramName . " = " . $paramValue;
-            // }
+            foreach($_POST as $paramName => $paramValue) {
+            		echo "<br/>" . $paramName . " = " . $paramValue;
+            }
             echo "<br>";
             $orderno = $_POST["ORDERID"];
             $date = $_POST["TXNDATE"];
@@ -62,11 +62,11 @@ if ($isValidChecksum == "TRUE") {
 		</div>
 		</body>
 		<script>
-function onload() { 
-document.getElementById("sub").click();
-console.log("onload");
-}
-</script>
+				function onload() { 
+				//document.getElementById("sub").click();
+				console.log("onload");
+				}
+		</script>
 		</html> 
 		
 		

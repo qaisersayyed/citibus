@@ -109,16 +109,18 @@ class LocationController extends Controller
     }
     public function actionGetlatlog(){
         if (Yii::$app->request->isAjax) {
-            
+            $location  = '';
             $data = Yii::$app->request->post();   
             $data =  $data['data']; 
             $bus = Bus::find()->where(['license_plate'=>$data])->one();
-            
-            $busemp = BusEmployee::find()->where(['bus_id' =>$bus->bus_id])->one();
+            if($bus){
+                $busemp = BusEmployee::find()->where(['bus_id' =>$bus->bus_id])->one();
 
-            $location = Location::find()->where(['bus_employee_id'=>$busemp->bus_employee_id])
-            ->orderBy(['created_at' => SORT_DESC])
-           ->one();
+                $location = Location::find()->where(['bus_employee_id'=>$busemp->bus_employee_id])
+                ->orderBy(['created_at' => SORT_DESC])
+               ->one();
+            }
+            
             if ($location == ''){
                 return json_encode(['code' => 0 ]); 
             }else{

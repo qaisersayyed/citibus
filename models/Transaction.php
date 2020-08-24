@@ -66,4 +66,24 @@ class Transaction extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+    public function getBusRoute()
+    {
+        return $this->hasOne(BusRoute::className(), ['bus_route_id' => 'bus_route_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCustomer()
+    {
+        return $this->hasOne(Customer::className(), ['customer_id' => 'customer_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRouteStopType()
+    {
+        return $this->hasOne(RouteStopType::className(), ['route_stop_type_id' => 'route_stop_type_id']);
+    }
 }

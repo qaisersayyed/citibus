@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use app\models\Customer;
+use app\models\BusRoute;
+use app\models\RouteStopType;
 /* @var $this yii\web\View */
 /* @var $model app\models\Transaction */
 
@@ -29,19 +31,30 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'transaction_id',
-            'bus_route_id',
-            'customer_id',
-            'route_stop_type_id',
+            // 'transaction_id',
+            // 'bus_route_id',
+            // 'customer_id',
+            'customer.name',
+            'busRoute.route.from',
+            'busRoute.route.to',
+            // 'route_stop_type_id',
+            'routeStopType.stop.stop_name',
             'seat_code',
-            'ticket_id',
+            // 'ticket_id',
             'order_id',
-            'txn_id',
+            // 'txn_id',
             'amount',
-            'date',
-            'status',
-            'creted_at',
-            'updated_at',
+            // 'date',
+            [
+                'label' => 'Date',
+                'attribute'=>'date',
+                'value' => function($model){
+                    return date('d M Y', strtotime($model->date));
+                }
+            ],
+            // 'status',
+            // 'creted_at',
+            // 'updated_at',
         ],
     ]) ?>
 

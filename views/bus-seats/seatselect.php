@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
-
+use app\models\Employee;
 //    echo json_encode($rows);
 //echo $f,$t;
 
@@ -176,7 +176,10 @@ echo $s;?>
 
 		</div>
 		<div class="col-md-2">
-		<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success', 'style' => 'background-color:#F4B41A']) ?>
+		<?php if(Employee::find()->where(['user_id' => Yii::$app->user->id])->count() == 0){ ?>
+					<?= Html::submitButton('Proceed For Payment', ['class' => 'btn btn-success', 'style' => 'background-color:#F4B41A']) ?>
+		<?php }
+			?>
 
 		</div>
 

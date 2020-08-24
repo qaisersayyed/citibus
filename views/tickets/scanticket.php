@@ -162,14 +162,8 @@ var rides = document.getElementById('rides');
 
 
     <div class="form-group">
-    <input id="submit" onclick="myFunction()" type="submit" class="btn btn-success" value="Submit">
+      <input id="submit" onclick="myFunction()" type="submit" class="btn btn-success" value="Submit">
         
     </div>
-    <label >OR</label><br>
-    <?= Html::a(
-            'Scan QR code',
-            ['tickets/scan'],
-            ['class' => 'btn btn-custom', 'style' => 'background-color:#143D59; color:white']
-        ); ?>
    
 </div>
