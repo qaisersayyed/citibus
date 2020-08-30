@@ -29,10 +29,10 @@ if ($isValidChecksum == "TRUE") {
 		echo "<center><b>Transaction status is success</b><br><h1>Please wait</h1></center>";
 		
         if (isset($_POST) && count($_POST)>0) {
-            foreach($_POST as $paramName => $paramValue) {
-            		echo "<br/>" . $paramName . " = " . $paramValue;
-            }
-            echo "<br>";
+            // foreach($_POST as $paramName => $paramValue) {
+            // 		echo "<br/>" . $paramName . " = " . $paramValue;
+            // }
+          //  echo "<br>";
             $orderno = $_POST["ORDERID"];
             $date = $_POST["TXNDATE"];
             $txn_id = $_POST["TXNID"];
@@ -63,7 +63,7 @@ if ($isValidChecksum == "TRUE") {
 		</body>
 		<script>
 				function onload() { 
-				//document.getElementById("sub").click();
+			document.getElementById("sub").click();
 				console.log("onload");
 				}
 		</script>
